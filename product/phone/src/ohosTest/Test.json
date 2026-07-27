@@ -1,0 +1,58 @@
+{
+  "description": "Configuration for IntelligentScene Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "180000",
+    "bundle-name": "com.ohos.intelligentscene",
+    "module-name": "phone_test",
+    "shell-timeout": "3600000",
+    "testcase-timeout": "180000",
+    "compile-mode": "esmodule",
+    "coverage": true,
+    "package-tool-path": "D:\\Local\\coverage2.0\\node_modules\\@ohos\\coverage"
+  },
+  "kits": [
+    {
+      "run-command": [
+        "mount -o rw,remount /",
+        "rm -rf /system/app/IntelligentScene/*.*"
+      ],
+      "teardown-command": [
+        "mount -o rw,remount /",
+        "power-shell setmode 600"
+      ],
+      "type": "ShellKit"
+    },
+    {
+      "pre-push":"mount -o rw,remount /",
+      "push": "IntelligentScene.hap->/system/app/IntelligentScene/IntelligentScene.hap",
+      "type": "PushKit",
+      "post-push": [
+        "bm install -p /system/app/IntelligentScene/IntelligentScene.hap",
+        "reboot",
+        "wait 5",
+        "power-shell wakeup",
+        "uinput -T -m 540 1752 540 751 500",
+        "wait 5",
+        "uinput -T -m 540 1752 540 751 500",
+        "uinput -T -c 630 1700",
+        "power-shell timeout -o 1800000",
+        "power-shell setmode 602"
+      ]
+    },
+    {
+      "test-file-name": [
+        "IntelligentScene.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },
+    {
+      "test-file-name": [
+        "IntelligentSceneTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    }
+  ]
+}

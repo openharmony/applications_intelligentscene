@@ -1,0 +1,11 @@
+{
+  "string": [
+    {
+      "name":"intelligent_scene",
+      "value":"Focus",
+      "attr":{
+        "priority":"LT"
+      }
+    }
+  ]
+}

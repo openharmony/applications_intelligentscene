@@ -1,0 +1,18 @@
+{
+    "string":[
+        {
+            "name":"monday_to_friday",
+            "value":"ວັນຈັນຫາວັນສຸກ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"every_week",
+            "value":"ມື້ທີ່ເລືອກໄວ້",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

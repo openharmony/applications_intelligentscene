@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "scene.notdisturb",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

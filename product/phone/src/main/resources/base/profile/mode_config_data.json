@@ -1,0 +1,10 @@
+{
+  "tableConfig": [
+    {
+      "uri": "*",
+      "crossUserMode": 1
+    }
+  ],
+  "path": "IntelligentScene/MODE_CONFIG_DATA_TABLE",
+  "type": "rdb"
+}

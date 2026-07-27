@@ -1,0 +1,18 @@
+{
+    "string":[
+        {
+            "name":"every_week",
+            "value":"選択した日",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"monday_to_friday",
+            "value":"月曜日から金曜日",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "string":[
+        {
+            "name":"monday_to_friday",
+            "value":"Pazartesi-Cuma",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"every_week",
+            "value":"Seçili günler",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

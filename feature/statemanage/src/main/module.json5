@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "scene.statemanage",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

@@ -1,0 +1,207 @@
+{
+    "string": [
+        {
+            "name": "zen_mode_ruletime_nextday",
+            "value": "%1$s - 次日 %2$s",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "search_app",
+            "value": "搜尋應用程式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "all_app",
+            "value": "全部應用程式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "timer_between",
+            "value": "%1$s-%2$s",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "not_disturb_everyday",
+            "value": "每天",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_disturb_call",
+            "value": "聯絡人",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "not_disturb_closed",
+            "value": "已停用",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "not_disturb_turnedon",
+            "value": "已啟用",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "timer_open",
+            "value": "開啟",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "timer_repeat",
+            "value": "重複",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "timer_start_time",
+            "value": "開始時間",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "timer_end_time",
+            "value": "結束時間",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_contacts",
+            "value": "允許聯絡人",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "repeat_call_ringing",
+            "value": "重複來電響鈴",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "automatic_answering",
+            "value": "小艺帮接",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_answering",
+            "value": "小艺帮接",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "forbid_everyone",
+            "value": "禁止所有人",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_everyone",
+            "value": "允許所有人",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_only_existing_contacts",
+            "value": "僅允許現有聯絡人",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_only_favorite_contacts",
+            "value": "僅允許我的最愛聯絡人",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_only_specified_contacts",
+            "value": "僅允許指定聯絡人",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "forbid_only_specified_contacts",
+            "value": "僅禁止指定聯絡人",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "add_contacts",
+            "value": "新增聯絡人",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "select_app",
+            "value": "選取應用程式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "done",
+            "value": "完成",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "permission_reason_read_write_contacts",
+            "value": "用於讀取和寫入聯絡人。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_disturb_nextday",
+            "value": "次日 %s",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "not_selected",
+            "value": "未選取",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "associated_system_function",
+            "value": "關聯系統功能",
+            "attr": {
+                "priority": "translate"
+            }
+        }
+    ]
+}

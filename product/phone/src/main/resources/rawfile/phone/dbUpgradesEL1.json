@@ -1,0 +1,42 @@
+{
+  "latestVersion": 5,
+  "upgrades": [
+    {
+      "version": 1,
+      "scripts":
+      [
+        "CREATE TABLE IF NOT EXISTS MODE_HISTORY_DATA_TABLE (id INTEGER PRIMARY KEY AUTOINCREMENT, operType TEXT, ruleName TEXT, modeId TEXT, priority INTEGER, timestamp INTEGER, configId TEXT UNIQUE ON CONFLICT REPLACE);",
+        "CREATE TABLE IF NOT EXISTS MODE_DATA_TABLE (modeId TEXT PRIMARY KEY, modeName TEXT, iconId TEXT, iconColor TEXT, filletIcon TEXT, roundIcon TEXT, isSupportDelete INTEGER, modePriority INTEGER, updateTime INTEGER, createTime INTEGER);",
+        "CREATE TABLE IF NOT EXISTS MODE_CONFIG_DATA_TABLE (configId TEXT PRIMARY KEY, modeId TEXT, configType INTEGER, configValue TEXT, updateTime INTEGER, createTime INTEGER);"
+      ]
+    },
+    {
+      "version": 2,
+      "scripts":
+      [
+        "NO_NEED_EXECUTE_SQL"
+      ]
+    },
+    {
+      "version": 3,
+      "scripts":
+      [
+        "NO_NEED_EXECUTE_SQL"
+      ]
+    },
+    {
+      "version": 4,
+      "scripts":
+      [
+        "NO_NEED_EXECUTE_SQL"
+      ]
+    },
+    {
+      "version": 5,
+      "scripts":
+      [
+        "NO_NEED_EXECUTE_SQL"
+      ]
+    }
+  ]
+}

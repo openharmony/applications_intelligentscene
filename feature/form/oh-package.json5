@@ -1,0 +1,14 @@
+{
+  "name": "@ohos/scene.form",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "@ohos/scene.common": "file:../../common",
+    "@ohos/scene.datamanage": "file:../datamanage",
+    "@ohos/scene.configmanage": "file:../configmanage",
+    "@ohos/scene.notdisturb": "file:../notdisturb",
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@ohos/scene.notdisturb",
+  "version": "1.0.0",
+  "description": "notdisturb feature.",
+  "main": "index.ets",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@ohos/scene.common": "file:../../common",
+    "@ohos/scene.configmanage": "file:../configmanage",
+    "@ohos/scene.datamanage": "file:../datamanage"
+  }
+}

@@ -1,0 +1,1547 @@
+{
+    "string": [
+        {
+            "name": "screen_reading_disable_hint",
+            "value": "请先关闭“屏幕朗读”再进行尝试",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_scene_new_hint",
+            "value": "开启后会自动调整系统功能，让您能全身心投入情景。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "extreme_battery_life",
+            "value": "极限续航",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "set_alarm",
+            "value": "设置闹钟",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "condition_count_initiate_new",
+            "value": "当满足以上任意条件，模式会自动启用，本功能需调用位置权限，读取位置信息",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "location_permission_tips",
+            "value": "本功能需调用位置权限，读取位置信息",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "open_to_next_day_time",
+            "value": "开启至次日 %s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "yesterday_time_range",
+            "value": "昨天 %1$s-%2$s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "open",
+            "value": "打开",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_encourage_text",
+            "value": "你太棒了！",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "recommend_enable_content",
+            "value": "已满足%s开启条件，是否开启？",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "enable_due_to_app",
+            "value": "开启至退出此应用",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "enable_due_to_position",
+            "value": "开启至离开此位置",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "condition_enable",
+            "value": "条件开启",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "add_condition",
+            "value": "添加条件",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "enable_now",
+            "value": "立即开启",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "close_now",
+            "value": "立即关闭",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "advanced",
+            "value": "高级",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "restore",
+            "value": "去恢复",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "restore_calendar_tip",
+            "value": "前往“日历”授权节假日、班休、历法等信息，请先恢复“日历”应用。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_turn_on",
+            "value": "不开启",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "keep_on",
+            "value": "保持开启",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "turn_on",
+            "value": "开启",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "shutdown_mode",
+            "value": "关闭模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "recommendation_close_content",
+            "value": "当前不在%s常用地点，是否关闭模式？",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "notification_close_content",
+            "value": "是否关闭%s？",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "notification_permission_dialog_title",
+            "value": "“情景模式”需通知权限",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "permission_reason_notification_permission",
+            "value": "用于发送通知提供情景模式服务。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_experience_service",
+            "value": "智能体验服务",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_experience_service_content",
+            "value": "开启后，将结合时间、位置、App 使用情况信息，在合适的时候自动打开模式，并自动提醒重要信息。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "accept",
+            "value": "同意",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "no_network_toast",
+            "value": "无网络时，智能开启不可用，请连接网络后使用。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "control_center_hint",
+            "value": "开启后，来电和通知将被静音 (闹钟除外)，熄屏时不会唤醒设备。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "more_settings",
+            "value": "更多设置",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "opening",
+            "value": "开启中",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "open_calendar",
+            "value": "打开日历",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "back",
+            "value": "返回",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "calendar_dialog_tips",
+            "value": "前往“日历”授权节假日、班休、历法等信息。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "open_to_time",
+            "value": "开启至 %s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "app_opening",
+            "value": "应用启动中",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "to_tonight",
+            "value": "至今晚",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "to_tonight_hint",
+            "value": "%s 前保持打开",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "mode_enable_dialog_hint",
+            "value": "开启后，来电和通知将被静音 (闹钟除外)，熄屏时不会唤醒设备。是否开启？",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "edit_enable_mode_hint",
+            "value": "开启中不可编辑模式图标和名称",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_plan_add_desc",
+            "value": "您可以添加学习任务，任务将在模式开启后呈现在锁屏",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "minute",
+            "value": "分钟",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "hour",
+            "value": "小时",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "loading_message",
+            "value": "正在加载…",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "current_location",
+            "value": "当前位置",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "locating_message",
+            "value": "正在获取位置",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "location_failed",
+            "value": "获取当前位置信息失败",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "delete_mode",
+            "value": "删除模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "delete_mode_message",
+            "value": "确认删除%s？",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "increase",
+            "value": "添加",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "has_duplicate_mode_name",
+            "value": "与已有情景模式名称重复",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "mode_name",
+            "value": "模式名称",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "color_purple",
+            "value": "紫色",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "color_blue",
+            "value": "蓝色",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "color_cyan_blue",
+            "value": "青色",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "color_green",
+            "value": "绿色",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "color_red",
+            "value": "红色",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "color_yellow",
+            "value": "黄色",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_read",
+            "value": "阅读",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_shopping",
+            "value": "购物",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_office",
+            "value": "办公",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_music",
+            "value": "音乐",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_painting",
+            "value": "绘画",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_dining",
+            "value": "就餐",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_flame",
+            "value": "火焰",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_research",
+            "value": "研究",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_gift",
+            "value": "礼物",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_foot",
+            "value": "徒步",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_document",
+            "value": "文档",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_rocket",
+            "value": "火箭",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_user",
+            "value": "用户",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_leaf",
+            "value": "树叶",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_pet",
+            "value": "宠物",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_home",
+            "value": "家",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_company",
+            "value": "公司",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_high_speed_rail",
+            "value": "高铁",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_card",
+            "value": "卡片",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_repair",
+            "value": "维修",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_lotus",
+            "value": "莲花",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_cold",
+            "value": "寒冷",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_love",
+            "value": "爱心",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_inspiration",
+            "value": "灵感",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_triangle",
+            "value": "三角形",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_work",
+            "value": "工作",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_study",
+            "value": "学习",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "input_max_length_message",
+            "value": "输入已达上限",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "condition_count_limit",
+            "value": "已达上限，先删除已有条件再添加",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "condition_count_initiate",
+            "value": "当满足以上任一条件，模式会自动启用",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "condition_delete",
+            "value": "删除此条件",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "confirm_delete",
+            "value": "是否删除“%s”？",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "when_opened",
+            "value": "开启时",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "once",
+            "value": "单次",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "every_day",
+            "value": "每天",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "statutory_workdays",
+            "value": "法定工作日",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "statutory_holidays",
+            "value": "法定节假日",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_scene",
+            "value": "情景模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_scene_hint",
+            "value": "开启后会自动静音来电和通知 (闹钟除外)，并调整系统功能，让你能全身心投入情景，提升专注力。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "add_intelligent_scene",
+            "value": "添加情景模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "add_intelligent_scene_max_toast",
+            "value": "已达上限，先删除已有模式再添加",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "sport_mode",
+            "value": "运动模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "sport_mode_hint",
+            "value": "让运动更投入",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "working_mode",
+            "value": "工作模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "working_mode_hint",
+            "value": "让工作更集中",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "driving_mode",
+            "value": "驾驶模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "driving_mode_hint",
+            "value": "让驾驶更专心",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "game_mode",
+            "value": "游戏模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "game_mode_hint",
+            "value": "让游戏更沉浸",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "entertainment_mode",
+            "value": "影音模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "entertainment_mode_hint",
+            "value": "让观影更专注",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "custom_mode",
+            "value": "自定义模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "sleep_mode",
+            "value": "睡眠模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "sleep_mode_hint",
+            "value": "让睡眠更安静",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "DND_mode",
+            "value": "免打扰",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "DND_mode_hint",
+            "value": "减少打扰保持专注",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_mode",
+            "value": "学习模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_mode_hint",
+            "value": "让学习更聚焦",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "edit",
+            "value": "编辑",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_experience",
+            "value": "智能开启与提醒",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_experience_hint",
+            "value": "开启后，将结合时间、位置、App 使用情况信息，在合适的时候自动打开模式，并自动提醒重要信息。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "enable_way",
+            "value": "开启方式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "add_triggering_condition",
+            "value": "添加触发条件",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "timed",
+            "value": "定时",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "by_application",
+            "value": "应用开启时",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "by_location",
+            "value": "靠近地点时",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "allowed_disturb",
+            "value": "允许打扰",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "application",
+            "value": "应用",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "incoming_call",
+            "value": "联系人",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_selected",
+            "value": "未选择",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "associated_system_function",
+            "value": "关联系统功能",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "dark_color_mode",
+            "value": "深色模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "eye_protection_mode",
+            "value": "护眼模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "power_save_mode",
+            "value": "省电模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "enable",
+            "value": "开启",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "close",
+            "value": "关闭",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_associated",
+            "value": "不关联",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "module_desc",
+            "value": "模块描述"
+        },
+        {
+            "name": "EntryAbility_desc",
+            "value": "description"
+        },
+        {
+            "name": "EntryAbility_label",
+            "value": "情景模式"
+        },
+        {
+            "name": "reason",
+            "value": "获取应用列表信息"
+        },
+        {
+            "name": "permission_reason_location",
+            "value": "用于情景模式下添加地点触发条件。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "system_location_permission_tips",
+            "value": "用于按靠近地点触发相应的情景模式及智能体验开启后根据位置信息推荐开启或关闭相应的情景模式。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "permission_reason_contact",
+            "value": "用于情景模式下设置允许打扰的来电信息。"
+        },
+        {
+            "name": "permission_bundle_resources",
+            "value": "用于获取捆绑资源权限"
+        },
+        {
+            "name": "search_or_input_location",
+            "value": "搜索或输入地址",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "add_plan",
+            "value": "添加计划",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_plan_title",
+            "value": "学习计划",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_plan_add_header",
+            "value": "学习任务",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_plan_add_text",
+            "value": "添加任务",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_plan_add_footer",
+            "value": "您可以添加学习任务，任务将在模式开启后呈现在桌面与锁屏",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "dialog_submit",
+            "value": "确定",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_plan_edit_text",
+            "value": "编辑任务",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_plan_over_limit",
+            "value": "学习任务已达上限，先删除已有任务再添加。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "voice_creation",
+            "value": "智能创建",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learn_more",
+            "value": "了解更多",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "upgrade_business_mode_title",
+            "value": "升级云空间全新服务模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "upgrade_business_mode_hint",
+            "value": "跨设备同步需要升级云空间服务模式。",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "upgrade_business_mode_btn",
+            "value": "去升级",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "open_cloud_space_title",
+            "value": "开启云空间",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "open_cloud_space_hint",
+            "value": "需开启云空间以跨设备同步数据。",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "open_cloud_space_btn",
+            "value": "去开启",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "wlan_not_connect",
+            "value": "网络未连接，请连接 WLAN",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "set_network",
+            "value": "设置网络",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_experience_service_tips",
+            "value": "本服务需调用地理位置权限、通知权限，在您开启和关闭模式时读取位置信息，以提供智能推荐相关服务。点击“同意”表示您知悉并同意使用本服务。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "help_info",
+            "value": "帮助",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "more_options",
+            "value": "更多选项",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "save",
+            "value": "保存",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "color_select",
+            "value": "颜色",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_select",
+            "value": "图标",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "set_scene_temporary_time",
+            "value": "设置%s开启时间",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "associated_system_open",
+            "value": "开启",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "associated_system_close",
+            "value": "关闭",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "associated_system_noRelated",
+            "value": "不关联",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "night_sky",
+            "value": "夜空",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "peak",
+            "value": "顶峰",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "qingfeng",
+            "value": "青峰",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "ink_black",
+            "value": "墨黑",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "wasteland",
+            "value": "荒原",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "personalized_settings",
+            "value": "个性化",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "small_window_toast",
+            "value": "壁纸不支持在小窗下编辑",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "origin_image",
+            "value": "原图",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "condition_footer_tip",
+            "value": "当满足以上任意条件，模式会自动启用",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "auto_hands_free_call",
+            "value": "通话自动免提",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "auto_hands_free_call_desp",
+            "value": "未佩戴蓝牙耳机等设备时生效",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "custom_high_volume",
+            "value": "声音提醒增强",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "custom_high_volume_desp",
+            "value": "铃声外放音量调至最大",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "clear_broadcasting",
+            "value": "清晰播报",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "clear_broadcasting_desp",
+            "value": "支持高德地图等应用清晰播报",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "screen_smart_highlighting",
+            "value": "屏幕高亮时间延长",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "screen_smart_highlighting_desp",
+            "value": "亮度“自动调节”开启时生效",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "screen_off_timeout",
+            "value": "智能延迟熄屏",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "screen_off_timeout_desp",
+            "value": "智能感知并延迟熄屏时间",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_sensing_career_model",
+            "value": "智感畅行",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "career_model",
+            "value": "职业模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "extend_screen_off_time",
+            "value": "延长熄屏时间至 %d 分钟，骑行或驾驶时不熄屏",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "clear_broadcasting_desp_two",
+            "value": "支持高德地图等应用清晰播报，%s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "screen_smart_highlighting_desp_two",
+            "value": "在美团众包等应用开启时生效，%s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "clear_broadcasting_title",
+            "value": "清晰播报：导航、订单播报更清晰",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition",
+            "value": "智能路况提醒：路口红绿灯提醒",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "custom_high_volume_title",
+            "value": "声音提醒增强：铃声音量调至最大",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "flow_app",
+            "value": "跟随应用开启和关闭",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "turn_on_tip",
+            "value": "开启后，以下应用启动时，将优先开启智感畅行模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "whether_open_title",
+            "value": "是否开启%s？",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_mode_open_recommend_message",
+            "value": "开启学习模式，让学习更聚焦。开启后，来电和通知将被静音 (闹钟除外)。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "sleep_mode_open_recommend_message",
+            "value": "开启睡眠模式，让睡眠更安静。开启后，来电和通知将被静音 (闹钟除外)。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "work_mode_open_recommend_message",
+            "value": "开启工作模式，让工作更集中。开启后，来电和通知将被静音 (闹钟除外)。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "recommend_close_message",
+            "value": "关闭后，来电和通知将恢复提醒。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_recommend_footer",
+            "value": "基于个人偏好，以及位置、时间等数据信息，智能推荐开启或关闭相应的情景模式，关闭后将影响情景模式的推荐体验。%1$s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "to_intelligent_service",
+            "value": "查看使用个性化智能服务的应用",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_recommend_switch_text",
+            "value": "推荐开启与关闭",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "important_message_tip",
+            "value": "重要信息提醒",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "important_message_tip_footer",
+            "value": "开启后，模式开启期间会提醒重要信息 (短信验证码和实况)。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_service_title",
+            "value": "情景模式智能服务",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "more_ability",
+            "value": "%s等功能",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "break_mark",
+            "value": "、%s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "no_schedule_available",
+            "value": "暂无课表，请先前往“%s”应用添加课表",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "calendar_app",
+            "value": "日历",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "schedule_group_title",
+            "value": "课表",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "schedule_cannot_found_dialog_message",
+            "value": "“%s”应用已卸载，无法查看此课程表。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "custom_high_call_volume_desp",
+            "value": "来电铃声外放音量调至最大",
+            "attr": {
+                "priority": "translate"
+            }
+        }
+    ]
+}

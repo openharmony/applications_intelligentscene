@@ -1,0 +1,130 @@
+{
+    "string": [
+        {
+            "name": "no_task",
+            "value": "No tasks in progress",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning",
+            "value": "Studying now",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "mode_starting",
+            "value": "On",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "mode_started",
+            "value": "%s on",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "mode_ended",
+            "value": "%s off",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "today_weather",
+            "value": "Today's weather is %s.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "low_temperature",
+            "value": "Lowest temperature: %s°",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "suggest_dress",
+            "value": "What to wear: %s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "sleep_greet_two_data",
+            "value": "%1$s\n%2$s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "sleep_greet_three_data",
+            "value": "%1$s\n%2$s\n%3$s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "good_morning",
+            "value": "Good morning!",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "good_noon",
+            "value": "Good afternoon!",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "good_afternoon",
+            "value": "Good afternoon!",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "good_evening",
+            "value": "Good evening!",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "late_night",
+            "value": "How's it going?",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "mode_starting_tips",
+            "value": "Incoming calls and notifications silenced",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "oc_mode_starting_tips",
+            "value": "Related system features enabled.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "schedule_condition_title",
+            "value": "Course schedule in Calendar",
+            "attr": {
+                "priority": "translate"
+            }
+        }
+    ]
+}

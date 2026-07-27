@@ -1,0 +1,19 @@
+{
+  "forms": [
+    {
+      "name": "sleep_form",
+      "displayName": "$string:sleep_mode",
+      "description": "$string:sleep_mode_hint",
+      "src": "./ets/widget/pages/SleepForm.ets",
+      "uiSyntax": "arkts",
+      "colorMode": "auto",
+      "isDynamic": false,
+      "isDefault": true,
+      "updateEnabled": false,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    }
+  ]
+}

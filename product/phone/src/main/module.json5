@@ -1,0 +1,378 @@
+{
+  "module": {
+    "name": "phone",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "metadata": [
+      {
+        "name": "client_id",
+        "value": "6917559492199914229"
+      },
+      {
+        "name": "action.settings.search.path",
+        "value": "searchConfig/searchPage.json"
+      },
+      {
+        "name": "wearEngineRemoteAppNameList",
+        "value": "com.openharmony.wear.intelligent"
+      },
+      {
+        "name": "action.settings.app.can_not_disable",
+        "value": "true"
+      },
+      {
+        "name": "action.settings.app.disable_force_stop",
+        "value": "true"
+      }
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:intelligent_scene",
+        "icon": "$media:layered_image",
+        "label": "$string:intelligent_scene",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "exported": false,
+        "name": "DefaultIntentBackgroundUiAbility",
+        "srcEntry": "./ets/intents/DefaultIntentBackgroundUiAbility.ets",
+        "launchType": "singleton",
+        "startWindowIcon": "$media:layered_image",
+        "startWindowBackground": "$color:start_window_background"
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "SceneStatusReportSchedulerExtensionAbility",
+        "srcEntry": "./ets/entryability/SceneStatusReportSchedulerExtensionAbility.ets",
+        "type": "workScheduler",
+        "exported": false
+      },
+      {
+        "srcEntry": "./ets/serviceability/DataExtAbility.ets",
+        "name": "DataExtAbility",
+        "type": "dataShare",
+        "uri": "datashare://com.ohos.intelligentscene.DataAbility",
+        "exported": true,
+        "metadata": [{"name": "ohos.extension.dataShare", "resource": "$profile:data_share_config"}],
+        "readPermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
+        "writePermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
+        "permissions": [
+          "ohos.permission.ACCESS_SYSTEM_SETTINGS"
+        ]
+      },
+      {
+        "name": "EntryBackupAbility",
+        "srcEntry": "./ets/serviceability/EntryBackupAbility.ets",
+        "type": "backup",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.backup",
+            "resource": "$profile:backup_config"
+          }
+        ]
+      },
+      {
+        "name": "IntelligentSceneUIExtSettingAbility",
+        "srcEntry": "./ets/entryability/IntelligentSceneUIExtSettingAbility.ets",
+        "type": "sys/commonUI",
+        "permissions": [
+          "ohos.permission.ACCESS_SYSTEM_SETTINGS"
+        ],
+        "exported": true,
+        "extensionProcessMode": "instance"
+      },
+      {
+        "name": "IntelligentSceneGreetUIExtAbility",
+        "srcEntry": "./ets/entryability/SceneGreetUIExtAbility.ets",
+        "type": "sys/commonUI",
+        "permissions": [
+          "ohos.permission.ACCESS_SYSTEM_SETTINGS"
+        ],
+        "exported": true
+      },
+      {
+        "name": "DefaultInitIntelligentSceneAbility",
+        "srcEntry": "./ets/serviceability/DefaultInitIntelligentSceneAbility.ets",
+        "description": "DefaultInitIntelligentSceneAbility",
+        "exported": true,
+        "type": "service",
+        "permissions": [
+          "ohos.permission.ACCESS_SYSTEM_SETTINGS"
+        ]
+      },
+      {
+        "name": "IntelligentSceneServiceExtAbility",
+        "srcEntry": "./ets/serviceability/IntelligentSceneServiceExtAbility.ets",
+        "type": "service",
+        "exported": true,
+        "permissions": [
+          "ohos.permission.ACCESS_SYSTEM_SETTINGS"
+        ]
+      },
+      {
+        "name": "SceneControlUIExtAbility",
+        "srcEntry": "./ets/entryability/SceneControlUIExtAbility.ets",
+        "type": "sys/commonUI",
+        "permissions": [
+          "ohos.permission.ACCESS_SYSTEM_SETTINGS"
+        ],
+        "exported": true
+      },
+      {
+        "name": "ModeEnableConfirmDialogUIExtAbility",
+        "srcEntry": "./ets/entryability/ModeEnableConfirmDialogUIExtAbility.ets",
+        "exported": true,
+        "type": "sysDialog/common",
+        "permissions": [
+          "ohos.permission.ACCESS_SYSTEM_SETTINGS"
+        ]
+      },
+      {
+        "name": "com.ohos.intelligentscene.SettingDndDataRestoreFinishSubscriber",
+        "srcEntry": "./ets/subscriber/SettingDndDataRestoreFinishSubscriber.ets",
+        "type": "staticSubscriber",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.staticSubscriber",
+            "resource": "$profile:dnd_data_restore_finish_subscriber_config"
+          }
+        ]
+      },
+      {
+        "name": "com.ohos.intelligentscene.SettingDataTimeRestoreFinishSubscriber",
+        "srcEntry": "./ets/subscriber/SettingDataTimeRestoreFinishSubscriber.ets",
+        "type": "staticSubscriber",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.staticSubscriber",
+            "resource": "$profile:settings_data_finish_subscriber_config"
+          }
+        ]
+      },
+      {
+        "name": "AiDispatchServerRemoteAbility",
+        "srcEntry": "./ets/serviceability/AiDispatchServerRemoteAbility.ets",
+        "type": "service",
+        "exported": true,
+        "permissions": [
+          "ohos.permission.ACCESS_SYSTEM_SETTINGS"
+        ]
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.RUNNING_LOCK"
+      },
+      {
+        // 马达振动权限
+        "name": "ohos.permission.VIBRATE"
+      },
+      {
+        "name": "ohos.permission.GET_NETWORK_INFO"
+      },
+      {
+        "name": "ohos.permission.READ_CLOUD_SYNC_CONFIG"
+      },
+      {
+        "name": "ohos.permission.ACCESS_SYSTEM_SETTINGS"
+      },
+      {
+        // 操作settingsdata secure�?
+        "name": "ohos.permission.MANAGE_SECURE_SETTINGS"
+      },
+      {
+        // 操作settingsdata device/user�?
+        "name": "ohos.permission.MANAGE_SETTINGS"
+      },
+      {
+        // 获取应用列表权限
+        "name": "ohos.permission.GET_INSTALLED_BUNDLE_LIST",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "com.openharmony.ohos.focusmode.MainAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_RESOURCES",
+        "reason": "$string:permission_bundle_resources",
+        "usedScene": {
+          "abilities": [
+            "com.openharmony.ohos.focusmode.MainAbility"
+          ]
+        }
+      },
+      {
+        // 唤醒小艺
+        "name": "ohos.permission.WAKEUP_VOICE"
+      },
+      {
+        // 获取获取当前登录的本地用户信�?
+        "name": "ohos.permission.GET_LOCAL_ACCOUNTS"
+      },
+      {
+        "name": "ohos.permission.LISTEN_BUNDLE_CHANGE"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO"
+      },
+      {
+        "name": "ohos.permission.GET_DISTRIBUTED_ACCOUNTS"
+      },
+      {
+        "name": "ohos.permission.UPDATE_CONFIGURATION"
+      },
+      {
+        "name": "ohos.permission.LOCATION",
+        "reason": "$string:system_location_permission_tips",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.intelligentscene.IntelligentSceneUIExtSettingAbility",
+            "com.ohos.intelligentscene.IntelligentSceneServiceExtAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.APPROXIMATELY_LOCATION",
+        "reason": "$string:system_location_permission_tips",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.intelligentscene.IntelligentSceneUIExtSettingAbility",
+            "com.ohos.intelligentscene.IntelligentSceneServiceExtAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.LOCATION_IN_BACKGROUND",
+        "reason": "$string:system_location_permission_tips",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.intelligentscene.IntelligentSceneUIExtSettingAbility",
+            "com.ohos.intelligentscene.IntelligentSceneServiceExtAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.READ_CONTACTS",
+        "reason": "$string:permission_reason_contact",
+        "usedScene": {
+          "abilities": [
+            "com.ohos.intelligentscene.IntelligentSceneUIExtSettingAbility",
+            "com.ohos.intelligentscene.DefaultInitIntelligentSceneAbility"
+          ]
+        }
+      },
+      {
+        "name": "ohos.permission.MANAGE_CLOUD_SYNC_CONFIG"
+      },
+      {
+        "name": "ohos.permission.NOTIFICATION_CONTROLLER"
+      },
+      {
+        "name": "ohos.permission.GET_RUNNING_INFO"
+      },
+      {
+        "name": "ohos.permission.CALLED_UIEXTENSION_ON_LOCK_SCREEN"
+      },
+      {
+        "name": "ohos.permission.START_SYSTEM_DIALOG"
+      },
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND",
+        "usedScene": {
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.USE_CLOUD_COMMON_SERVICE"
+      },
+      {
+        "name": "ohos.permission.BUNDLE_ACTIVE_INFO"
+      },
+      {
+        "name": "ohos.permission.GET_TELEPHONY_STATE"
+      },
+      {
+        "name": "ohos.permission.THEME_SKIN"
+      },
+      {
+        "name": "ohos.permission.READ_WHOLE_CALENDAR",
+        "reason": "$string:permission_reason_calendar",
+        "usedScene": {
+          "when": "always",
+          "abilities": [
+            "com.ohos.intelligentscene.IntelligentSceneUIExtSettingAbility"
+          ]
+        }
+      }
+    ],
+    "proxyData":[
+      {
+        "uri": "datashareproxy://com.ohos.intelligentscene/phone/IntelligentScene/MODE_CONFIG_DATA_TABLE",
+        "metadata": {
+          "name": "dataProperties",
+          "resource": "$profile:mode_config_data"
+        },
+        "requiredReadPermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
+        "requiredWritePermission": "ohos.permission.MANAGE_SECURE_SETTINGS"
+      },
+      {
+        "uri": "datashareproxy://com.ohos.intelligentscene/phone/IntelligentScene/MODE_DATA_TABLE",
+        "metadata": {
+          "name": "dataProperties",
+          "resource": "$profile:mode_data"
+        },
+        "requiredReadPermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
+        "requiredWritePermission": "ohos.permission.MANAGE_SECURE_SETTINGS"
+      },
+      {
+        "uri": "datashareproxy://com.ohos.intelligentscene/phone/IntelligentScene/CONTACT_DATA",
+        "metadata": {
+          "name": "dataProperties",
+          "resource": "$profile:contact_data"
+        },
+        "requiredReadPermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
+        "requiredWritePermission": "ohos.permission.MANAGE_SECURE_SETTINGS"
+      },
+      {
+        "uri": "datashareproxy://com.ohos.intelligentscene/phone/IntelligentScene/MODE_HISTORY_DATA_TABLE",
+        "metadata": {
+          "name": "dataProperties",
+          "resource": "$profile:mode_history_data"
+        },
+        "requiredReadPermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
+        "requiredWritePermission": "ohos.permission.MANAGE_SECURE_SETTINGS"
+      }
+    ]
+  }
+}

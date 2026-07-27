@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "scene.datamanage",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

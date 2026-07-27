@@ -1,0 +1,18 @@
+{
+    "string": [
+        {
+            "name": "every_week",
+            "value": "每周",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "monday_to_friday",
+            "value": "周一至周五",
+            "attr": {
+                "priority": "translate"
+            }
+        }
+    ]
+}

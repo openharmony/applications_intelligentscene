@@ -1,0 +1,15 @@
+{
+  "name": "@ohos/scene.configlinkage",
+  "version": "1.0.0",
+  "description": "Mode configuration association management.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@ohos/scene.common": "file:../../common",
+    "@ohos/scene.configmanage": "file:../configmanage",
+    "@ohos/scene.datamanage": "file:../datamanage",
+    "@ohos/scene.modeconfig": "file:../modeconfig",
+    "@ohos/hypium": "1.0.19"
+  }
+}

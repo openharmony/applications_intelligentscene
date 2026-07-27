@@ -1,0 +1,72 @@
+{
+    "string":[
+        {
+            "name":"dialog_open",
+            "value":"[TS_1118797]_Turn on"
+        },
+        {
+            "name":"no_more_reminder",
+            "value":"[TS_1034910]_Don't show again"
+        },
+        {
+            "name":"close_button",
+            "value":"[TS_1062887]_Close"
+        },
+        {
+            "name":"be_chosen",
+            "value":"[TS_1062881]_Selected"
+        },
+        {
+            "name":"not_be_chosen",
+            "value":"[TS_1062879]_Not selected"
+        },
+        {
+            "name":"not_selected_click_tips",
+            "value":"[TS_1062891]_Not selected, double-tap to activate"
+        },
+        {
+            "name":"confirm",
+            "value":"[TS_1036422]_OK"
+        },
+        {
+            "name":"cancel",
+            "value":"[TS_1036423]_Cancel"
+        },
+        {
+            "name":"delete",
+            "value":"[TS_1036424]_Delete"
+        },
+        {
+            "name":"done",
+            "value":"[TS_1009821]_Done"
+        },
+        {
+            "name":"location_permission_dialog_title",
+            "value":"[TS_1035710]_Focus requires the Location permission"
+        },
+        {
+            "name":"permission_reason_location_permission",
+            "value":"[TS_1035714]_This is used to provide you with location-based services."
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"[TS_1017407]_Cancel"
+        },
+        {
+            "name":"location_services_dialog_goto_setting",
+            "value":"[TS_1041228]_Go to Settings"
+        },
+        {
+            "name":"location_services_dialog_title_default",
+            "value":"[TS_1041227]_Focus requires the Location permission and Precise location access"
+        },
+        {
+            "name":"go_to",
+            "value":"[TS_1169677]_Go"
+        },
+        {
+            "name":"got_it",
+            "value":"[TS_1178083]_Got it"
+        }
+    ]
+}

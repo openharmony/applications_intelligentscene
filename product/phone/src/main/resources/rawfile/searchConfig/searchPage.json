@@ -1,0 +1,216 @@
+{
+  "version": {
+    "curVersion": "1.0.3"
+  },
+  "searchPages": [
+    {
+      "pageTitle": "$string:intelligent_scene",
+      "pageDescription": "",
+      "entryKey": "intelligent_scene_entry",
+      "params": "",
+      "path": [
+        "$string:intelligent_scene"
+      ],
+      "searchItems": [
+        {
+          "itemName": "intelligent_scene",
+          "itemTitle": "$string:intelligent_scene",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "情景模式|情景|Intelligent Scene|qingjingmoshi|qingjing",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportIntelligentScene",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "add_condition",
+          "itemTitle": "$string:add_condition",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "条件开启",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportIntelligentScene",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "application",
+          "itemTitle": "$string:application",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "允许打扰|通知勿扰|勿扰",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportIntelligentScene",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "incoming_call",
+          "itemTitle": "$string:incoming_call",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "允许打扰|勿扰|来电勿扰|重复来电响铃|小艺接听|小艺帮接",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportIntelligentScene",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "dark_color_mode",
+          "itemTitle": "$string:dark_color_mode",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "关联系统功能",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportIntelligentScene",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "eye_protection_mode",
+          "itemTitle": "$string:eye_protection_mode",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "false",
+          "childItems": "",
+          "alias": "关联系统功能",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportIntelligentScene",
+            "value": "true"
+          }
+        },
+        {
+          "itemName": "intelligent_important_message",
+          "itemTitle": "$string:important_message_tip",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportIntelligentScene",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:intelligent_scene",
+      "pageDescription": "",
+      "entryKey": "intelligent_scene_entry",
+      "params": "sleep_mode",
+      "path": [
+        "$string:intelligent_scene"
+      ],
+      "searchItems": [
+        {
+          "itemName": "sleep_mode",
+          "itemTitle": "$string:sleep_mode",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "睡眠模式|睡眠|shuimian|sleep|情景模式|情景",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportIntelligentScene",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:intelligent_scene",
+      "pageDescription": "",
+      "entryKey": "intelligent_scene_entry",
+      "params": "dnd_mode",
+      "path": [
+        "$string:intelligent_scene"
+      ],
+      "searchItems": [
+        {
+          "itemName": "dnd_mode",
+          "itemTitle": "$string:DND_mode",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "勿扰|免打扰|防打扰|勿扰模式|勿扰偏好设置|免打扰开关|免打扰模式|Do Not Disturb|miandarao|focus|小月亮|静音|情景模式|情景",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportIntelligentScene",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:intelligent_scene",
+      "pageDescription": "",
+      "entryKey": "intelligent_scene_entry",
+      "params": "learning_mode",
+      "path": [
+        "$string:intelligent_scene"
+      ],
+      "searchItems": [
+        {
+          "itemName": "learning_mode",
+          "itemTitle": "$string:learning_mode",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "学习模式|学习|xuexi|study|情景模式|情景",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportIntelligentScene",
+            "value": "true"
+          }
+        }
+      ]
+    },
+    {
+      "pageTitle": "$string:intelligent_scene",
+      "pageDescription": "",
+      "entryKey": "intelligent_scene_entry",
+      "params": "working_mode",
+      "path": [
+        "$string:intelligent_scene"
+      ],
+      "searchItems": [
+        {
+          "itemName": "working_mode",
+          "itemTitle": "$string:working_mode",
+          "itemDescription": "",
+          "icon": "",
+          "enable": "true",
+          "childItems": "",
+          "alias": "工作模式|工作|gongzuo|work|情景模式|情景",
+          "checkItem": {
+            "type": "function",
+            "checkKey": "isSupportIntelligentScene",
+            "value": "true"
+          }
+        }
+      ]
+    }
+  ]
+}

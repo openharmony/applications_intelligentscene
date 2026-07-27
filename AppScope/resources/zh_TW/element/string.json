@@ -1,0 +1,11 @@
+{
+    "string": [
+        {
+            "name": "intelligent_scene",
+            "value": "情境模式",
+            "attr": {
+                "priority": "LT"
+            }
+        }
+    ]
+}

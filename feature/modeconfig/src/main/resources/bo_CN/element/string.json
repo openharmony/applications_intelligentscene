@@ -1,0 +1,319 @@
+{
+    "string": [
+        {
+            "name": "experience_now",
+            "value": "Try now",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "warning_title",
+            "value": "Expedition mode provides a suite of features designed specially for outdoor treks. These include:",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "warning_directions",
+            "value": "Featured routes: Enjoy a selection of top outdoor trails from across China.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "warning_track",
+            "value": "Automatic route recording: Get a complete record of every step of your journey.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "warning_maps",
+            "value": "Power-saving maps: Check your route at a glance, without having to turn on the screen.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "warning_tool",
+            "value": "Emergency features: Check the weather via satellite and more when you're off the grid.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "tips",
+            "value": "Note",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "restore_app_hint",
+            "value": "To use this feature, first go to Settings and restore the required apps.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "go_to_settings",
+            "value": "Go to Settings",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "off_and_restart",
+            "value": "Power off & restart",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "emergency_guide_title",
+            "value": "Add emergency contacts",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "emergency_guide_hint",
+            "value": "Set one or more emergency contacts that can be notified in an emergency.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "emergency_guide_link",
+            "value": "Add",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "sleep_guide_title",
+            "value": "Sleep focus suggestion",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "sleep_guide_hint",
+            "value": "Schedule your sleep focus based on your daily routine on weekdays and weekends. To help you prep for bedtime, you can also choose to have Eye comfort and Dark mode turn on automatically.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "sleep_guide_link",
+            "value": "Set up related features",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "learn_guide_title",
+            "value": "Study focus suggestion",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "learn_guide_hint",
+            "value": "Schedule this focus to turn on at certain locations or when opening certain apps. Boost your productivity further by setting up a study plan.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "learn_guide_link",
+            "value": "Create study plan",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_title",
+            "value": "Smart road condition alerts",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_dialog_desc",
+            "value": "The On-the-go focus provides real-time road condition alerts via Amap. To use this feature, please install Amap or update your app version from AppGallery.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts",
+            "value": "Smart road condition alerts",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_desc",
+            "value": "Get traffic light prompts when riding or driving.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_mode_one",
+            "value": "Amap can show the status of traffic lights as you travel. This feature will be enabled when requested by the system, and needs to collect location information at frequent intervals to work properly. You can disable this feature at any time by closing the live view window or turning the focus off in system Settings. This feature will automatically turn itself off if you've stopped riding or driving for a period of time.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_mode_two",
+            "value": "This feature uses a third-party map service to determine your current location and direction of travel. By turning this on, you agree to these terms.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_mode_three",
+            "value": "Amap does not have location access. Please open the app and grant location access.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "optimize_network",
+            "value": "Network connection optimisation",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "supported_app",
+            "value": "Supported apps",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "rider_app",
+            "value": "Rider apps",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "rider_app_list",
+            "value": "Meituan Crowdsourcing, Fengniao Crowdsourcing, JD Miaosong Rider, SF Same-City Rider, Meituan Rider, Shansong Courier, UU Paotui Runner, and more.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "express_logistics_app",
+            "value": "Courier & logistics apps",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "express_logistics_app_list",
+            "value": "Hive Box Manager, Courier Workbench, SF Express Courier, Zhongtong Palm, STO Express Courier, China Post Employee Self-Service, Baoguoxia, Pinduoduo Courier Edition, and more.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "ride_hailing_app",
+            "value": "Ride hailing apps",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "ride_hailing_app_list",
+            "value": "DiDi Driver, Xiaola Driver, Huaxiaozhu Driver, CaoCao Driver, T3 Driver, Sunshine Driver, DiDi Chauffeur, Hello Driver, Ruqi Driver, and more.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "freight_vehicle_app",
+            "value": "Delivery apps",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "freight_vehicle_app_list",
+            "value": "Lalamove Driver, Truck Alliance Driver, Chewang, Chengfeng Driver, Truck Alliance Shipper, DiDi Freight Driver, Luge Haoyunbao, Fengyu Driver, and more.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "map_app",
+            "value": "Map & navigation apps",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "map_app_list",
+            "value": "Amap, Baidu Maps, Tencent Maps, and more.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "delegation",
+            "value": "Go now",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "supported_title",
+            "value": "View supported apps",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "screen_smart_highlighting_app_list",
+            "value": "Meituan Crowdsourcing, Fengniao Crowdsourcing, JD Miaosong Rider, SF Same-City Rider, Meituan Rider, Shansong Courier, UU Paotui Runner, Hive Box Manager, and more.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_mode_four",
+            "value": "I have read and agree to the %1$s, %2$s, and %3$s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_mode_five",
+            "value": "Amap Service Terms",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_mode_six",
+            "value": "Privacy Policy on Amap Basic Functions",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_mode_seven",
+            "value": "Guidelines for Processing Personal Information for Traffic Light Alerts",
+            "attr": {
+                "priority": "translate"
+            }
+        }
+    ]
+}

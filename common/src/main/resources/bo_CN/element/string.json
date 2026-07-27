@@ -1,0 +1,137 @@
+{
+    "string": [
+        {
+            "name": "no_more_reminder",
+            "value": "སླར་ཡང་དྲན་སྐུལ་མི་དགོས།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "dialog_open",
+            "value": "ཁ་འབྱེད།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "close_button",
+            "value": "ཁ་རྒྱག",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "be_chosen",
+            "value": "བདམས་ཟིན།",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_be_chosen",
+            "value": "བདམས་མེད།",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_selected_click_tips",
+            "value": "བདམས་མེད། མཛུབ་མོ་གཅིག་གིས་ཉིས་རྡེབ་བྱས་ཏེ་ལག་ལེན་བསྟར་ཆོག",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "location_permission_dialog_title",
+            "value": "༼གནས་ཚུལ་དཔེ་རྣམ་༽གྱིས་རྒྱུད་ཁོངས་ཀྱི་གནས་ཡུལ་གྱི་ཆ་འཕྲིན་ལ་ལྟ་སྤྱོད་བྱ་དགོས།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "permission_reason_location_permission",
+            "value": "ས་ཁམས་གནས་ཡུལ་རྨང་གཞིར་བྱས་པའི་གནས་ཚུལ་དཔེ་རྣམ་གྱི་ཞབས་ཞུ་མཁོ་འདོན་བྱ་བར་བེད་སྤྱོད་བྱ།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "dialog_cancel",
+            "value": "འདོར་བ།",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "location_services_dialog_goto_setting",
+            "value": "སྒྲིག་འགོད་དུ་སྐྱོད།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "location_services_dialog_title_default",
+            "value": "༼གནས་ཚུལ་དཔེ་རྣམ་༽གྱིས་ཁྱེད་ཀྱི་གནས་ཡུལ་གྱི་ཆ་འཕྲིན་དང་ཞིབ་ཕྲའི་གནས་ཡུལ་ལ་ལྟ་སྤྱོད་བྱ་དགོས།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "cancel",
+            "value": "འདོར་བ།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "confirm",
+            "value": "གཏན་འཁེལ།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "done",
+            "value": "གྲུབ་པ།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "delete",
+            "value": "སུབ་པ།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "go_to",
+            "value": "Go",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "got_it",
+            "value": "Got it",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "permission_calendar_read_title",
+            "value": "Allow %s to read all your Calendar events?",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "permission_reason_calendar",
+            "value": "This is used to identify and display courses in Calendar when the Study focus in on.",
+            "attr": {
+                "priority": "translate"
+            }
+        }
+    ]
+}

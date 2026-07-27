@@ -1,0 +1,18 @@
+{
+    "string":[
+        {
+            "name":"monday_to_friday",
+            "value":"Senin sampai Jumat",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"every_week",
+            "value":"Hari yang dipilih",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

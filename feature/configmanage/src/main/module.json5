@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "scene.configmanage",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

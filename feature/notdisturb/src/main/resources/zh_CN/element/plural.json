@@ -1,0 +1,100 @@
+{
+    "plural":[
+        {
+            "name":"selected_app",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"已选 (%d)"
+                },
+                {
+                    "quantity":"other",
+                    "value":"已选 (%d)",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"user_select_app",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"%d个应用"
+                },
+                {
+                    "quantity":"other",
+                    "value":"%d 个应用",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"selected",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"已选择%d个"
+                },
+                {
+                    "quantity":"other",
+                    "value":"已选择 %d 个",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"allowed_selected",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"已允许%d人"
+                },
+                {
+                    "quantity":"other",
+                    "value":"已允许 %d 人",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"forbid_selected",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"已禁止%d人"
+                },
+                {
+                    "quantity":"other",
+                    "value":"已禁止 %d 人",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"repeat_call_will_ring_normally",
+            "value":[
+                {
+                    "quantity":"one",
+                    "value":"开启后，相同号码在 %d 分钟内重复来电将会正常响铃"
+                },
+                {
+                    "quantity":"other",
+                    "value":"开启后，相同号码在 %d 分钟内重复来电将会正常响铃",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

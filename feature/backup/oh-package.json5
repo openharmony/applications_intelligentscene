@@ -1,0 +1,14 @@
+{
+  "name": "@ohos/scene.backup",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@ohos/scene.common": "file:../../common",
+    "@ohos/scene.datamanage": "file:../datamanage",
+    "@ohos/scene.activationmanage": "file:../activationmanage",
+    "@ohos/scene.modeconfig": "file:../modeconfig"
+  }
+}

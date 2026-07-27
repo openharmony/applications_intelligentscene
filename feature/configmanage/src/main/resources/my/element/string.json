@@ -1,0 +1,18 @@
+{
+    "string":[
+        {
+            "name":"monday_to_friday",
+            "value":"တနင်္လာမှ သောကြာ",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"every_week",
+            "value":"ရွေးချယ်ထားသော ရက်များ",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

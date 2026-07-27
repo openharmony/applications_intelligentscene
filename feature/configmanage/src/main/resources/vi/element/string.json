@@ -1,0 +1,18 @@
+{
+    "string":[
+        {
+            "name":"every_week",
+            "value":"Ngày đã chọn",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"monday_to_friday",
+            "value":"Thứ Hai đến Thứ Sáu",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}
