@@ -107,11 +107,11 @@ class CallMessage {
   /**
    * 方法名
    */
-  method: string;
+  public method: string;
   /**
    * 附加参数
    */
-  extra?: object;
+  public extra?: object;
 
   constructor(method: string, extra?: object) {
     this.method = method;

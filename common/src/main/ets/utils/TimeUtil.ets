@@ -369,7 +369,7 @@ export class TimeUtil {
       hour12: false
     });
     let date: Date = new Date(time);
-    let splitArray: string[] = dateTimeFormatter.format(date).split(",");
+    let splitArray: string[] = dateTimeFormatter.format(date).split(',');
     return splitArray.length > 0 ? splitArray[0] : '';
   }
 

@@ -15,7 +15,7 @@
 
 import HashMap from '@ohos.util.HashMap';
 
-export type EventCb = (...args: any[]) => void;
+export type EventCb = (...args: Object[]) => void;
 
 interface Listener {
   callback: EventCb;
@@ -73,7 +73,7 @@ export class EventBus {
     this.listenerMap.set(eventName, listeners);
   }
 
-  public emit(eventName: string, ...args: any): void {
+  public emit(eventName: string, ...args: Object[]): void {
     let listeners: Listener[] = [];
 
     if (this.hasListeners(eventName)) {
