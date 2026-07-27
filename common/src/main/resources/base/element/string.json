@@ -1,0 +1,137 @@
+{
+    "string":[
+        {
+            "name":"no_more_reminder",
+            "value":"Don't show again",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"dialog_open",
+            "value":"Turn on",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"close_button",
+            "value":"Close",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"be_chosen",
+            "value":"Selected",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_be_chosen",
+            "value":"Not selected",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_selected_click_tips",
+            "value":"Not selected, double-tap to activate",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_permission_dialog_title",
+            "value":"Focus requires the Location permission",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_reason_location_permission",
+            "value":"This is used to provide you with location-based services.",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Cancel",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_services_dialog_goto_setting",
+            "value":"Go to Settings",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_services_dialog_title_default",
+            "value":"Focus requires the Location permission and Precise location access",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"Cancel",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"done",
+            "value":"Done",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delete",
+            "value":"Delete",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"go_to",
+            "value":"Go",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"got_it",
+            "value":"Got it",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_calendar_read_title",
+            "value":"Allow %s to read all your Calendar events?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_reason_calendar",
+            "value":"This is used to identify and display courses in Calendar when the Study focus in on.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

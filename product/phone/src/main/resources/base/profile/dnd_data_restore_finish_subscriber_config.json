@@ -1,0 +1,12 @@
+{
+  "commonEvents": [
+    {
+      "name": "com.ohos.intelligentscene.SettingDndDataRestoreFinishSubscriber",
+      "types": [],
+      "permission": "ohos.permission.READ_CONTACTS",
+      "events": [
+        "custom.event.DND_DATA_RESTORE_FINISH"
+      ]
+    }
+  ]
+}

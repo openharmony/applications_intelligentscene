@@ -1,0 +1,207 @@
+{
+    "string": [
+        {
+            "name": "zen_mode_ruletime_nextday",
+            "value": "%1$s-次日 %2$s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "search_app",
+            "value": "搜索应用",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "all_app",
+            "value": "全部应用",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "timer_between",
+            "value": "%1$s-%2$s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_disturb_everyday",
+            "value": "每天",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_disturb_call",
+            "value": "联系人",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_disturb_closed",
+            "value": "已关闭",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_disturb_turnedon",
+            "value": "已开启",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "timer_open",
+            "value": "开启",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "timer_repeat",
+            "value": "重复",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "timer_start_time",
+            "value": "开始时间",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "timer_end_time",
+            "value": "结束时间",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "allow_contacts",
+            "value": "允许联系人",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "repeat_call_ringing",
+            "value": "重复来电响铃",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "automatic_answering",
+            "value": "小艺帮接",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_answering",
+            "value": "小艺帮接",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "forbid_everyone",
+            "value": "禁止所有人",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "allow_everyone",
+            "value": "允许所有人",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "allow_only_existing_contacts",
+            "value": "仅允许已有联系人",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "allow_only_favorite_contacts",
+            "value": "仅允许收藏联系人",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "allow_only_specified_contacts",
+            "value": "仅允许指定联系人",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "forbid_only_specified_contacts",
+            "value": "仅禁止指定联系人",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "add_contacts",
+            "value": "添加联系人",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "select_app",
+            "value": "选择应用",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "done",
+            "value": "完成",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "permission_reason_read_write_contacts",
+            "value": "用于读写联系人。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_disturb_nextday",
+            "value": "次日 %s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_selected",
+            "value": "未选择",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "associated_system_function",
+            "value": "关联系统功能",
+            "attr": {
+                "priority": "translate"
+            }
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@ohos/scene.configmanage",
+  "version": "1.0.0",
+  "description": "Mode configuration management.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@ohos/scene.common": "file:../../common",
+    "@ohos/scene.datamanage": "file:../datamanage",
+    "@ohos/scene.activationmanage": "file:../activationmanage",
+    "@ohos/scene.modeconfig": "file:../modeconfig",
+    "@ohos/scene.backup": "file:../backup",
+    "@ohos/hypium": "1.0.19"
+  }
+}

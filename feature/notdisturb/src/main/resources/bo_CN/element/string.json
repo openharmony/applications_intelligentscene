@@ -1,0 +1,207 @@
+{
+    "string": [
+        {
+            "name": "zen_mode_ruletime_nextday",
+            "value": "%1$s - ཉིན་གཉིས་པའི་ %2$s",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "search_app",
+            "value": "ཉེར་སྤྱོད་བཤེར་འཚོལ།",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "all_app",
+            "value": "ཉེར་སྤྱོད་ཚང་མ།",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "timer_between",
+            "value": "%1$s-%2$s",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "not_disturb_everyday",
+            "value": "ཉིན་ལྟར།",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_disturb_call",
+            "value": "འབྲེལ་གཏུག་མི་སྣ།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "not_disturb_closed",
+            "value": "ཁ་བརྒྱབ་ཟིན།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "not_disturb_turnedon",
+            "value": "ཁ་ཕྱེ་ཟིན།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "timer_open",
+            "value": "ཁ་འབྱེད།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "timer_repeat",
+            "value": "བསྐྱར་ཟློས།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "timer_start_time",
+            "value": "འགོ་ཚུགས་དུས་ཚོད།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "timer_end_time",
+            "value": "མཇུག་སྒྲིལ་དུས་ཚོད།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_contacts",
+            "value": "འབྲེལ་གཏུག་མི་སྣ་ཆོག་མི་ཆོག",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "repeat_call_ringing",
+            "value": "ཁ་པར་ཡོང་པའི་དྲིལ་སྒྲ་བསྐྱར་ཟློས།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "automatic_answering",
+            "value": "Auto-answer calls",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "intelligent_answering",
+            "value": "Auto-answer calls",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "forbid_everyone",
+            "value": "མི་ཚང་མ་མི་ཆོག",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_everyone",
+            "value": "མི་ཚང་མ་ཆོག་པ།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_only_existing_contacts",
+            "value": "སྔར་ཡོད་འབྲེལ་གཏུག་མི་སྣ་ཁོ་ན་ཆོག་པ།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_only_favorite_contacts",
+            "value": "བསྡུ་ཉར་བྱས་པའི་འབྲེལ་གཏུག་མི་སྣ་ཁོ་ན་ཆོག་པ།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_only_specified_contacts",
+            "value": "དམིགས་བཙུགས་འབྲེལ་གཏུག་མི་སྣ་ཁོ་ན་ཆོག་པ།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "forbid_only_specified_contacts",
+            "value": "དམིགས་བཙུགས་འབྲེལ་གཏུག་མི་སྣ་ཁོ་ན་འགོག་པ།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "add_contacts",
+            "value": "འབྲེལ་གཏུག་མི་སྣ་སྣོན་པ།",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "select_app",
+            "value": "ཉེར་སྤྱོད་འདེམས་པ།",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "done",
+            "value": "གྲུབ་པ།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "permission_reason_read_write_contacts",
+            "value": "འབྲེལ་གཏུག་མི་སྣ་ཀློག་འབྲི་བྱ་བར་བེད་སྤྱོད་བྱ།",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_disturb_nextday",
+            "value": "ཉིན་གཉིས་པའི་ %s",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "not_selected",
+            "value": "བདམས་མེད།",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "associated_system_function",
+            "value": "རྒྱུད་ཁོངས་ཀྱི་རྩོལ་ནུས་འབྲེལ་འཛུགས།",
+            "attr": {
+                "priority": "translate"
+            }
+        }
+    ]
+}

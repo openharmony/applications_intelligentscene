@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "intelligentSceneList": [
+    {
+      "modeId": "1",
+      "isPreset": true
+    },
+    {
+      "modeId": "2",
+      "isPreset": true
+    },
+    {
+      "modeId": "3",
+      "isPreset": true
+    },
+    {
+      "modeId": "4",
+      "isPreset": false
+    },
+    {
+      "modeId": "5",
+      "isPreset": false
+    },
+    {
+      "modeId": "6",
+      "isPreset": false
+    },
+    {
+      "modeId": "7",
+      "isPreset": false
+    },
+    {
+      "modeId": "8",
+      "isPreset": false
+    }
+  ]
+}

@@ -1,0 +1,319 @@
+{
+    "string": [
+        {
+            "name": "experience_now",
+            "value": "立即體驗",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "warning_title",
+            "value": "戶外探索模式下，專為戶外場景定制了一系列功能：",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "warning_directions",
+            "value": "精選戶外路線：覆蓋全國熱門區域",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "warning_track",
+            "value": "全天候軌跡記錄：自動記錄行進軌跡",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "warning_maps",
+            "value": "熄屏地圖導航：戶外低功耗循跡導航",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "warning_tool",
+            "value": "戶外應急：提供衛星天氣等離線功能",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "tips",
+            "value": "提示",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "restore_app_hint",
+            "value": "使用此功能需前往設定恢複全分應用。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "go_to_settings",
+            "value": "前往設定",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "off_and_restart",
+            "value": "關閉并重啟",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "emergency_guide_title",
+            "value": "添加緊急聯繫人",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "emergency_guide_hint",
+            "value": "为瞭更安的部戶外體驗，建议您补充緊急聯繫人和个人緊急信息。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "emergency_guide_link",
+            "value": "前往添加",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "sleep_guide_title",
+            "value": "如何使用睡眠模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "sleep_guide_hint",
+            "value": "建议根据平時和週末部休息時間設定開啟条件，并同時開啟深色模式，养成规律睡眠習惯。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "sleep_guide_link",
+            "value": "選擇關聯繫統功能",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learn_guide_title",
+            "value": "如何使用學習模式",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learn_guide_hint",
+            "value": "推荐根据日常部學習场所和應用作为模式開啟部条件，并制定學習计划，提升學習效率。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learn_guide_link",
+            "value": "创建學習计划",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_title",
+            "value": "智能路况提醒功能",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_dialog_desc",
+            "value": "智感畅行模式基於高德地图提供「智能路况提醒」功能。当前高德地图應用未安装或版本过低，请前往應用市场安装或更新。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts",
+            "value": "智能路况提醒",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_desc",
+            "value": "骑行或駕駛状态下进行红绿灯提醒",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_mode_one",
+            "value": "高德地图为您提供红绿灯提醒服務。開啟后，高德将依据手机繫統指令開啟服務，并实時高频收集使用您部位定信息用於红绿灯提醒，您可通过關閉实况窗或手机繫統模式關閉本服務。若開啟后长時間未处於骑行或駕駛状态，该服務将自動關閉。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_mode_two",
+            "value": "该功能基於第三方地图服務，实時感知您部地理位定和前行方向。開開開關表示您同意上述内容。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_mode_three",
+            "value": "高德地图服務暂未获取位定訪問權限，请前往高德地图并授權訪問您部位定信息。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "optimize_network",
+            "value": "自動优化網絡",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "supported_app",
+            "value": "支持部應用",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "rider_app",
+            "value": "骑手應用",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "rider_app_list",
+            "value": "美团众包、蜂鸟众包、京东秒送骑士、顺丰同城骑士、美团骑手、闪送员、UU跑腿跑男端等",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "express_logistics_app",
+            "value": "快递物流應用",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "express_logistics_app_list",
+            "value": "丰巢管家、小哥工作台、顺丰小哥、掌取通、申行者、邮政员工自助、包裹侠、拼多多快递员版等",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "ride_hailing_app",
+            "value": "網约车應用",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "ride_hailing_app_list",
+            "value": "滴滴车主、小拉出行司机版、花小猪司机端、曹操司机、T3车主、阳光车主、滴滴代駕司机、哈啰车主、如祺车主等",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "freight_vehicle_app",
+            "value": "货運车應用",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "freight_vehicle_app_list",
+            "value": "货拉拉司机版、货车帮司机、车旺大卡、成丰司机、货车帮货主、滴滴送货司机、路歌好運宝、蜂羽司机等",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "map_app",
+            "value": "地图导航應用",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "map_app_list",
+            "value": "高德地图、百度地图、腾讯地图等",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "delegation",
+            "value": "立即前往",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "supported_title",
+            "value": "查看支持部應用",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "screen_smart_highlighting_app_list",
+            "value": "美团众包、蜂鸟众包、京东秒送骑士、顺丰同城骑士、美团骑手、闪送员、UU跑腿跑男端、丰巢管家等",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_mode_four",
+            "value": "我已阅讀并同意%1$s、%2$s、%3$s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_mode_five",
+            "value": "高德服務条款",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_mode_six",
+            "value": "高德地图基本功能隐私政策",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "smart_road_condition_alerts_mode_seven",
+            "value": "红绿灯提醒个人信息处理规则",
+            "attr": {
+                "priority": "translate"
+            }
+        }
+    ]
+}

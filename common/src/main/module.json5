@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "scene.common",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

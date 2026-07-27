@@ -1,0 +1,137 @@
+{
+    "string": [
+        {
+            "name": "no_more_reminder",
+            "value": "不再提醒",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "dialog_open",
+            "value": "開啟",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "close_button",
+            "value": "關閉",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "be_chosen",
+            "value": "已選取",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_be_chosen",
+            "value": "未選取",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_selected_click_tips",
+            "value": "未選取，單指輕觸兩下即可執行",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "location_permission_dialog_title",
+            "value": "「情境模式」需要存取系統位置資訊",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "permission_reason_location_permission",
+            "value": "用於基於地理位置提供情境模式服務。",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "dialog_cancel",
+            "value": "取消",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "location_services_dialog_goto_setting",
+            "value": "前往設定",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "location_services_dialog_title_default",
+            "value": "「情境模式」需要存取您的位置資訊和精確位置",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "cancel",
+            "value": "取消",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "confirm",
+            "value": "確認",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "done",
+            "value": "完成",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "delete",
+            "value": "刪除",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "go_to",
+            "value": "前往",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "got_it",
+            "value": "知道瞭",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "permission_calendar_read_title",
+            "value": "允許「%s」讀取您的全部日程？",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "permission_reason_calendar",
+            "value": "用於學習模式下關聯和顯示日曆課程表。",
+            "attr": {
+                "priority": "translate"
+            }
+        }
+    ]
+}

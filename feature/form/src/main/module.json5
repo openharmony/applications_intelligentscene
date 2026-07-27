@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "scene.form",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

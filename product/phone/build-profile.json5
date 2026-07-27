@@ -1,0 +1,53 @@
+{
+  "apiType": "stageMode",
+  "buildOptionSet": [
+    {
+      "name": "release",
+      "arkOptions": {
+        "obfuscation": {
+          "ruleOptions": {
+            "enable": true,
+            "files": [
+              "./obfuscation-rules.txt"
+            ]
+          }
+        }
+      }
+    },
+  ],
+  "targets": [
+    {
+      "name": "default"
+    },
+    {
+      "name": "lite",
+      "resource": {
+        "directories": [
+          "./src/main/resources_lite/",
+          "./src/main/resources/"
+        ]
+      }
+    },
+    {
+      "name": "ohosTest",
+    }
+  ],
+  "buildOption": {
+    "arkOptions": {
+      "runtimeOnly": {
+        "sources": [
+          "./src/main/ets/pages/nodisturb/IncomingCallSettingPage.ets",
+          "./src/main/ets/pages/modesheet/ModeGuideSheet.ets",
+          "./src/main/ets/pages/modesheet/AddModeSheet.ets",
+          "./src/main/ets/pages/modesheet/EditModeSheet.ets",
+          "./src/main/ets/pages/nodisturb/AppAndMetaservicesSheetPage.ets",
+          "./src/main/ets/pages/conditionsheet/applicationsheet/ApplicationSheetPage.ets",
+          "./src/main/ets/pages/conditionsheet/timedsheet/TimedSheetPage.ets",
+          "./src/main/ets/pages/specialsetting/SpecialSettingPage.ets",
+          "./src/main/ets/pages/modesheet/GaodeModeSheet.ets",
+          "./src/main/ets/pages/recommend/IntelligentServicePage.ets",
+        ],
+      }
+    }
+  }
+}

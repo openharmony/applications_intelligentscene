@@ -1,0 +1,137 @@
+{
+    "string":[
+        {
+            "name":"no_more_reminder",
+            "value":"Không hiện lại",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"confirm",
+            "value":"OK",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_services_dialog_goto_setting",
+            "value":"Vào Cài đặt",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"done",
+            "value":"Xong",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"location_permission_dialog_title",
+            "value":"Tính năng Tập trung yêu cầu quyền truy cập Vị trí",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"permission_reason_location_permission",
+            "value":"Quyền này được dùng để cung cấp cho bạn các dịch vụ dựa trên vị trí.",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"cancel",
+            "value":"Hủy",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"delete",
+            "value":"Xóa",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"location_services_dialog_title_default",
+            "value":"Tính năng Tập trung yêu cầu quyền đọc Vị trí và quyền truy cập Vị trí chính xác",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"close_button",
+            "value":"Đóng",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_selected_click_tips",
+            "value":"Chưa chọn, chạm đúp để kích hoạt",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"not_be_chosen",
+            "value":"Chưa chọn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"be_chosen",
+            "value":"Đã chọn",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"dialog_open",
+            "value":"Bật",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"go_to",
+            "value":"Vào",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"got_it",
+            "value":"Đã hiểu",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_calendar_read_title",
+            "value":"Cho phép %s đọc tất cả sự kiện trên Lịch?",
+            "attr":{
+                "priority":"translate"
+            }
+        },
+        {
+            "name":"permission_reason_calendar",
+            "value":"Quyền này được dùng để nhận dạng và hiển thị các môn học trong Lịch khi đang bật chế độ tập trung Học tập.",
+            "attr":{
+                "priority":"translate"
+            }
+        }
+    ]
+}

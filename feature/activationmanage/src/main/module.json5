@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "scene.activationmanage",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

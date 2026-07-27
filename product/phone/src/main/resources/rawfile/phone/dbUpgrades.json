@@ -1,0 +1,60 @@
+{
+  "latestVersion": 9,
+  "upgrades": [
+    {
+      "version": 2,
+      "scripts":
+      [
+        "CREATE TABLE IF NOT EXISTS MODE_DATA_TABLE (modeId TEXT PRIMARY KEY, modeName TEXT, iconId TEXT, iconColor TEXT, filletIcon TEXT, roundIcon TEXT, isSupportDelete INTEGER, modePriority INTEGER, updateTime INTEGER, createTime INTEGER);",
+        "CREATE TABLE IF NOT EXISTS MODE_CONFIG_DATA_TABLE (configId TEXT PRIMARY KEY, modeId TEXT, configType INTEGER, configValue TEXT, updateTime INTEGER, createTime INTEGER);",
+        "CREATE TABLE IF NOT EXISTS CONTACT_DATA (contactId TEXT PRIMARY KEY, modeId TEXT, detail_info TEXT, format_phone_number TEXT, focus_mode_list TEXT, updateTime INTEGER);",
+        "CREATE TABLE IF NOT EXISTS MODE_HISTORY_DATA_TABLE (id INTEGER PRIMARY KEY AUTOINCREMENT, operType TEXT, ruleName TEXT, modeId TEXT, priority INTEGER, timestamp INTEGER);",
+        "CREATE TABLE IF NOT EXISTS LEARNING_PLAN (id INTEGER PRIMARY KEY AUTOINCREMENT, planName TEXT, status INTEGER DEFAULT 0, createTime INTEGER, updateTime INTEGER);"
+      ]
+    },
+    {
+      "version": 4,
+      "scripts":
+      [
+        "CREATE TABLE IF NOT EXISTS MODE_OPERATION_DATA (id INTEGER PRIMARY KEY AUTOINCREMENT, modeId TEXT, operationTime TEXT, longitude TEXT, latitude TEXT, locationDesc TEXT, application TEXT, week TEXT, duration INTEGER);",
+        "CREATE TABLE IF NOT EXISTS RULE_FEEDBACK (id INTEGER PRIMARY KEY AUTOINCREMENT, ruleId TEXT, modeId TEXT, createTime INTEGER, timeRange TEXT, longitude TEXT, latitude TEXT, application TEXT, feedback TEXT);"
+      ]
+    },
+    {
+      "version": 5,
+      "scripts":
+      [
+        "ALTER TABLE MODE_HISTORY_DATA_TABLE ADD COLUMN configId TEXT;",
+        "UPDATE MODE_HISTORY_DATA_TABLE SET configId = SUBSTRING(ruleName, 6) WHERE ruleName LIKE 'rule\\_%' ESCAPE '\\';"
+      ]
+    },
+    {
+      "version": 6,
+      "scripts":
+      [
+        "CREATE TABLE IF NOT EXISTS CURSOR_DATA_TABLE (tableName TEXT PRIMARY KEY, currentCursor INTEGER);"
+      ]
+    },
+    {
+      "version": 7,
+      "scripts":
+      [
+        "NO_NEED_EXECUTE_SQL"
+      ]
+    },
+    {
+      "version": 8,
+      "scripts":
+      [
+        "CREATE TABLE IF NOT EXISTS FORM_INFO_TABLE (formId TEXT PRIMARY KEY, formName TEXT, formDimension TEXT);"
+      ]
+    },
+    {
+      "version": 9,
+      "scripts":
+      [
+        "NO_NEED_EXECUTE_SQL"
+      ]
+    }
+  ]
+}

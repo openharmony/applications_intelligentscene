@@ -1,0 +1,11 @@
+{
+  "app": {
+    "bundleName": "com.ohos.intelligentscene",
+    "vendor": "example",
+    "versionCode": 601001125,
+    "versionName": "6.1.1.125",
+    "icon": "$media:adaptiveIcon",
+    "label": "$string:intelligent_scene",
+    "configuration": "$profile:configuration"
+  }
+}

@@ -1,0 +1,42 @@
+{
+    "plural": [
+        {
+            "name": "learn_task_num",
+            "value": [
+                {
+                    "quantity": "other",
+                    "value": "%d tasks",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                },
+                {
+                    "quantity": "one",
+                    "value": "%d task",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "tasks_in_progress",
+            "value": [
+                {
+                    "quantity": "one",
+                    "value": "%d task in progress",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                },
+                {
+                    "quantity": "other",
+                    "value": "%d tasks in progress",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

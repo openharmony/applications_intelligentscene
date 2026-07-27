@@ -1,0 +1,18 @@
+{
+    "string":[
+        {
+            "name":"every_week",
+            "value":"Выбранные дни",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"monday_to_friday",
+            "value":"Понедельник–пятница",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

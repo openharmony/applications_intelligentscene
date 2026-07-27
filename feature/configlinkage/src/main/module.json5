@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "scene.configlinkage",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

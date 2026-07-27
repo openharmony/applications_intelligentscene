@@ -1,0 +1,207 @@
+{
+    "string": [
+        {
+            "name": "zen_mode_ruletime_nextday",
+            "value": "%1$s–%2$s (Next day)",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "search_app",
+            "value": "Search apps",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "all_app",
+            "value": "All apps",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "timer_between",
+            "value": "%1$s–%2$s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_disturb_everyday",
+            "value": "Every day",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_disturb_call",
+            "value": "Contacts",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_disturb_closed",
+            "value": "Off",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_disturb_turnedon",
+            "value": "On",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "timer_open",
+            "value": "Apply condition",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "timer_repeat",
+            "value": "Repeat",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "timer_start_time",
+            "value": "From",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "timer_end_time",
+            "value": "To",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "allow_contacts",
+            "value": "Allow calls from",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "repeat_call_ringing",
+            "value": "Allow repeated calls",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "automatic_answering",
+            "value": "Auto-answer calls",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_answering",
+            "value": "Auto-answer calls",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "forbid_everyone",
+            "value": "No one",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_everyone",
+            "value": "Everyone",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_only_existing_contacts",
+            "value": "Contacts only",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_only_favorite_contacts",
+            "value": "Favourites only",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_only_specified_contacts",
+            "value": "Selected contacts only",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "forbid_only_specified_contacts",
+            "value": "Everyone except selected",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "add_contacts",
+            "value": "Add contacts",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "select_app",
+            "value": "Select apps",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "done",
+            "value": "Done",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "permission_reason_read_write_contacts",
+            "value": "This is used to read and write contacts.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_disturb_nextday",
+            "value": "%s (Next day)",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_selected",
+            "value": "Not selected",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "associated_system_function",
+            "value": "Related system features",
+            "attr": {
+                "priority": "translate"
+            }
+        }
+    ]
+}

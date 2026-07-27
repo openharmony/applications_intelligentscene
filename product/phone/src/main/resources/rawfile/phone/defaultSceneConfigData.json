@@ -1,0 +1,550 @@
+{
+  "modeDataList": [
+    {
+      "modeId": "1",
+      "modePriority": 1,
+      "modeName": "$string:DND_mode",
+      "iconId": "moon_fill",
+      "iconColor": "#542BD7",
+      "filletIcon": "dnd_mode",
+      "roundIcon": "dnd_mode_round",
+      "isSupportDelete": false,
+      "configs": [
+        {
+          "configType": 6,
+          "configValue": 4
+        },
+        {
+          "configType": 7,
+          "configValue": {
+            "enable": true
+          }
+        },
+        {
+          "configType": 9,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 10,
+          "configValue": {
+            "strategy": 2
+          }
+        },
+        {
+          "configType": 11,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 13,
+          "configValue": 1
+        },
+        {
+          "configType": 14,
+          "configValue": 1
+        },
+        {
+          "configType": 27,
+          "configValue": {
+            "enable": false
+          }
+        }
+      ]
+    },
+    {
+      "modeId": "2",
+      "modePriority": 2,
+      "modeName": "$string:sleep_mode",
+      "iconId": "sleep_fill",
+      "iconColor": "#8A38C6",
+      "filletIcon": "sleep_mode",
+      "roundIcon": "sleep_mode_round",
+      "isSupportDelete": false,
+      "configs": [
+        {
+          "configId": "2_3_01",
+          "configType": 3,
+          "configValue": {
+            "enable": false,
+            "loopType": 2,
+            "timeStart": "23:00",
+            "timeEnd": "07:00"
+          }
+        },
+        {
+          "configType": 6,
+          "configValue": 1
+        },
+        {
+          "configType": 7,
+          "configValue": {
+            "enable": true
+          }
+        },
+        {
+          "configType": 9,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 10,
+          "configValue": {
+            "strategy": 2
+          }
+        },
+        {
+          "configType": 11,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 13,
+          "configValue": 2
+        },
+        {
+          "configType": 14,
+          "configValue": 1
+        },
+        {
+          "configType": 27,
+          "configValue": {
+            "enable": false
+          }
+        }
+      ]
+    },
+    {
+      "modeId": "3",
+      "modePriority": 3,
+      "modeName": "$string:learning_mode",
+      "iconId": "bookshelf",
+      "iconColor": "#F9A01E",
+      "filletIcon": "learning_mode",
+      "roundIcon": "learning_mode_round",
+      "isSupportDelete": true,
+      "configs": [
+        {
+          "configId": "3_3_01",
+          "configType": 3,
+          "configValue": {
+            "enable": false,
+            "loopType": 3,
+            "loopDays": "1,2,3,4,5",
+            "timeStart": "8:00",
+            "timeEnd": "12:00"
+          }
+        },
+        {
+          "configId": "3_3_02",
+          "configType": 3,
+          "configValue": {
+            "enable": false,
+            "loopType": 3,
+            "loopDays": "1,2,3,4,5",
+            "timeStart": "14:00",
+            "timeEnd": "18:00"
+          }
+        },
+        {
+          "configType": 6,
+          "configValue": 4
+        },
+        {
+          "configType": 7,
+          "configValue": {
+            "enable": true
+          }
+        },
+        {
+          "configType": 9,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 10,
+          "configValue": {
+            "strategy": 2
+          }
+        },
+        {
+          "configType": 11,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 13,
+          "configValue": 1
+        },
+        {
+          "configType": 14,
+          "configValue": 2
+        },
+        {
+          "configType": 27,
+          "configValue": {
+            "enable": false
+          }
+        }
+      ]
+    },
+    {
+      "modeId": "4",
+      "modePriority": 4,
+      "modeName": "$string:working_mode",
+      "iconId": "computer_fill",
+      "iconColor": "#64BB5C",
+      "filletIcon": "working_mode",
+      "roundIcon": "working_mode_round",
+      "isSupportDelete": true,
+      "configs": [
+        {
+          "configId": "4_3_01",
+          "configType": 3,
+          "configValue": {
+            "enable": false,
+            "loopType": 3,
+            "loopDays": "1,2,3,4,5",
+            "timeStart": "9:00",
+            "timeEnd": "12:00"
+          }
+        },
+        {
+          "configId": "4_3_02",
+          "configType": 3,
+          "configValue": {
+            "enable": false,
+            "loopType": 3,
+            "loopDays": "1,2,3,4,5",
+            "timeStart": "14:00",
+            "timeEnd": "18:00"
+          }
+        },
+        {
+          "configType": 6,
+          "configValue": 3
+        },
+        {
+          "configType": 7,
+          "configValue": {
+            "enable": true
+          }
+        },
+        {
+          "configType": 9,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 11,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 13,
+          "configValue": 1
+        },
+        {
+          "configType": 14,
+          "configValue": 1
+        },
+        {
+          "configType": 27,
+          "configValue": {
+            "enable": false
+          }
+        }
+      ]
+    },
+    {
+      "modeId": "5",
+      "modePriority": 5,
+      "modeName": "$string:sport_mode",
+      "iconId": "figure_run",
+      "iconColor": "#FF8A12",
+      "filletIcon": "sport_mode",
+      "roundIcon": "sport_mode_round",
+      "isSupportDelete": true,
+      "configs": [
+        {
+          "configId": "5_3_01",
+          "configType": 3,
+          "configValue": {
+            "enable": false,
+            "loopType": 2,
+            "timeStart": "07:00",
+            "timeEnd": "08:00"
+          }
+        },
+        {
+          "configId": "5_3_02",
+          "configType": 3,
+          "configValue": {
+            "enable": false,
+            "loopType": 2,
+            "timeStart": "19:00",
+            "timeEnd": "20:00"
+          }
+        },
+        {
+          "configType": 6,
+          "configValue": 3
+        },
+        {
+          "configType": 7,
+          "configValue": {
+            "enable": true
+          }
+        },
+        {
+          "configType": 9,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 11,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 13,
+          "configValue": 1
+        },
+        {
+          "configType": 14,
+          "configValue": 1
+        },
+        {
+          "configType": 27,
+          "configValue": {
+            "enable": false
+          }
+        }
+      ]
+    },
+    {
+      "modeId": "6",
+      "modePriority": 6,
+      "modeName": "$string:game_mode",
+      "iconId": "gamecontroller_fill",
+      "iconColor": "#E64566",
+      "filletIcon": "game_mode",
+      "roundIcon": "game_mode_round",
+      "isSupportDelete": true,
+      "configs": [
+        {
+          "configId": "6_3_01",
+          "configType": 3,
+          "configValue": {
+            "enable": false,
+            "loopType": 2,
+            "timeStart": "19:00",
+            "timeEnd": "21:00"
+          }
+        },
+        {
+          "configType": 6,
+          "configValue": 4
+        },
+        {
+          "configType": 7,
+          "configValue": {
+            "enable": true
+          }
+        },
+        {
+          "configType": 9,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 11,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 13,
+          "configValue": 1
+        },
+        {
+          "configType": 14,
+          "configValue": 1
+        },
+        {
+          "configType": 27,
+          "configValue": {
+            "enable": false
+          }
+        }
+      ]
+    },
+    {
+      "modeId": "7",
+      "modePriority": 7,
+      "modeName": "$string:entertainment_mode",
+      "iconId": "movie_fill",
+      "iconColor": "#8981F7",
+      "filletIcon": "entertainment_mode",
+      "roundIcon": "entertainment_mode_round",
+      "isSupportDelete": true,
+      "configs": [
+        {
+          "configId": "7_3_01",
+          "configType": 3,
+          "configValue": {
+            "enable": false,
+            "loopType": 2,
+            "timeStart": "19:00",
+            "timeEnd": "21:00"
+          }
+        },
+        {
+          "configType": 6,
+          "configValue": 4
+        },
+        {
+          "configType": 7,
+          "configValue": {
+            "enable": true
+          }
+        },
+        {
+          "configType": 9,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 11,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 13,
+          "configValue": 1
+        },
+        {
+          "configType": 14,
+          "configValue": 1
+        },
+        {
+          "configType": 27,
+          "configValue": {
+            "enable": false
+          }
+        }
+      ]
+    },
+    {
+      "modeId": "8",
+      "modePriority": 8,
+      "modeName": "$string:driving_mode",
+      "iconId": "car_fill",
+      "iconColor": "#46B1E3",
+      "filletIcon": "driving_mode",
+      "roundIcon": "driving_mode_round",
+      "isSupportDelete": true,
+      "configs": [
+        {
+          "configType": 6,
+          "configValue": 3
+        },
+        {
+          "configType": 7,
+          "configValue": {
+            "enable": true
+          }
+        },
+        {
+          "configType": 9,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 11,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 13,
+          "configValue": 1
+        },
+        {
+          "configType": 14,
+          "configValue": 1
+        },
+        {
+          "configType": 27,
+          "configValue": {
+            "enable": false
+          }
+        }
+      ]
+    },
+    {
+      "modeId": "-1",
+      "modePriority": -1,
+      "modeName": "$string:custom_mode",
+      "isSupportDelete": true,
+      "configs": [
+        {
+          "configType": 6,
+          "configValue": 1
+        },
+        {
+          "configType": 7,
+          "configValue": {
+            "enable": true
+          }
+        },
+        {
+          "configType": 9,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 10,
+          "configValue": {
+            "strategy": 2
+          }
+        },
+        {
+          "configType": 11,
+          "configValue": {
+            "enable": false
+          }
+        },
+        {
+          "configType": 13,
+          "configValue": 1
+        },
+        {
+          "configType": 14,
+          "configValue": 1
+        },
+        {
+          "configType": 27,
+          "configValue": {
+            "enable": false
+          }
+        }
+      ]
+    }
+  ]
+}

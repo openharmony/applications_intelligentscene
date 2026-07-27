@@ -1,0 +1,21 @@
+{
+  "name": "phone",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "@ohos/scene.common": "file:../../common",
+    "@ohos/scene.modeconfig": "file:../../feature/modeconfig",
+    "@ohos/scene.notdisturb": "file:../../feature/notdisturb",
+    "@ohos/scene.configmanage": "file:../../feature/configmanage",
+    "@ohos/scene.datamanage": "file:../../feature/datamanage",
+    "@ohos/scene.statemanage": "file:../../feature/statemanage",
+    "@ohos/scene.activationmanage": "file:../../feature/activationmanage",
+    "@ohos/scene.configlinkage": "file:../../feature/configlinkage",
+    "@ohos/scene.backup": "file:../../feature/backup",
+    "@ohos/scene.form": "file:../../feature/form",
+    "@ohos/hypium": "1.0.19",
+  }
+}

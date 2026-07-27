@@ -1,0 +1,32 @@
+{
+  "color": [
+    {
+      "name": "control_center_sub_panel_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "screenlock_card_background_color",
+      "value": "#33000000"
+    },
+    {
+      "name": "learning_timer_color",
+      "value": "#66FFFFFF"
+    },
+    {
+      "name": "learning_plan_unenable_color",
+      "value": "#E5FFFFFF"
+    },
+    {
+      "name": "sleep_card_button_color",
+      "value": "#4F3B5D"
+    },
+    {
+      "name": "color_secondary",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "color_foreground",
+      "value": "#FFFFFF"
+    }
+  ]
+}

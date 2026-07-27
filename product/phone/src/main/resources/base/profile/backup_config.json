@@ -1,0 +1,17 @@
+{
+  "allowToBackupRestore": true,
+  "includes": [
+    "data/storage/el2/database/phone/rdb/IntelligentScene_backup.db",
+    "data/storage/el2/database/phone/rdb/IntelligentScene_backup.db-shm",
+    "data/storage/el2/database/phone/rdb/IntelligentScene_backup.db-wal",
+    "data/storage/el2/base/haps/phone/preferences/"
+  ],
+  "fullBackupOnly": true,
+  "restoreDeps": "",
+  "extraInfo": {
+    "supportScene": [
+      "hmos2next",
+      "next2next"
+    ]
+  }
+}

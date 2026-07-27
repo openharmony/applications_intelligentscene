@@ -1,0 +1,36 @@
+{
+    "tableConfig": [
+      {
+        "uri": "*",
+        "crossUserMode": 1
+      },
+      {
+        "uri": "datashare:///com.ohos.intelligentscene/phone/IntelligentScene/MODE_CONFIG_DATA_TABLE",
+        "crossUserMode": 1
+      },
+      {
+        "uri": "datashare:///com.ohos.intelligentscene/phone/IntelligentScene/MODE_DATA_TABLE",
+        "crossUserMode": 1
+      },
+      {
+        "uri": "datashare:///com.ohos.intelligentscene/phone/IntelligentScene/CONTACT_DATA",
+        "crossUserMode": 1
+      },
+      {
+        "uri": "datashare:///com.ohos.intelligentscene/phone/IntelligentScene/MODE_HISTORY_DATA_TABLE",
+        "crossUserMode": 1
+      }
+    ],
+  "launchForCleanData": true,
+  "isSilentProxyEnable": true,
+  "launchInfos": [
+    {
+      "storeId": "IntelligentScene",
+      "tableNames": [
+        "MODE_CONFIG_DATA_TABLE",
+        "MODE_DATA_TABLE",
+        "CONTACT_DATA"
+      ]
+    }
+  ]
+}

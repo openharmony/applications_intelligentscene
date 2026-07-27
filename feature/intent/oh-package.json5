@@ -1,0 +1,20 @@
+{
+  "name": "intent",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@ohos/scene.common": "file:../../common",
+    "@ohos/scene.notdisturb": "../notdisturb",
+    "@ohos/scene.configmanage": "../configmanage",
+    "@ohos/scene.datamanage": "../datamanage",
+    "@ohos/scene.statemanage": "../statemanage",
+    "@ohos/scene.activationmanage": "../activationmanage",
+    "@ohos/scene.configlinkage": "../configlinkage",
+    "@ohos/scene.datasync": "../datasync",
+    "@ohos/scene.modeconfig": "file:../modeconfig",
+    "@ohos/hypium": "1.0.19"
+  }
+}

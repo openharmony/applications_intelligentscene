@@ -1,0 +1,112 @@
+{
+    "plural":[
+        {
+            "name":"hour",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 小时",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"minute",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 分钟",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "learning_finish_task_count",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value": "今天共完成了\u0020 %d \u0020项学习任务",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"tasks_in_progress",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 项任务进行中",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"search_count",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"找到 %d 个地点",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"distance_unit_kilometer",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 公里",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"distance_unit_meter",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 米",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"time_hour",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 小时",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name":"schedule_condition_course",
+            "value":[
+                {
+                    "quantity":"other",
+                    "value":"%d 门课程",
+                    "attr":{
+                        "priority":"translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

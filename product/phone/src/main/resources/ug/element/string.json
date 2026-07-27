@@ -1,0 +1,1547 @@
+{
+    "string": [
+        {
+            "name": "screen_reading_disable_hint",
+            "value": "Disable ScreenReader and try again.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "intelligent_scene_new_hint",
+            "value": "بۇ ھالەتنى ئاچسىڭىز، سىستېما ئىقتىدارى تەڭشىلىپ، بىرلا ئىشقا دىققەت قارىتىشقا ياردەم بېرىدۇ.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "extreme_battery_life",
+            "value": "Extreme battery saver",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "set_alarm",
+            "value": "Set an alarm",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "condition_count_initiate_new",
+            "value": "This focus will activate automatically once any of these conditions are met. The Location permission is required to access location information.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "location_permission_tips",
+            "value": "The Location permission is required to access location information.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "open_to_next_day_time",
+            "value": "Until %s (Tomorrow)",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "yesterday_time_range",
+            "value": "%1$s (Yesterday) – %2$s",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "open",
+            "value": "ئېچىش",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "learning_encourage_text",
+            "value": "You're amazing!",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "recommend_enable_content",
+            "value": "Would you like to turn on your %s focus?",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "enable_due_to_app",
+            "value": "Will stay on until you exit this app",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "enable_due_to_position",
+            "value": "Will stay on until you leave this location",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "condition_enable",
+            "value": "Activation conditions",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "add_condition",
+            "value": "Add condition",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "enable_now",
+            "value": "ئېچىش",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "close_now",
+            "value": "ئېتىش",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "advanced",
+            "value": "Advanced",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "restore",
+            "value": "Restore",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "restore_calendar_tip",
+            "value": "To set up holidays, work schedules, and alternate calendars, first restore the Calendar app.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_turn_on",
+            "value": "No thanks",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "keep_on",
+            "value": "Keep on",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "turn_on",
+            "value": "ئېچىش",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "shutdown_mode",
+            "value": "Turn off",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "recommendation_close_content",
+            "value": "You don't usually use your %s focus at this location. Turn it off?",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "notification_close_content",
+            "value": "Do you want to turn off your \"%s\" focus?",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "notification_permission_dialog_title",
+            "value": "Focus requires access to notifications",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "permission_reason_notification_permission",
+            "value": "This is to provide context-based services by sending you notifications.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_experience_service",
+            "value": "Smart suggest",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_experience_service_content",
+            "value": "With your consent, this focus may be turned on automatically based on signals like your location, time of day, and app usage. Important messages will be shown even when this focus is on.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "accept",
+            "value": "Agree",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "no_network_toast",
+            "value": "Focus requires an Internet connection to work. Check your network settings.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "control_center_hint",
+            "value": "When a focus is on, your device won't ring or light up the screen for incoming calls and notifications. Alarms won't be affected",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "more_settings",
+            "value": "باشقا تەڭشەكلەر",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "opening",
+            "value": "On",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "open_calendar",
+            "value": "Open Calendar",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "back",
+            "value": "Go back",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "calendar_dialog_tips",
+            "value": "Go to the Calendar app to set up holidays, work schedules, and alternate calendars.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "open_to_time",
+            "value": "Until %s",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "app_opening",
+            "value": "Triggered by app",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "to_tonight",
+            "value": "Until this evening",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "to_tonight_hint",
+            "value": "Will stay on until %s",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "mode_enable_dialog_hint",
+            "value": "بۇ ھالەتنى ئاچسىڭىز، تېلېفون ۋە ئۇقتۇرۇش ئۈنسىزلىنىدۇ، (ئۇلار ئۈچۈن ئېكرانمۇ يورۇمايدۇ)، قوڭغۇراق سائەت نورمال سايرايدۇ. ئاچامسىز؟",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "edit_enable_mode_hint",
+            "value": "Unable to edit icon or rename while the focus is on.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "learning_plan_add_desc",
+            "value": "You can add study tasks here. These tasks will be shown on the lock screen when this focus is turned on.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "minute",
+            "value": "Minutes",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "hour",
+            "value": "Hours",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "loading_message",
+            "value": "Loading…",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "current_location",
+            "value": "Current location",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "locating_message",
+            "value": "Getting location…",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "location_failed",
+            "value": "Unable to get location",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "delete_mode",
+            "value": "Delete this focus",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "delete_mode_message",
+            "value": "Delete %s?",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "increase",
+            "value": "Add",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "has_duplicate_mode_name",
+            "value": "There is already a focus with this name",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "mode_name",
+            "value": "Focus name",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "color_purple",
+            "value": "Purple",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "color_blue",
+            "value": "Blue",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "color_cyan_blue",
+            "value": "Cyan",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "color_green",
+            "value": "Green",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "color_red",
+            "value": "Red",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "color_yellow",
+            "value": "Yellow",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_read",
+            "value": "Reading",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_shopping",
+            "value": "Shopping",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_office",
+            "value": "Briefcase",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_music",
+            "value": "Music",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_painting",
+            "value": "Painting",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_dining",
+            "value": "Dining",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_flame",
+            "value": "Flame",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_research",
+            "value": "Academic",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_gift",
+            "value": "Gift",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_foot",
+            "value": "Walking",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_document",
+            "value": "Document",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_rocket",
+            "value": "Rocket",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_user",
+            "value": "User",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_leaf",
+            "value": "Leaf",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_pet",
+            "value": "Pet",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_home",
+            "value": "Home",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_company",
+            "value": "Office",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_high_speed_rail",
+            "value": "High-speed rail",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_card",
+            "value": "Card",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_repair",
+            "value": "Fix",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_lotus",
+            "value": "Lotus",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_cold",
+            "value": "Cold",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_love",
+            "value": "Love",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_inspiration",
+            "value": "Idea",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_triangle",
+            "value": "Triangle",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_work",
+            "value": "Work",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_study",
+            "value": "Study",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "input_max_length_message",
+            "value": "Length limit reached",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "condition_count_limit",
+            "value": "Max number of conditions added.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "condition_count_initiate",
+            "value": "This focus will turn on automatically when any of the above conditions is met.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "condition_delete",
+            "value": "Delete",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "confirm_delete",
+            "value": "Delete \"%s\"?",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "when_opened",
+            "value": "When opened",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "once",
+            "value": "Only once",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "every_day",
+            "value": "Every day",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "statutory_workdays",
+            "value": "Working days",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "statutory_holidays",
+            "value": "Public holidays",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "intelligent_scene",
+            "value": "قاراتما ھالەت",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "intelligent_scene_hint",
+            "value": "Improve your focus in certain situations by automatically silencing calls and notifications (excluding alarms) and adjusting system settings.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "add_intelligent_scene",
+            "value": "Add focus",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "add_intelligent_scene_max_toast",
+            "value": "Max number of focuses reached. Delete ones you don't need.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "sport_mode",
+            "value": "Workout",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "sport_mode_hint",
+            "value": "Stay focused on your fitness goals.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "working_mode",
+            "value": "Work",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "working_mode_hint",
+            "value": "Stay focused at work.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "driving_mode",
+            "value": "Driving",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "driving_mode_hint",
+            "value": "Keep your attention on the road.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "game_mode",
+            "value": "Gaming",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "game_mode_hint",
+            "value": "Immerse yourself in the game.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "entertainment_mode",
+            "value": "Entertainment",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "entertainment_mode_hint",
+            "value": "Watch without interruption.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "custom_mode",
+            "value": "Custom",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "sleep_mode",
+            "value": "Sleep",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "sleep_mode_hint",
+            "value": "Get a better night's sleep.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "DND_mode",
+            "value": "ئاۋارە قىلماسلىق",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "DND_mode_hint",
+            "value": "ۋاقىت بېكىتىپ دەخلىدىن ساقلىنىسىز.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "learning_mode",
+            "value": "Study",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "learning_mode_hint",
+            "value": "Be more focused when studying.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "edit",
+            "value": "Edit",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "intelligent_experience",
+            "value": "Smart suggest",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_experience_hint",
+            "value": "Automatically enable this focus at appropriate times based on factors such as time, location, and app usage. Important messages will be shown even when the focus is on.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "enable_way",
+            "value": "When to enable",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "add_triggering_condition",
+            "value": "Add condition",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "timed",
+            "value": "Time",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "by_application",
+            "value": "App",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "by_location",
+            "value": "Location",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allowed_disturb",
+            "value": "رۇخسەت",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "application",
+            "value": "Apps",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "incoming_call",
+            "value": "ئالاقىداش",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "not_selected",
+            "value": "تاللانمىغان",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "associated_system_function",
+            "value": "سىستېما ئىقتىدارىنى باغلاش",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "dark_color_mode",
+            "value": "Dark mode",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "eye_protection_mode",
+            "value": "Eye comfort",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "power_save_mode",
+            "value": "Battery saver",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "enable",
+            "value": "On",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "close",
+            "value": "Disable",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "not_associated",
+            "value": "Not set",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "module_desc",
+            "value": "module description"
+        },
+        {
+            "name": "EntryAbility_desc",
+            "value": "description"
+        },
+        {
+            "name": "EntryAbility_label",
+            "value": "IntelligentScene"
+        },
+        {
+            "name": "reason",
+            "value": "Get installed bundle list"
+        },
+        {
+            "name": "permission_reason_location",
+            "value": "This is used to add location-based rules in Focus.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "system_location_permission_tips",
+            "value": "This is used to trigger or recommend focuses based on your location. Location-based recommendations are only available when Smart suggest is enabled.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "permission_reason_contact",
+            "value": "This is used to set information about incoming calls that can be disturbed in profile mode."
+        },
+        {
+            "name": "permission_bundle_resources",
+            "value": "Obtains permissions on bundled resources"
+        },
+        {
+            "name": "search_or_input_location",
+            "value": "Search location",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "add_plan",
+            "value": "Add plan",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_plan_title",
+            "value": "Study plan",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_plan_add_header",
+            "value": "Study tasks",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_plan_add_text",
+            "value": "Add task",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_plan_add_footer",
+            "value": "You can add study tasks here. These tasks will be shown on the home and lock screens when this focus is enabled.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "dialog_submit",
+            "value": "OK",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_plan_edit_text",
+            "value": "Edit task",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_plan_over_limit",
+            "value": "Max number of tasks reached.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "voice_creation",
+            "value": "Voice control",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "learn_more",
+            "value": "تەپسىلات",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "upgrade_business_mode_title",
+            "value": "Upgrade Cloud service",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "upgrade_business_mode_hint",
+            "value": "This is required to sync across devices.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "upgrade_business_mode_btn",
+            "value": "Upgrade",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "open_cloud_space_title",
+            "value": "Enable Cloud?",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "open_cloud_space_hint",
+            "value": "Cloud needs to be enabled to sync data across devices.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "open_cloud_space_btn",
+            "value": "Go enable",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "wlan_not_connect",
+            "value": "No Internet connection. Please connect to WLAN.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "set_network",
+            "value": "Network settings",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "intelligent_experience_service_tips",
+            "value": "This service requires the Location permission and will send you notifications. To provide smart suggestions, it needs to access your location when you turn focuses on or off. By tapping Agree, you allow us to provide you with this service.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "help_info",
+            "value": "Help",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "more_options",
+            "value": "More options",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "save",
+            "value": "Save",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "color_select",
+            "value": "Colour",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "icon_select",
+            "value": "Icon",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "set_scene_temporary_time",
+            "value": "Set start time for %s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "associated_system_open",
+            "value": "Turn on",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "associated_system_close",
+            "value": "Turn off",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "associated_system_noRelated",
+            "value": "No change",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "night_sky",
+            "value": "Night-time",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "peak",
+            "value": "Summit",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "qingfeng",
+            "value": "Green peaks",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "ink_black",
+            "value": "Graphite",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "wasteland",
+            "value": "Wilderness",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "personalized_settings",
+            "value": "Personalisation",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "small_window_toast",
+            "value": "Wallpapers can't be edited in floating windows.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "origin_image",
+            "value": "Original",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "condition_footer_tip",
+            "value": "This focus will turn on automatically when any of the above conditions are met.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "auto_hands_free_call",
+            "value": "Automatic speaker mode",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "auto_hands_free_call_desp",
+            "value": "Not available when using Bluetooth headphones or similar devices.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "custom_high_volume",
+            "value": "Audio alert enhancement",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "custom_high_volume_desp",
+            "value": "Set ringtone volume to max.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "clear_broadcasting",
+            "value": "Clearer voice prompts",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "clear_broadcasting_desp",
+            "value": "Supports high-clarity voice prompts in apps like Amap.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "screen_smart_highlighting",
+            "value": "Prolonged max brightness",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "screen_smart_highlighting_desp",
+            "value": "Automatically adjust screen brightness.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "screen_off_timeout",
+            "value": "Smart screen timeout",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "screen_off_timeout_desp",
+            "value": "Automatically extend the screen timeout duration.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "intelligent_sensing_career_model",
+            "value": "On-the-go",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "career_model",
+            "value": "On-the-go",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "extend_screen_off_time",
+            "value": "Extend screen timeout to %d minutes so the screen stays on longer.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "clear_broadcasting_desp_two",
+            "value": "Supports high-clarity voice prompts in apps like Amap. %s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "screen_smart_highlighting_desp_two",
+            "value": "Applies when apps like Meituan Crowdsourcing are open. %s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "clear_broadcasting_title",
+            "value": "Clearer voice prompts: Hear navigation directions and incoming requests more clearly.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "smart_road_condition",
+            "value": "Smart road condition alerts: Get stop and go prompts at traffic lights.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "custom_high_volume_title",
+            "value": "Audio alert enhancement: Ringtone volume will be turned up to max.",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "flow_app",
+            "value": "When using apps",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "turn_on_tip",
+            "value": "When this is on, the On-the-go focus will be enabled when you open any of the following apps:",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "whether_open_title",
+            "value": "Turn on %s focus?",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning_mode_open_recommend_message",
+            "value": "Use the Study focus to help you concentrate while studying. When it's on, calls and notifications will be silenced (excluding alarms).",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "sleep_mode_open_recommend_message",
+            "value": "Use the Sleep focus to help you sleep uninterrupted. When it's on, calls and notifications will be silenced (excluding alarms).",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "work_mode_open_recommend_message",
+            "value": "Use the Work focus to minimise distractions while you work. When it's on, calls and notifications will be silenced (excluding alarms).",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "recommend_close_message",
+            "value": "Alerts for calls and notifications will be restored.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_recommend_footer",
+            "value": "Automatically suggest this focus based on your personal preferences as well as signals like your location and time of day. %1$s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "to_intelligent_service",
+            "value": "Learn more",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_recommend_switch_text",
+            "value": "Smart suggest",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "important_message_tip",
+            "value": "Allow important notifications",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "important_message_tip_footer",
+            "value": "Receive live view messages and texts containing verification codes even when this focus is turned on.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "intelligent_service_title",
+            "value": "Focus smart services",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "more_ability",
+            "value": "%s, and more",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "break_mark",
+            "value": ", %s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "no_schedule_available",
+            "value": "No schedules yet. Add one in the %s app.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "calendar_app",
+            "value": "Calendar",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "schedule_group_title",
+            "value": "Schedules",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "schedule_cannot_found_dialog_message",
+            "value": "This course schedule can't be displayed because the %s app has been uninstalled.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "custom_high_call_volume_desp",
+            "value": "Set the ringtone volume for incoming calls to max.",
+            "attr": {
+                "priority": "translate"
+            }
+        }
+    ]
+}

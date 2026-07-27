@@ -1,0 +1,18 @@
+{
+    "string":[
+        {
+            "name":"monday_to_friday",
+            "value":"Segunda a sexta",
+            "attr":{
+                "priority":"LT"
+            }
+        },
+        {
+            "name":"every_week",
+            "value":"Dias selecionados",
+            "attr":{
+                "priority":"LT"
+            }
+        }
+    ]
+}

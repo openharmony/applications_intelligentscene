@@ -1,0 +1,18 @@
+{
+    "string": [
+        {
+            "name": "every_week",
+            "value": "Selected days",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "monday_to_friday",
+            "value": "Monday to Friday",
+            "attr": {
+                "priority": "LT"
+            }
+        }
+    ]
+}

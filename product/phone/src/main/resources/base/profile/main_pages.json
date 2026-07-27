@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/settinghome/HomeWindowSettings",
+    "pages/controlcenter/ControlCenterPage",
+    "pages/controlcenter/CommonSysDialogEntry"
+  ]
+}

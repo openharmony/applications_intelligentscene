@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "scene.modeconfig",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

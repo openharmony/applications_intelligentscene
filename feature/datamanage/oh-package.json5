@@ -1,0 +1,11 @@
+{
+  "name": "@ohos/scene.datamanage",
+  "version": "1.0.0",
+  "description": "Mode and config data management.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@ohos/scene.common": "file:../../common"
+  }
+}

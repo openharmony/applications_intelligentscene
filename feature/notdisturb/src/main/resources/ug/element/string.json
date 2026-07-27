@@ -1,0 +1,207 @@
+{
+    "string": [
+        {
+            "name": "zen_mode_ruletime_nextday",
+            "value": "%1$s ~ ئەتىسى %2$s",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "search_app",
+            "value": "ئەپ ئىزدەش",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "all_app",
+            "value": "بارلىق ئەپ",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "timer_between",
+            "value": "%1$s ~ %2$s",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "not_disturb_everyday",
+            "value": "ھەر كۈنى",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_disturb_call",
+            "value": "ئالاقىداش",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "not_disturb_closed",
+            "value": "ئېتىك",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "not_disturb_turnedon",
+            "value": "ئوچۇق",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "timer_open",
+            "value": "ئېچىش",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "timer_repeat",
+            "value": "قايتىلاش",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "timer_start_time",
+            "value": "باشلىنىش",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "timer_end_time",
+            "value": "ئاياغلىشىش",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_contacts",
+            "value": "مايىللىق",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "repeat_call_ringing",
+            "value": "تەكرار كەلگەن تېلېفون",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "automatic_answering",
+            "value": "Auto-answer calls",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "intelligent_answering",
+            "value": "Auto-answer calls",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "forbid_everyone",
+            "value": "ھەممىنى توسۇش",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_everyone",
+            "value": "ھەممىگە رۇخسەت",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_only_existing_contacts",
+            "value": "ئالاقىداشقا رۇخسەت",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_only_favorite_contacts",
+            "value": "يىغقۇچتىكى ئالاقىداشقا رۇخسەت",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "allow_only_specified_contacts",
+            "value": "تاللىغان ئالاقىداشقا رۇخسەت",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "forbid_only_specified_contacts",
+            "value": "تاللىغان ئالاقىداشنى توسۇش",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "add_contacts",
+            "value": "ئالاقىداش قوشۇش",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "select_app",
+            "value": "ئەپ تاللاش",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "done",
+            "value": "پۈتتى",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "permission_reason_read_write_contacts",
+            "value": "بۇ ئىجازەت ئالاقىداش ئوقۇش-يېزىش ئۈچۈن ئىشلىتىلىدۇ.",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "not_disturb_nextday",
+            "value": "ئەتىسى %s",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "not_selected",
+            "value": "تاللانمىغان",
+            "attr": {
+                "priority": "LT"
+            }
+        },
+        {
+            "name": "associated_system_function",
+            "value": "سىستېما ئىقتىدارىنى باغلاش",
+            "attr": {
+                "priority": "translate"
+            }
+        }
+    ]
+}

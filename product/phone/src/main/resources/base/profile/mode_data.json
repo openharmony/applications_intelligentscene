@@ -1,0 +1,10 @@
+{
+  "tableConfig": [
+    {
+      "uri": "*",
+      "crossUserMode": 1
+    }
+  ],
+  "path": "IntelligentSceneEL1/MODE_DATA_TABLE",
+  "type": "rdb"
+}

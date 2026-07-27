@@ -1,0 +1,11 @@
+{
+    "string": [
+        {
+            "name": "intelligent_scene",
+            "value": "情景模式",
+            "attr": {
+                "priority": "translate"
+            }
+        }
+    ]
+}

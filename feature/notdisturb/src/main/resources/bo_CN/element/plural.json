@@ -1,0 +1,118 @@
+{
+    "plural": [
+        {
+            "name": "allowed_selected",
+            "value": [
+                {
+                    "quantity": "one",
+                    "value": "%d allowed",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                },
+                {
+                    "quantity": "other",
+                    "value": "%d allowed",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "repeat_call_will_ring_normally",
+            "value": [
+                {
+                    "quantity": "one",
+                    "value": "A second call from the same number within %d minute won't be silenced.",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                },
+                {
+                    "quantity": "other",
+                    "value": "A second call from the same number within %d minutes won't be silenced.",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "user_select_app",
+            "value": [
+                {
+                    "quantity": "other",
+                    "value": "%d apps",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                },
+                {
+                    "quantity": "one",
+                    "value": "%d app",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "selected_app",
+            "value": [
+                {
+                    "quantity": "one",
+                    "value": "Selected: %d",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                },
+                {
+                    "quantity": "other",
+                    "value": "Selected: %d",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "selected",
+            "value": [
+                {
+                    "quantity": "one",
+                    "value": "%d selected",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                },
+                {
+                    "quantity": "other",
+                    "value": "%d selected",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "forbid_selected",
+            "value": [
+                {
+                    "quantity": "one",
+                    "value": "%d not allowed",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                },
+                {
+                    "quantity": "other",
+                    "value": "%d not allowed",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

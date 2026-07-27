@@ -1,0 +1,11 @@
+{
+  "name": "@ohos/scene.common",
+  "version": "1.0.0",
+  "description": "scene common",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+//    "@hw-hmos/memorytool": "1.0.10"
+  }
+}

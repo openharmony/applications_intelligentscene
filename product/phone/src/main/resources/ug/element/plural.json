@@ -1,0 +1,175 @@
+{
+    "plural": [
+        {
+            "name": "hour",
+            "value": [
+                {
+                    "quantity": "one",
+                    "value": "%d hour",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                },
+                {
+                    "quantity": "other",
+                    "value": "%d hours",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "minute",
+            "value": [
+                {
+                    "quantity": "other",
+                    "value": "%d minutes",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                },
+                {
+                    "quantity": "one",
+                    "value": "%d minute",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "distance_unit_kilometer",
+            "value": [
+                {
+                    "quantity": "other",
+                    "value": "%d km",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                },
+                {
+                    "quantity": "one",
+                    "value": "%d km",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "distance_unit_meter",
+            "value": [
+                {
+                    "quantity": "other",
+                    "value": "%d m",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                },
+                {
+                    "quantity": "one",
+                    "value": "%d m",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "tasks_in_progress",
+            "value": [
+                {
+                    "quantity": "one",
+                    "value": "%d task in progress",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                },
+                {
+                    "quantity": "other",
+                    "value": "%d tasks in progress",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "learning_finish_task_count",
+            "value": [
+                {
+                    "quantity": "other",
+                    "value": "You've completed  %d  study tasks today",
+                    "attr": {
+                        "priority": "LT"
+                    }
+                },
+                {
+                    "quantity": "one",
+                    "value": "You've completed  %d  study task today",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "time_hour",
+            "value": [
+                {
+                    "quantity": "other",
+                    "value": "%d hours",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                },
+                {
+                    "quantity": "one",
+                    "value": "%d hour",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "search_count",
+            "value": [
+                {
+                    "quantity": "other",
+                    "value": "Found %d locations",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                },
+                {
+                    "quantity": "one",
+                    "value": "Found %d location",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "schedule_condition_course",
+            "value": [
+                {
+                    "quantity": "one",
+                    "value": "%d class",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                },
+                {
+                    "quantity": "other",
+                    "value": "%d classes",
+                    "attr": {
+                        "priority": "translate"
+                    }
+                }
+            ]
+        }
+    ]
+}

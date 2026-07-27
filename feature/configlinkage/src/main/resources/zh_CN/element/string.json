@@ -1,0 +1,130 @@
+{
+    "string": [
+        {
+            "name": "no_task",
+            "value": "暂无任务进行中",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "learning",
+            "value": "学习中",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "mode_starting",
+            "value": "启动中",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "mode_started",
+            "value": "%s 已开启",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "mode_ended",
+            "value": "%s 已关闭",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "today_weather",
+            "value": "今天天气%s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "low_temperature",
+            "value": "最低温度%s°",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "suggest_dress",
+            "value": "建议穿%s",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "sleep_greet_two_data",
+            "value": "%1$s，%2$s。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "sleep_greet_three_data",
+            "value": "%1$s，%2$s，%3$s。",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "good_morning",
+            "value": "早上好",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "good_noon",
+            "value": "中午好",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "good_afternoon",
+            "value": "下午好",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "good_evening",
+            "value": "晚上好",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "late_night",
+            "value": "夜深了",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "mode_starting_tips",
+            "value": "来电和通知已静音",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "oc_mode_starting_tips",
+            "value": "关联系统功能已开启",
+            "attr": {
+                "priority": "translate"
+            }
+        },
+        {
+            "name": "schedule_condition_title",
+            "value": "日历课程表",
+            "attr": {
+                "priority": "translate"
+            }
+        }
+    ]
+}

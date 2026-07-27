@@ -1,0 +1,52 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "transparent_color",
+      "value": "#00000000"
+    },
+    {
+      "name": "input_underline_color",
+      "value": "#99000000"
+    },
+    {
+      "name": "input_underline_color_warn",
+      "value": "#E84026"
+    },
+    {
+      "name": "control_center_sub_panel_color",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "screenlock_card_background_color",
+      "value": "#33FFFFFF"
+    },
+    {
+      "name": "learning_timer_color",
+      "value": "#99FFFFFF"
+    },
+    {
+      "name": "learning_plan_unenable_color",
+      "value": "#B2000000"
+    },
+    {
+      "name": "comp_background_emphasize",
+      "value": "$ohos:color:comp_background_emphasize"
+    },
+    {
+      "name": "sleep_card_button_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "color_secondary",
+      "value": "#99000000"
+    },
+    {
+      "name": "color_foreground",
+      "value": "#000000"
+    }
+  ]
+}
