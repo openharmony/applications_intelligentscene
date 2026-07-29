@@ -14,11 +14,16 @@
  */
 
 import HashMap from '@ohos.util.HashMap';
+import { Any } from './AnyType';
 
-export type EventCb = (...args: Object[]) => void;
+/**
+ * EventBus 回调调用签名。
+ * 注册侧请使用 Object 承接具体业务回调，避免 ArkTS 对函数参数的逆变检查报错。
+ */
+export type EventCb = (...args: Any[]) => void;
 
 interface Listener {
-  callback: EventCb;
+  callback: Object;
   triggerCnt?: number;
 };
 
@@ -38,15 +43,15 @@ export class EventBus {
     return EventBus.instance;
   }
 
-  public on(eventName: string, callback: EventCb): void {
+  public on(eventName: string, callback: Object): void {
     this.registerListener(eventName, callback);
   }
 
-  public once(eventName: string, callback: EventCb): void {
+  public once(eventName: string, callback: Object): void {
     this.registerListener(eventName, callback, 1);
   }
 
-  public exactly(eventName: string, callback: EventCb, capacity: number): void {
+  public exactly(eventName: string, callback: Object, capacity: number): void {
     this.registerListener(eventName, callback, capacity);
   }
 
@@ -54,7 +59,7 @@ export class EventBus {
     this.die(eventName);
   }
 
-  public detach(eventName: string, callback: EventCb, needDetachAll: boolean = true): void {
+  public detach(eventName: string, callback: Object, needDetachAll: boolean = true): void {
     let listeners = this.listenerMap.get(eventName) ?? [];
     if (needDetachAll) {
       listeners = listeners.filter(value => value.callback !== callback);
@@ -73,7 +78,7 @@ export class EventBus {
     this.listenerMap.set(eventName, listeners);
   }
 
-  public emit(eventName: string, ...args: Object[]): void {
+  public emit(eventName: string, ...args: Any[]): void {
     let listeners: Listener[] = [];
 
     if (this.hasListeners(eventName)) {
@@ -86,7 +91,7 @@ export class EventBus {
 
     listeners.forEach((listener, k) => {
       if (listener.callback) {
-        listener.callback(...args);
+        (listener.callback as EventCb)(...args);
       }
 
       if (listener.triggerCnt !== undefined) {
@@ -99,7 +104,7 @@ export class EventBus {
     });
   }
 
-  private registerListener(eventName: string, cb: EventCb, triggerCnt?: number): void {
+  private registerListener(eventName: string, cb: Object, triggerCnt?: number): void {
     if (!this.hasListeners(eventName)) {
       this.listenerMap.set(eventName, []);
     }
