@@ -60,15 +60,15 @@
 | 模式配置 | ModeConfigAdapter（`modeconfig`） | 预置模式默认配置与首页分组可见性 |
 | 数据管理 | ModeDataManager、ConfigDataManager（`datamanage`） | 模式 / 配置 / 联系人等数据模型与 RDB |
 
-### 与其他应用的关系
+### 与其它应用的关系
 
-| 项目 | 说明 |
-|------|------|
-| 是否允许其他应用调用 | 允许。`EntryAbility`、`IntelligentSceneUIExtSettingAbility`、`SceneControlUIExtAbility`、`IntelligentSceneServiceExtAbility` 等声明 `exported=true`，外部可通过 Want / UIExtension / Service 拉起 |
-| 谁能调用 | Settings、SceneBoard 等系统应用可嵌入或拉起 UI；Service / IPC 调用方需通过 `PermissionVerifyUtil` 白名单（如 `com.ohos.sceneboard`）或受信 SA |
-| 什么时候能调用 | 应用安装且 `const.intelligentscene.enable=true` 后可调用；涉及联系人、定位等能力需用户授权后方可执行 |
+| 项目          | 说明 |
+|-------------|------|
+| 是否允许其它应用调用  | 允许。`EntryAbility`、`IntelligentSceneUIExtSettingAbility`、`SceneControlUIExtAbility`、`IntelligentSceneServiceExtAbility` 等声明 `exported=true`，外部可通过 Want / UIExtension / Service 拉起 |
+| 谁能调用        | Settings、SceneBoard 等系统应用可嵌入或拉起 UI；Service / IPC 调用方需通过 `PermissionVerifyUtil` 白名单（如 `com.ohos.sceneboard`）或受信 SA |
+| 什么时候能调用     | 应用安装且 `const.intelligentscene.enable=true` 后可调用；涉及联系人、定位等能力需用户授权后方可执行 |
 | 支持的 Want 参数 | 设置侧通过 `uri: intelligent_scene_entry` 等入口拉起完整配置页；控制中心通过 UIExtension 拉起二级页 |
-| 跨进程服务 | 通过 `IntelligentSceneServiceExtAbility`、DataShare（`DataExtAbility`）提供常驻服务与数据访问，仅系统内部受信进程可调用 |
+| 跨进程服务       | 通过 `IntelligentSceneServiceExtAbility`、DataShare（`DataExtAbility`）提供常驻服务与数据访问，仅系统内部受信进程可调用 |
 
 ## 编译构建
 
