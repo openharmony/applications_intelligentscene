@@ -31,6 +31,7 @@ import { AllowDisturbManager } from '@ohos/scene.configmanage/src/main/ets/manag
 import { ResourceUtil } from '@ohos/scene.common/src/main/ets/utils/ResourceUtil';
 import { IncomingCallUtils } from '@ohos/scene.notdisturb/src/main/ets/utils/IncomingCallUtils';
 import { SELECT_CONTACTS_COUNT } from './SelectContactsController';
+import emitter from '@ohos.events.emitter';
 
 /* instrument ignore file */
 const TAG: string = 'IncomingCallSettingController: ';
@@ -91,11 +92,10 @@ export class IncomingCallSettingController implements ComponentControl {
   async dbDataChange(): Promise<void> {
     let contactPolicy: string = await this.initData();
     LogUtil.showInfo(TAG, `dbDataChange: ${contactPolicy}`);
-    EventBus.getInstance().emit(EventBusNameConstant.ALLOW_CONTACTS_CHANGE, {
-      data: {
-        settingsValue: contactPolicy
-      }
-    });
+    const eventData: emitter.EventData = {};
+    eventData.data = {};
+    eventData.data.settingsValue = contactPolicy;
+    EventBus.getInstance().emit(EventBusNameConstant.ALLOW_CONTACTS_CHANGE, eventData);
   }
 
   init(compParam: CompCtrlParam): void {
