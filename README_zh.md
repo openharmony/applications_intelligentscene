@@ -62,20 +62,21 @@
 
 ### 与其它应用的关系
 
-| 项目          | 说明 |
-|-------------|------|
-| 是否允许其它应用调用  | 允许。`EntryAbility`、`IntelligentSceneUIExtSettingAbility`、`SceneControlUIExtAbility`、`IntelligentSceneServiceExtAbility` 等声明 `exported=true`，外部可通过 Want / UIExtension / Service 拉起 |
-| 谁能调用        | Settings、SceneBoard 等系统应用可嵌入或拉起 UI；Service / IPC 调用方需通过 `PermissionVerifyUtil` 白名单（如 `com.ohos.sceneboard`）或受信 SA |
-| 什么时候能调用     | 应用安装且 `const.intelligentscene.enable=true` 后可调用；涉及联系人、定位等能力需用户授权后方可执行 |
-| 支持的 Want 参数 | 设置侧通过 `uri: intelligent_scene_entry` 等入口拉起完整配置页；控制中心通过 UIExtension 拉起二级页 |
-| 跨进程服务       | 通过 `IntelligentSceneServiceExtAbility`、DataShare（`DataExtAbility`）提供常驻服务与数据访问，仅系统内部受信进程可调用 |
+| 项目              | 说明 |
+|-----------------|------|
+| 是否允许其它应用调用      | 允许。`EntryAbility`、`IntelligentSceneUIExtSettingAbility`、`SceneControlUIExtAbility`、`IntelligentSceneServiceExtAbility` 等声明 `exported=true`，外部可通过 Want / UIExtension / Service 拉起 |
+| 谁能调用            | Settings、SceneBoard 等系统应用可嵌入或拉起 UI；Service / IPC 调用方需通过 `PermissionVerifyUtil` 白名单（如 `com.ohos.sceneboard`）或受信 SA |
+| 什么时候能调用         | 应用安装且 `const.intelligentscene.enable=true` 后可调用；涉及联系人、定位等能力需用户授权后方可执行 |
+| 支持的 Want 参数     | 设置侧通过 `uri: intelligent_scene_entry` 等入口拉起完整配置页；控制中心通过 UIExtension 拉起二级页 |
+| 跨进程服务           | 通过 `IntelligentSceneServiceExtAbility`、DataShare（`DataExtAbility`）提供常驻服务与数据访问，仅系统内部受信进程可调用 |
+| SettingsData 协作 | 情景模式通过系统 SettingsData（`@ohos.settings` / DataShare）与 Settings、控制中心、桌面等跨进程共享状态与配置；本应用侧封装见 `SettingsDataUtils`、`SettingsDataKeyConstant` |
 
 ## 编译构建
 
 本工程为多模块 HAP 应用工程，使用 Hvigor 构建，产物为 `com.ohos.intelligentscene` 系统应用包。
 
 ### 环境要求
-- OpenHarmony SDK（本工程 `compileSdkVersion` 为 23，`compatibleSdkVersion` / `targetSdkVersion` 为 20）
+- OpenHarmony SDK（本工程 `compileSdkVersion` 为 26.0.0，`compatibleSdkVersion` / `targetSdkVersion` 为 20）
 - DevEco Studio 或命令行 Hvigor 工具链
 - 系统签名证书（见 `signature/`）
 
@@ -308,7 +309,7 @@ intellligentscene7.0
 ├─docs/figures/                         # 架构图
 ├─hvigor                                # 构建工具配置
 ├─signature                             # 签名证书与 profile
-├─build-profile.json5                   # 工程级 SDK / 签名 / product 配置
+├─build-profile.json5                   # 工程级配置
 ├─build.sh
 ├─oh-package.json5
 ├─OAT.xml                               # 开源合规审计
