@@ -69,6 +69,7 @@ The overall structure is divided into the product layer, feature layer, and comm
 | When can it be called | After installation and when `const.intelligentscene.enable=true`; contact / location capabilities require user authorization |
 | Supported Want parameters | Settings launches the full configuration pages via entries such as `uri: intelligent_scene_entry`; Control Center launches the secondary panel via UIExtension |
 | Cross-process services | `IntelligentSceneServiceExtAbility` and DataShare (`DataExtAbility`) provide resident service and data access; only trusted system processes may call them |
+| SettingsData collaboration | IntelligentScene uses system SettingsData (`@ohos.settings` / DataShare) to share state and configuration across processes with Settings, Control Center, Desktop, and related system components; app-side wrappers are `SettingsDataUtils` and `SettingsDataKeyConstant` |
 
 ## Build
 
@@ -308,7 +309,7 @@ intellligentscene7.0
 ├─docs/figures/                         # Architecture figures
 ├─hvigor                                # Build tool configuration
 ├─signature                             # Signing certificates and profile
-├─build-profile.json5                   # Project-level SDK / signing / product config
+├─build-profile.json5                   # Project-level config
 ├─build.sh
 ├─oh-package.json5
 ├─OAT.xml                               # Open-source compliance audit
