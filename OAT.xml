@@ -59,6 +59,7 @@
             <filefilter name="defaultFilter" desc="Files not to check">
                 <filteritem type="filename" name="*.png|*.PNG|*.webp" desc="self developed imasge"/>
                 <filteritem type="filename" name="publicity.xml" desc="The JSON format does not support comments."/>
+                <filteritem type="filename" name="sync-i18n.js" desc="build helper script"/>
             </filefilter>
 		</filefilterlist>
     </oatconfig>
