@@ -82,7 +82,7 @@ Three layers: product, feature, and common.
 
 | Path | Description |
 | ---- | ----------- |
-| `basecomponent/` | Page-level reusable controls: `ConfirmDialogComponent`, `LocationCheckDialog` / `CalendarPermissionDialog`, single/dual buttons, Toast (`PromptManager`), link text, and symbol icons; used by Settings and Control Center pages |
+| `basecomponent/` | Page-level reusable controls: `ConfirmDialogComponent`, single/dual buttons, Toast (`PromptManager`), link text, and symbol icons; used by Settings and Control Center pages |
 | `constant/` | Fixed values: `ModeConstant` (scene `modeId`, enable/disable flags), `SettingsDataKeyConstant` (cross-process keys such as focus), `DbConfig` (`IntelligentScene.db` and tables such as `MODE_DATA_TABLE`), `EventBusNameConstant` (e.g. enable-confirm dialog, home scroll), rule prefixes and time constants |
 | `framework/` | Settings-detail page infrastructure: in-process `EventBus` (`on` / `emit` / `detach`) for setting-item toggles and semi-modal close state; `PageRouter` / `PageLoader` for Navigation stack and dynamic pages; `SettingPage` / `SettingItemStandard` / `SettingGroup` / `SettingSheet` (semi-modal, full-screen alignment) / `SettingDialog`; and state models such as `notifyCompStateChange` |
 | `rdbstore/` | App DB access: `RdbStoreHelper` opens EL2 `IntelligentScene.db` (and backup) for create-table, CRUD, backup/restore, and corruption handling |

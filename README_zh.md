@@ -82,14 +82,14 @@
 
 | 目录 | 说明 |
 |------|------|
-| `basecomponent/` | 页面级可复用控件：`ConfirmDialogComponent` 确认弹框、`LocationCheckDialog`/`CalendarPermissionDialog` 定位与日历权限弹框、单双按钮、`PromptManager` Toast、链接文案与符号图标；设置页与控制中心多处引用 |
+| `basecomponent/` | 页面级可复用控件：`ConfirmDialogComponent` 确认弹框、单双按钮、`PromptManager` Toast、链接文案与符号图标；设置页与控制中心多处引用 |
 | `constant/` | 固定取值：`ModeConstant`（情景模式 `modeId`、启停态）、`SettingsDataKeyConstant`（如 focus 等跨进程键名）、`DbConfig`（`IntelligentScene.db` 库名与 `MODE_DATA_TABLE` 等表字段）、`EventBusNameConstant`（如开启确认弹框、首页滚动事件名）、规则前缀与时间常量等 |
 | `framework/` | 设置详情页基建：进程内 `EventBus`（`on`/`emit`/`detach`）在设置项开关、半模态关闭之间传状态；`PageRouter`/`PageLoader` 管理 Navigation 栈与动态页面加载；`SettingPage`/`SettingItemStandard`（标准设置行）/`SettingGroup`/`SettingSheet`（半模态子窗，含对齐全屏）/`SettingDialog`；以及 `notifyCompStateChange` 等状态模型 |
 | `rdbstore/` | 本应用库访问层：`RdbStoreHelper` 打开 EL2 `IntelligentScene.db`（及备份库）执行建表、增删改查、备份恢复与损坏处理 |
 | `utils/` | 日志 `LogUtil`、IPC 调用方白名单 `PermissionVerifyUtil`、SettingsData 读写 `SettingsDataUtils`、设备形态判断等 |
 | `stub/` | IPC Stub 基类 `BaseServiceStub`，供 product 侧具体 Service Stub 继承并做鉴权分发 |
 
-### 与其他应用的关系
+### 与其它应用的关系
 
 允许系统侧应用通过 Want / UIExtension / Service 拉起本应用的已导出组件（`EntryAbility`、`IntelligentSceneUIExtSettingAbility`、`SceneControlUIExtAbility`、`IntelligentSceneServiceExtAbility` 等 `exported=true`）。**前提**：本应用已安装，且 `const.intelligentscene.enable=true`。Service / IPC 调用方须通过 `PermissionVerifyUtil` 白名单（例如 `com.ohos.sceneboard`）或受信 SA。
 
