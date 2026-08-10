@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**IntelligentScene** (bundle name: `com.ohos.intelligentscene`) is a pre-installed **system application** in OpenHarmony. For each real-world scenario (Do Not Disturb, Sleep, Study, and more), it maintains a dedicated **Intelligent Scene** profile: notification and incoming-call policies, automatic enable conditions (time, app, and so on), and linkage with system settings after the scene takes effect (for example dark mode). It adapts phone and tablet form factors.
+**IntelligentScene** (bundle name: `com.ohos.intelligentscene`) is a pre-installed **system application** in OpenHarmony. For each real-world scenario (Do Not Disturb, Sleep, Study, and more), it maintains a dedicated **Intelligent Scene** profile: notification and incoming-call policies, automatic enable conditions such as timers, and linkage with system settings after the scene takes effect (for example dark mode). It adapts phone and tablet form factors.
 
 This application is a system preset app. Capabilities take effect only when `const.intelligentscene.enable=true`. Users enter through **Settings → Intelligent Scene** or the Control Center secondary panel.
 
@@ -27,12 +27,12 @@ This application is a system preset app. Capabilities take effect only when `con
   - **Temporary time conditions**: e.g. enable DND for 1 hour;
 
 **Config business**
-- **Local current-open state** (class name `LocalScene`): runtime data persisted by this app—which scene is currently on and when it was switched (`CurrentOpenedMode`)—for recovery and conflict handling during enable/disable. See `LocalSceneManager`.
+- **Local current-open state**: runtime state persisted by this app—which scene is currently on, how it was enabled, and which condition triggered it. The data model is `CurrentOpenedMode` (`modeId` is `'0'` when closed), read/written by `LocalSceneManager`. Enable/disable flows use it for process recovery (know the last open state after restart) and conflict handling (for example how to treat an already-open scene when enabling a new one).
 - **Allow-disturb config**: apps and contacts still allowed to ring or notify while DND is on for a scene (`AllowDisturbManager`).
 - **Contact policies**: call allow/block lists and related policies (`ContactAdapter`).
 
 **Intelligent Scene configuration**
-- Preset-scene default capability flags and Settings home-page **group visibility** templates (`ModeConfigAdapter`), e.g. which setting groups Study mode shows by default.
+- Provides **template configs** for each preset scene (via `ModeConfigAdapter`, which resolves a config class by `modeId`, for example Sleep → `SleepModeConfig`; custom scenes use the default `BaseModeConfig`): default capability flags (whether DND is supported) and which Settings home-page groups are shown by default (for example Study mode shows “Enable method”, “Allow disturb”, and similar groups).
 
 **Data management**
 - Owns in-app models and persistence:
@@ -50,26 +50,26 @@ IntelligentScene uses a layered and modular design organized by product form, bu
 
 Three layers: product, feature, and common.
 
-| Layer | Main path | Concrete responsibility |
-| ----- | --------- | ----------------------- |
-| Product | `product/phone` | Single phone/tablet HAP entry: declares Ability / UIExtension / Service; hosts Settings home, scene detail, Control Center panel, DND pages; implements stubs and static subscribers. **UI/entry work is usually here.** |
-| Feature | `feature/*` | One HAR per business capability: scene enable/disable, DND, linkage, condition activation, config I/O, preset templates, RDB tables. **Business-path work is usually here.** |
-| Common | `common` | Shared infrastructure used across features (not a user-facing feature by itself): EventBus, shared list-row/dialogs, this app’s RDB wrappers, logging, `PermissionVerifyUtil`. **Cross-feature reuse is here.** |
+| Layer | Main path | Description |
+| ----- | --------- | ----------- |
+| Product | `product/phone` | Single phone/tablet HAP entry: declares Ability / UIExtension / Service; hosts Settings home, scene detail, Control Center panel, DND pages; implements stubs and static subscribers. **Modify entry UI mainly in this layer.** |
+| Feature | `feature/*` | One HAR per business capability: scene enable/disable, DND, linkage, condition activation, config I/O, preset templates, RDB tables. **Modify a business path mainly in the matching feature.** |
+| Common | `common` | Shared infrastructure used across features (not a user-facing feature by itself): EventBus, shared list-row/dialogs, this app’s RDB wrappers, logging, `PermissionVerifyUtil`. **Modify this layer for cross-feature reuse.** |
 
 **Product-layer modules** (`product/phone`)
 
-| Path / component | Description |
-| ---------------- | ----------- |
-| `entryability/` | Full-screen `EntryAbility`; `IntelligentSceneUIExtSettingAbility` for **Settings** embed; `SceneControlUIExtAbility` for **Control Center** secondary panel. |
-| `serviceability/` | Resident `IntelligentSceneServiceExtAbility`; `DataExtAbility` DataShare provider. |
-| `pages/settinghome/` | Settings → Intelligent Scene list / detail / edit. |
-| `pages/controlcenter/` | Control Center secondary panel (quick toggles, “More settings”). |
-| `pages/nodisturb/` | Notification allowlist, contact policy, incoming-call policy pages. |
+| Capability | Module / path | Description |
+| ---------- | ------------- | ----------- |
+| App entry | `entryability/` | Full-screen `EntryAbility`; `IntelligentSceneUIExtSettingAbility` for **Settings** embed; `SceneControlUIExtAbility` for **Control Center** secondary panel. |
+| Resident service | `serviceability/` | Resident `IntelligentSceneServiceExtAbility`; `DataExtAbility` DataShare provider. |
+| Settings home | `pages/settinghome/` | Settings → Intelligent Scene list / detail / edit. |
+| Control Center | `pages/controlcenter/` | Control Center secondary panel (quick toggles, “More settings”). |
+| Do Not Disturb | `pages/nodisturb/` | Notification allowlist, contact policy, incoming-call policy pages. |
 
 **Feature-layer modules** (`feature/*`)
 
-| Capability | Modules | Description |
-| ---------- | ------- | ----------- |
+| Capability | Module / path | Description |
+| ---------- | ------------- | ----------- |
 | Intelligent Scene state management | StateManager (`statemanage`) | Enable/disable a scene by `modeId`; update local current-open state; write SettingsData (for example focus-related keys); chain DND and settings linkage |
 | Do Not Disturb | NotDisturbAdapter, NotDisturbTimerManager (`notdisturb`) | Sync DND profiles and timed DND with Notification |
 | Settings linkage | SettingLinkageManager (`configlinkage`) | Apply dark mode and other system settings when a scene takes effect; Live View |
@@ -80,18 +80,18 @@ Three layers: product, feature, and common.
 
 **Common-layer modules** (`common`)
 
-| Path | Description |
-| ---- | ----------- |
-| `basecomponent/` | Page-level reusable controls: `ConfirmDialogComponent`, single/dual buttons, Toast (`PromptManager`), link text, and symbol icons; used by Settings and Control Center pages |
-| `constant/` | Fixed values: `ModeConstant` (scene `modeId`, enable/disable flags), `SettingsDataKeyConstant` (cross-process keys such as focus), `DbConfig` (`IntelligentScene.db` and tables such as `MODE_DATA_TABLE`), `EventBusNameConstant` (e.g. enable-confirm dialog, home scroll), rule prefixes and time constants |
-| `framework/` | Settings-detail page infrastructure: in-process `EventBus` (`on` / `emit` / `detach`) for setting-item toggles and semi-modal close state; `PageRouter` / `PageLoader` for Navigation stack and dynamic pages; `SettingPage` / `SettingItemStandard` / `SettingGroup` / `SettingSheet` (semi-modal, full-screen alignment) / `SettingDialog`; and state models such as `notifyCompStateChange` |
-| `rdbstore/` | App DB access: `RdbStoreHelper` opens EL2 `IntelligentScene.db` (and backup) for create-table, CRUD, backup/restore, and corruption handling |
-| `utils/` | Logging (`LogUtil`), IPC caller allowlist (`PermissionVerifyUtil`), SettingsData helpers (`SettingsDataUtils`), device-form helpers |
-| `stub/` | IPC stub base `BaseServiceStub` for product Service stubs (auth + dispatch) |
+| Capability | Module / path | Description |
+| ---------- | ------------- | ----------- |
+| Utils / constants | `constant/`, `utils/` | Business constants: `ModeConstant` (scene `modeId`, enable/disable flags), `DbConfig` (`IntelligentScene.db` name and table fields), `EventBusNameConstant`, and more; shared helpers: `SettingsDataUtils`, `JsonUtil`, device-form checks |
+| RDB | `rdbstore/` | App DB access: `RdbStoreHelper` opens EL2 `IntelligentScene.db` (and backup) for create-table, CRUD, backup/restore, and corruption handling |
+| EventBus | `common/EventBus` | In-process event bus (`on` / `emit` / `detach`) for setting-item toggles, semi-modal close, and similar state transfer |
+| IPC Stub | `stub/` | IPC stub base `BaseServiceStub` for product Service stubs (auth + dispatch) |
+| UI infrastructure | `basecomponent/`, `framework/` | Page-level reusable controls (`ConfirmDialogComponent`, Toast via `PromptManager`, link text, symbol icons); Settings-detail page infrastructure (`PageRouter` / `PageLoader`, `SettingPage` / `SettingItemStandard` / `SettingGroup` / `SettingSheet` / `SettingDialog`, and state models) |
+| Logging / permission | `utils/LogUtil`, `utils/PermissionVerifyUtil` | Unified logging; IPC caller allowlist checks |
 
 ### Relationship with Other Applications
 
-Exported components (`EntryAbility`, `IntelligentSceneUIExtSettingAbility`, `SceneControlUIExtAbility`, `IntelligentSceneServiceExtAbility`, and related entries with `exported=true`) may be started via Want / UIExtension / Service by system peers. **Prerequisites**: the app is installed and `const.intelligentscene.enable=true`. Service/IPC callers must pass the `PermissionVerifyUtil` allowlist (for example `com.ohos.sceneboard`) or trusted SAs.
+Exported components (`EntryAbility`, `IntelligentSceneUIExtSettingAbility`, `SceneControlUIExtAbility`, `IntelligentSceneServiceExtAbility`, and related entries with `exported=true`) may be started via Want / UIExtension / Service by system peers. **Prerequisites**: the app is installed and `const.intelligentscene.enable=true`. Service/IPC callers must pass the `PermissionVerifyUtil` allowlist (for example `com.ohos.sceneboard`).
 
 By scenario:
 
@@ -100,7 +100,7 @@ By scenario:
 | User opens full Intelligent Scene settings | **Settings**, when Intelligent Scene is installed and the feature switch is on, launches **UIExtension** `IntelligentSceneUIExtSettingAbility` (or Want with `uri: intelligent_scene_entry`, etc.) for home/detail pages |
 | User opens Control Center scene panel | **SceneBoard** (Control Center host), under the same install/switch conditions, launches **UIExtension** `SceneControlUIExtAbility` for quick toggles; “More settings” jumps to the Settings entry |
 | Desktop/system needs shared cross-process state | Settings, Control Center, Desktop read/write system **SettingsData** (`@ohos.settings` / DataShare) keys written by this app (for example focus-related keys, current scene state); wrappers: `SettingsDataUtils`, `SettingsDataKeyConstant` |
-| Trusted system access to resident service / DataShare | Allowlisted bundles or trusted SAs bind **Service** (`IntelligentSceneServiceExtAbility`) or **DataShare** (`DataExtAbility`); callers that fail `PermissionVerifyUtil` are rejected |
+| Trusted system access to resident service / DataShare | Allowlisted bundles bind **Service** (`IntelligentSceneServiceExtAbility`) or **DataShare** (`DataExtAbility`); callers that fail `PermissionVerifyUtil` are rejected |
 
 ## Build
 
@@ -382,7 +382,7 @@ intellligentscene7.0
 
   | Permission | Grant mode | Concrete usage |
   | ---------- | ---------- | -------------- |
-  | ohos.permission.ACCESS_SYSTEM_SETTINGS | system | Read/write SettingsData keys for current scene / focus so Settings and Control Center stay in sync |
+  | ohos.permission.ACCESS_SYSTEM_SETTINGS | system | Read/write SettingsData keys for the current scene and DND, used to sync which scene is on and whether DND is enabled so Settings and Control Center stay consistent |
   | ohos.permission.MANAGE_SETTINGS | system | Manage system settings when a scene applies linkage (e.g. dark mode) |
   | ohos.permission.MANAGE_SECURE_SETTINGS | system | Read/write secure SettingsData (`USER_SECURITY`): focus enable/disable and current scene ID; dark-mode linkage; Live View state; and restricted DataShare access |
   | ohos.permission.NOTIFICATION_CONTROLLER | system | When DND is on for a scene, set DND profiles and notification allowlists on Notification |
@@ -394,7 +394,7 @@ intellligentscene7.0
   | ohos.permission.START_ABILITIES_FROM_BACKGROUND | system | On time condition fire or rule-engine callback, start Service/Ability from background to auto-enable |
   | ohos.permission.START_INVISIBLE_ABILITY | system | Start invisible Settings components for configuration jumps |
 
-- **External calls**: Service / IPC only for allowlisted bundles or trusted SAs
+- **External calls**: Service / IPC only for allowlisted bundles
 - **Form adaptation**: phone / tablet layouts differ; validate both when changing UI
 
 ## Contributing

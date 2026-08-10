@@ -2,7 +2,7 @@
 
 ## 简介
 
-**情景模式**（包名：`com.ohos.intelligentscene`）是 OpenHarmony 中预置的 **系统应用**。它按具体使用场景（免打扰、睡眠、学习等）分别维护一套「情景模式」：管理通知与来电策略、定时/应用等自动开启条件，以及情景模式生效后与系统设置项（如深色模式）的联动，并适配手机、平板设备形态。
+**情景模式**（包名：`com.ohos.intelligentscene`）是 OpenHarmony 中预置的 **系统应用**。它按具体使用场景（免打扰、睡眠、学习等）分别维护一套「情景模式」：管理通知与来电策略、定时等自动开启条件，以及情景模式生效后与系统设置项（如深色模式）的联动，并适配手机、平板设备形态。
 
 本应用为系统预置应用，需通过系统参数 `const.intelligentscene.enable=true` 开启后相关能力才会生效。用户可通过「设置 → 情景模式」或控制中心二级页进入。
 
@@ -27,12 +27,12 @@
   - **临时时间条件**：例如「 1 小时」临时开启免打扰；
 
 **配置业务**
-- **本机当前开启状态**（代码中的 LocalScene）：指本应用持久化的「当前哪一个情景模式处于开启、以及何时切换」等运行态数据（`CurrentOpenedMode`），供启停流程恢复与冲突处理。相关读写见 `LocalSceneManager`。
+- **本机当前开启状态**：本应用持久化的运行态，记录「当前开启了哪个情景模式、如何开启、由哪条条件触发」。数据模型为 `CurrentOpenedMode`（关闭时 `modeId` 为 `'0'`），由 `LocalSceneManager` 读写。启停流程据此做进程恢复（重启后仍知上次开启态）与冲突处理（例如开启新模式时如何处理已开启模式）。
 - **允许打扰配置**：某情景模式开启勿扰时，仍可正常响铃/弹通知的应用与联系人白名单；见 `AllowDisturbManager`。
 - **联系人策略配置**：来电允许/拦截名单等；见 `ContactAdapter`。
 
 **情景模式配置**
-- 提供各预置情景模式的默认能力开关与设置首页「分组是否展示」等模板配置（`ModeConfigAdapter`），例如学习模式默认展示哪些设置分组。
+- 为各预置情景模式提供**模板配置**（经 `ModeConfigAdapter` 按 `modeId` 取对应配置类，如睡眠 `SleepModeConfig`；自定义模式走默认 `BaseModeConfig`）：包括默认能力开关（是否支持勿扰），以及设置首页哪些设置分组默认展示（例如学习模式默认展示「开启方式」「允许打扰」等分组）。
 
 **数据管理**
 - 管理本应用的数据模型并落库，包括：
@@ -50,25 +50,25 @@
 
 整体划分为产品层（product）、特性层（feature）、公共层（common）：
 
-| 层次 | 主要目录 | 职责（具象说明） |
+| 层次 | 主要目录 | 说明 |
 |------|----------|------------------|
-| 产品层 | `product/phone` | 手机/平板 **同一 HAP** 入口：声明 Ability / UIExtension / Service；承载设置首页、情景模式详情、控制中心二级页、免打扰相关页面等 UI；实现 IPC Stub、静态订阅者。**评测/改入口 UI 时主要改这一层。** |
-| 特性层 | `feature/*` | 与「一种业务能力」一一对应的 HAR：情景模式启停、勿扰、联动、条件激活、配置读写、预置模板、RDB 业务表访问等。**改某条业务链路时主要改对应 feature。** |
-| 公共层 | `common` | 多模块共用的基建，不直接表述某条用户功能：EventBus、通用列表项/弹框、本应用 RDB 封装、日志、`PermissionVerifyUtil` IPC 校验等。**跨特性复用时改这一层。** |
+| 产品层 | `product/phone` | 手机/平板 **同一 HAP** 入口：声明 Ability / UIExtension / Service；承载设置首页、情景模式详情、控制中心二级页、免打扰相关页面等 UI；实现 IPC Stub、静态订阅者。**修改入口 UI 时主要改这一层。** |
+| 特性层 | `feature/*` | 与「一种业务能力」一一对应的 HAR：情景模式启停、勿扰、联动、条件激活、配置读写、预置模板、RDB 业务表访问等。**修改某条业务链路时主要改对应 feature。** |
+| 公共层 | `common` | 多模块共用的基建，不直接表述某条用户功能：EventBus、通用列表项/弹框、本应用 RDB 封装、日志、`PermissionVerifyUtil` IPC 校验等。**跨特性复用时修改这一层。** |
 
 **产品层模块说明**（`product/phone`）
 
-| 目录 / 组件 | 说明 |
-|-------------|------|
-| `entryability/` | `EntryAbility` 全屏入口；`IntelligentSceneUIExtSettingAbility` 供 **设置** 嵌入；`SceneControlUIExtAbility` 供 **控制中心** 拉起二级页等。 |
-| `serviceability/` | `IntelligentSceneServiceExtAbility` 常驻服务；`DataExtAbility` 提供 DataShare URI。 |
-| `pages/settinghome/` | 「设置 → 情景模式」中的列表、详情与编辑页。 |
-| `pages/controlcenter/` | 控制中心情景模式二级页（快速开关列表、「更多设置」跳转等）。 |
-| `pages/nodisturb/` | 允许通知应用、联系人策略、来电策略等免打扰相关页面。 |
+| 核心能力 | 模块 / 目录 | 说明 |
+|-------------|------|-------------|
+| 应用入口 | `entryability/` | `EntryAbility` 全屏入口；`IntelligentSceneUIExtSettingAbility` 供 **设置** 嵌入；`SceneControlUIExtAbility` 供 **控制中心** 拉起二级页等。 |
+| 常驻服务 | `serviceability/` | `IntelligentSceneServiceExtAbility` 常驻服务；`DataExtAbility` 提供 DataShare URI。 |
+| 设置首页 | `pages/settinghome/` | 「设置 → 情景模式」中的列表、详情与编辑页。 |
+| 控制中心 | `pages/controlcenter/` | 控制中心情景模式二级页（快速开关列表、「更多设置」跳转等）。 |
+| 免打扰 | `pages/nodisturb/` | 允许通知应用、联系人策略、来电策略等免打扰相关页面。 |
 
 **特性层模块说明**（`feature/*`）
 
-| 核心能力 | 模块 | 说明 |
+| 核心能力 | 模块 / 目录 | 说明 |
 |--------|------|------|
 | 情景模式状态管理 | StateManager（`statemanage`） | 开启/关闭指定 `modeId` 的情景模式；更新本地当前开启态；写 SettingsData（如 focus 相关键）；串联勿扰与设置联动 |
 | 免打扰 | NotDisturbAdapter、NotDisturbTimerManager（`notdisturb`） | 向通知服务同步勿扰 Profile、定时勿扰 |
@@ -80,18 +80,18 @@
 
 **公共层模块说明**（`common`）
 
-| 目录 | 说明 |
-|------|------|
-| `basecomponent/` | 页面级可复用控件：`ConfirmDialogComponent` 确认弹框、单双按钮、`PromptManager` Toast、链接文案与符号图标；设置页与控制中心多处引用 |
-| `constant/` | 固定取值：`ModeConstant`（情景模式 `modeId`、启停态）、`SettingsDataKeyConstant`（如 focus 等跨进程键名）、`DbConfig`（`IntelligentScene.db` 库名与 `MODE_DATA_TABLE` 等表字段）、`EventBusNameConstant`（如开启确认弹框、首页滚动事件名）、规则前缀与时间常量等 |
-| `framework/` | 设置详情页基建：进程内 `EventBus`（`on`/`emit`/`detach`）在设置项开关、半模态关闭之间传状态；`PageRouter`/`PageLoader` 管理 Navigation 栈与动态页面加载；`SettingPage`/`SettingItemStandard`（标准设置行）/`SettingGroup`/`SettingSheet`（半模态子窗，含对齐全屏）/`SettingDialog`；以及 `notifyCompStateChange` 等状态模型 |
-| `rdbstore/` | 本应用库访问层：`RdbStoreHelper` 打开 EL2 `IntelligentScene.db`（及备份库）执行建表、增删改查、备份恢复与损坏处理 |
-| `utils/` | 日志 `LogUtil`、IPC 调用方白名单 `PermissionVerifyUtil`、SettingsData 读写 `SettingsDataUtils`、设备形态判断等 |
-| `stub/` | IPC Stub 基类 `BaseServiceStub`，供 product 侧具体 Service Stub 继承并做鉴权分发 |
+| 核心能力 | 模块 / 目录 | 说明 |
+|------|------|------|
+| 工具/常量 | `constant/`、`utils/` | 业务常量：`ModeConstant`（情景模式 `modeId`、启停态）、`DbConfig`（`IntelligentScene.db` 库名与表字段）、`EventBusNameConstant` 等；通用工具：`SettingsDataUtils`、`JsonUtil`、设备形态判断等 |
+| RDB | `rdbstore/` | 本应用库访问层：`RdbStoreHelper` 打开 EL2 `IntelligentScene.db`（及备份库）执行建表、增删改查、备份恢复与损坏处理 |
+| EventBus | `common/EventBus` | 进程内事件总线（`on`/`emit`/`detach`），在设置项开关、半模态关闭等场景传递状态 |
+| IPC Stub | `stub/` | IPC Stub 基类 `BaseServiceStub`，供 product 侧具体 Service Stub 继承并做鉴权分发 |
+| UI基建 | `basecomponent/`、`framework/` | 页面级可复用控件（`ConfirmDialogComponent`、`PromptManager` Toast、链接文案与符号图标等）；设置详情页基建（`PageRouter`/`PageLoader`、`SettingPage`/`SettingItemStandard`/`SettingGroup`/`SettingSheet`/`SettingDialog` 及状态模型） |
+| 日志/权限 | `utils/LogUtil`、`utils/PermissionVerifyUtil` | 统一日志输出；IPC 调用方白名单校验 |
 
 ### 与其它应用的关系
 
-允许系统侧应用通过 Want / UIExtension / Service 拉起本应用的已导出组件（`EntryAbility`、`IntelligentSceneUIExtSettingAbility`、`SceneControlUIExtAbility`、`IntelligentSceneServiceExtAbility` 等 `exported=true`）。**前提**：本应用已安装，且 `const.intelligentscene.enable=true`。Service / IPC 调用方须通过 `PermissionVerifyUtil` 白名单（例如 `com.ohos.sceneboard`）或受信 SA。
+允许系统侧应用通过 Want / UIExtension / Service 拉起本应用的已导出组件（`EntryAbility`、`IntelligentSceneUIExtSettingAbility`、`SceneControlUIExtAbility`、`IntelligentSceneServiceExtAbility` 等 `exported=true`）。**前提**：本应用已安装，且 `const.intelligentscene.enable=true`。Service / IPC 调用方须通过 `PermissionVerifyUtil` 白名单（例如 `com.ohos.sceneboard`）。
 
 按场景说明：
 
@@ -100,7 +100,7 @@
 | 用户进入「设置 → 情景模式」完整配置 | **设置应用**在本机安装情景模式且特性开关打开时，以 **UIExtension** 拉起 `IntelligentSceneUIExtSettingAbility`（或 Want，`uri: intelligent_scene_entry` 等）展示设置首页/详情 |
 | 用户在控制中心打开情景模式面板 | **SceneBoard（控制中心宿主）**在满足同样安装/开关条件时，以 **UIExtension** 拉起 `SceneControlUIExtAbility`，展示快速开关列表；点「更多设置」再跳转设置入口 |
 | 桌面/系统需要读写跨进程共享状态 | 设置、控制中心、桌面等通过系统 **SettingsData**（`@ohos.settings` / DataShare）读写本应用写入的键（如 focus 相关、当前情景模式状态）；本应用侧封装见 `SettingsDataUtils`、`SettingsDataKeyConstant` |
-| 系统受信组件访问常驻能力或 DataShare | 白名单包名或受信 SA 绑定 **Service**（`IntelligentSceneServiceExtAbility`）或访问 **DataShare**（`DataExtAbility`）；未通过 `PermissionVerifyUtil` 校验的调用方会被拒绝 |
+| 系统受信组件访问常驻能力或 DataShare | 白名单包名绑定 **Service**（`IntelligentSceneServiceExtAbility`）或访问 **DataShare**（`DataExtAbility`）；未通过 `PermissionVerifyUtil` 校验的调用方会被拒绝 |
 
 ## 编译构建
 
@@ -382,19 +382,19 @@ intellligentscene7.0
 
   | 权限 | 授权方式 | 使用场景（具象） |
   |------|---------|------------------|
-  | ohos.permission.ACCESS_SYSTEM_SETTINGS | 系统授权 | 写入/读取 SettingsData 中当前情景模式、focus 等相关键，使设置首页与控制中心状态一致 |
+  | ohos.permission.ACCESS_SYSTEM_SETTINGS | 系统授权 | 写入/读取 SettingsData 中当前情景模式、勿扰等相关键， 用来同步当前开启哪个情景模式、是否开启勿扰 ，使设置首页与控制中心状态一致 |
   | ohos.permission.MANAGE_SETTINGS | 系统授权 | 情景模式联动改系统设置时管理设置项（如与深色模式等联动） |
-  | ohos.permission.MANAGE_SECURE_SETTINGS | 系统授权 | 读写安全级 SettingsData（`USER_SECURITY`）：开启/关闭时写入 focus 启停与当前情景模式 ID；联动深色模式等系统项；实况通知相关状态；以及 DataShare 受限访问 |
+  | ohos.permission.MANAGE_SECURE_SETTINGS | 系统授权 | 读写安全级 SettingsData（`USER_SECURITY`）：开启/关闭时写入勿扰启停与当前情景模式 ID；联动深色模式等系统项；实况通知相关状态；以及 DataShare 受限访问 |
   | ohos.permission.NOTIFICATION_CONTROLLER | 系统授权 | 情景模式开启免打扰时，向通知服务设置勿扰 Profile、白名单应用列表 |
   | ohos.permission.GET_BUNDLE_INFO | 系统授权 | 展示「允许通知的应用」列表时查询指定包名的应用信息与图标 |
   | ohos.permission.GET_INSTALLED_BUNDLE_LIST | 系统授权 | 打开应用白名单页时枚举本机已安装应用供用户勾选 |
   | ohos.permission.READ_CONTACTS | 用户授权 | 配置来电勿扰策略时读取通讯录联系人 |
   | ohos.permission.RUNNING_LOCK | 系统授权 | 条件触发或定时任务执行期间持锁，避免进程被过早挂起导致启停失败 |
-  | ohos.permission.START_SYSTEM_DIALOG | 系统授权 | 弹出系统级确认框（例如开启某情景模式的确认对话框 |
+  | ohos.permission.START_SYSTEM_DIALOG | 系统授权 | 弹出系统级确认框（例如开启某情景模式的确认对话框） |
   | ohos.permission.START_ABILITIES_FROM_BACKGROUND | 系统授权 | 时间条件到点或规则引擎回调时，在后台拉起 Service / Ability 完成自动开启 |
   | ohos.permission.START_INVISIBLE_ABILITY | 系统授权 | 从本应用后台跳转拉起不可见设置组件完成配置跳转 |
 
-- **对外调用**：Service / IPC 仅允许白名单内包名或受信 SA 调用
+- **对外调用**：Service / IPC 仅允许白名单内包名调用
 - **形态适配**：手机 / 平板布局存在差异，修改 UI 时需覆盖多形态验证
 
 ## 参与贡献
