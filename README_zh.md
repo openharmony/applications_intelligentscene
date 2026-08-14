@@ -20,8 +20,8 @@
 - 情景模式开启后，按该模式已配置的联动项修改系统设置（例如深色模式），并处理实况通知展示。
 - 通过 `SettingLinkageManager` 管理每项联动设置的状态机。
 
-**激活管理（条件自动开启情景模式）**
-- **规则**：用户在情景模式详情里配置的一组「触发条件 → 开启哪个情景模式」对应关系。条件落库后，`ActivationManager` 组装成规则集并下发给系统规则引擎（Awareness / ECA），到点或满足条件后由引擎回调自动开启对应情景模式。
+**激活管理**
+- 用户在情景模式详情里配置「触发条件 → 开启哪个情景模式」。条件经 `ActivationManager` 落库并生效后，到点或满足条件时自动开启对应情景模式。
 - **条件触发**典型包括：
   - **时间条件**：例如每天 22:00～次日 7:00 自动开启睡眠情景模式；
   - **临时时间条件**：例如「 1 小时」临时开启免打扰；
@@ -40,6 +40,69 @@
   - **配置项**（某情景模式下的勿扰策略、联动设置、触发条件等，`MODE_CONFIG_DATA_TABLE`）；
   - **联系人策略**（`CONTACT_DATA`）等。
 - 使用 **本应用自有** 的关系型数据库（OpenHarmony RDB）`IntelligentScene.db`（加密等级 S2，见 `common` 的 `DbConfig` / `RDB_STORE_CONFIG`）。跨进程共享的状态则另写系统 SettingsData。
+
+### 预置情景模式说明
+
+预置模式以 `modeId` 区分（见 `ModeType`）：免打扰 `'1'`、睡眠 `'2'`、学习 `'3'`。三者均支持勿扰与设置首页「条件开启 / 允许打扰 / 关联系统功能」等通用分组；差异主要在**默认模板与产品定位**。
+
+| 对比项 | 免打扰（`modeId=1`） | 睡眠（`modeId=2`） | 学习（`modeId=3`） |
+|--------|---------------------|-------------------|-------------------|
+| 定位 | 减少通知/来电打扰，保持专注 | 夜间安静休息 | 学习时段聚焦 |
+| 能否删除 | 不可删 | 不可删 | **可删** |
+| 默认定时条件 | 无默认定时 | 每日 23:00～07:00（默认关闭） | 工作日 8:00～12:00、14:00～18:00（默认关闭） |
+| 默认来电策略 | 允许收藏联系人 | **禁止所有人** | 允许收藏联系人 |
+| 默认通知策略 | 禁止通知（可配白名单） | 同左 | 同左 |
+| 默认系统联动 | 不关联 | **关联开启深色模式** | 不关联 |
+
+**用户可配置（三模式通用，设置详情页）**
+
+- **条件开启**：时间条件、临时时长等，用于自动启停。
+- **允许打扰**：通知应用白名单；来电策略（禁止所有人 / 允许所有人 / 已有联系人 / 收藏联系人）及指定联系人名单；重复来电等。
+- **关联系统功能**：如深色模式联动（关联开启 / 关联关闭 / 不关联）。
+
+**限制说明**
+
+- 同一时刻通常只生效一个情景模式；开启新模式时由 `StateManager` 做冲突与切换。
+- 情景模式本身**不直接拦截来电**，而是把策略同步给系统通话侧（见下节）。
+
+### 来电免打扰通路
+
+来电是否响铃/接通由系统 **CallUI / 通话服务** 判决；本应用负责策略配置、落库与跨进程同步。
+
+```text
+用户配置来电策略 / 名单
+    → AllowDisturbManager / ContactManager 写入 RDB
+      （CALL_NOT_DISTURB_POLICY、CONTACT_DATA.focus_mode_list）
+    → 情景模式开启时 StateManager：
+      · 写 SettingsData：focus_mode_profile、focus_mode_enable、
+        focus_mode_call_message_policy、focus_mode_repeate_callers_enable 等
+      · 通知侧 addDoNotDisturbProfile（默认信任含 com.ohos.callui）
+      · ContactAdapter 发布 DataShare URI（intelligent_scene_data / intelligent_uri）
+    → CallUI：
+      · 读 SettingsData：判断「当前是否开启勿扰 / 开启的是哪个情景模式 /
+        来电策略是哪种 / 是否允许重复来电响铃」
+      · 当策略为「指定联系人」时，再查 CONTACT_DATA：
+        按当前 modeId 取出号码列表，与来电号码比对后决定放行或拦截
+```
+
+| 步骤 | 本应用动作 | 关键类 / 键 |
+|------|------------|-------------|
+| 1. 配置策略 | 策略写入 `MODE_CONFIG_DATA`（`ConfigType.CALL_NOT_DISTURB_POLICY`）及 EL1 | `AllowDisturbManager` |
+| 2. 配置名单 | 指定联系人号码写入 `CONTACT_DATA`（`focus_mode_list`=1/2） | `ContactManager`、`ContactAdapter` |
+| 3. 模式开启 | 写当前模式与勿扰开关；把 EL1 策略刷到 `focus_mode_call_message_policy` | `StateManager.updateIncomingConfig` |
+| 4. 系统侧生效 | CallUI 先读 SettingsData 定策略，必要时再查本应用 DataShare 名单 | SettingsData + `DataExtAbility` |
+
+**CallUI 侧读数含义（具象）**
+
+| 读取来源 | 典型键 / 字段 | 用来做什么 |
+|----------|---------------|------------|
+| SettingsData | `focus_mode_enable` | 当前情景模式勿扰是否开启；未开启则按正常来电处理 |
+| SettingsData | `focus_mode_profile` | 当前生效的情景模式 `modeId`（关闭时常为 `'0'`） |
+| SettingsData | `focus_mode_call_message_policy` | 来电策略枚举（禁止所有人 / 允许收藏等），决定后续查通讯录还是查本应用名单 |
+| SettingsData | `focus_mode_repeate_callers_enable` | 短时间内重复来电是否仍允许响铃 |
+| `CONTACT_DATA`（DataShare） | `modeId` + `focus_mode_list` + `detail_info` / `format_phone_number` | **仅当策略为指定联系人时需要**：取出该模式下允许或拦截的号码，与本次来电号码比对 |
+
+策略取值示意：`1` 禁止所有人、`2` 允许所有人、`3` 仅已有联系人、`4` 仅收藏、`5` 指定联系人。策略为 1～4 时，CallUI 主要结合 SettingsData 与系统通讯录判决；策略为 5 时才依赖 `CONTACT_DATA` 名单。
 
 ## 架构说明
 
@@ -73,7 +136,7 @@
 | 情景模式状态管理 | StateManager（`statemanage`） | 开启/关闭指定 `modeId` 的情景模式；更新本地当前开启态；写 SettingsData（如 focus 相关键）；串联勿扰与设置联动 |
 | 免打扰 | NotDisturbAdapter、NotDisturbTimerManager（`notdisturb`） | 向通知服务同步勿扰 Profile、定时勿扰 |
 | 设置联动 | SettingLinkageManager（`configlinkage`） | 情景模式生效后应用深色模式等系统设置，并处理实况通知 |
-| 激活管理 | ActivationManager（`activationmanage`） | 把用户配置的时间/应用等条件下发给规则引擎；维护自动开启规则与推荐规则集 |
+| 激活管理 | ActivationManager（`activationmanage`） | 管理用户配置的时间/应用等自动开启条件，到点或满足条件时触发情景模式启停 |
 | 配置业务 | LocalSceneManager、AllowDisturbManager、ContactAdapter（`configmanage`） | 本机当前开启态、允许打扰白名单、联系人策略的读写与生效 |
 | 情景模式配置 | ModeConfigAdapter（`modeconfig`） | 预置情景模式默认能力与首页分组可见性 |
 | 数据管理 | ModeDataManager、ConfigDataManager（`datamanage`） | 情景模式实体、配置项、联系人等模型及 `IntelligentScene.db` 访问 |
@@ -93,6 +156,22 @@
 
 允许系统侧应用通过 Want / UIExtension / Service 拉起本应用的已导出组件（`EntryAbility`、`IntelligentSceneUIExtSettingAbility`、`SceneControlUIExtAbility`、`IntelligentSceneServiceExtAbility` 等 `exported=true`）。**前提**：本应用已安装，且 `const.intelligentscene.enable=true`。Service / IPC 调用方须通过 `PermissionVerifyUtil` 白名单（例如 `com.ohos.sceneboard`）。
 
+**面向普通三方应用：不提供开放 Want / 业务 IPC。** 系统侧拉起 UIExtension / Service / DataShare 仍按下方表格鉴权。另提供 BasicServicesKit 只读查询接口，供应用查询免打扰状态（见下表「Kit 查询 API」）。
+
+#### 对外接口一览
+
+| 接口形态 | 组件 / 标识 | 适用对象 | 典型场景 | 鉴权要求 |
+|----------|-------------|----------|----------|----------|
+| UIExtension（设置嵌入） | `IntelligentSceneUIExtSettingAbility` | 系统应用（设置） | 「设置 → 情景模式」完整配置页 | 调用方需 `ACCESS_SYSTEM_SETTINGS`；通常由设置宿主拉起 |
+| UIExtension（控制中心） | `SceneControlUIExtAbility` | 系统应用（SceneBoard） | 控制中心二级页快速开关 | 同上 |
+| UIAbility 全屏入口 | `EntryAbility` | 系统 / 桌面入口 | 独立全屏打开情景模式 | `exported=true`，一般经桌面/设置跳转 |
+| 系统确认弹框 | `ModeEnableConfirmDialogUIExtAbility` | 系统应用 | 开启情景模式确认框 | `ACCESS_SYSTEM_SETTINGS` |
+| Kit 查询 API | `intelligentScene.isDoNotDisturbEnabled()` | 应用（含三方，需声明权限） | 查询**系统免打扰是否已开启**（任一情景模式开启勿扰时为 true） | `ohos.permission.GET_DONOTDISTURB_STATE` |
+| Kit 查询 API | `intelligentScene.isNotifyAllowedInDoNotDisturb()` | 应用（含三方，需声明权限） | 免打扰开启时，查询**当前应用是否在允许打扰名单内**（未开启免打扰时返回 false） | `ohos.permission.GET_DONOTDISTURB_STATE` |
+
+`intelligentScene` 模块从 `@kit.BasicServicesKit` 导入，仅提供上述只读查询，**不能**通过该 API 修改情景模式或免打扰配置。接口细节、错误码与示例见官方文档：  
+[js-apis-intelligentScene（情景模式）](https://docs.openharmony.cn/pages/v6.1/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-intelligentScene.md)
+
 按场景说明：
 
 | 场景 | 说明 |
@@ -100,14 +179,40 @@
 | 用户进入「设置 → 情景模式」完整配置 | **设置应用**在本机安装情景模式且特性开关打开时，以 **UIExtension** 拉起 `IntelligentSceneUIExtSettingAbility`（或 Want，`uri: intelligent_scene_entry` 等）展示设置首页/详情 |
 | 用户在控制中心打开情景模式面板 | **SceneBoard（控制中心宿主）**在满足同样安装/开关条件时，以 **UIExtension** 拉起 `SceneControlUIExtAbility`，展示快速开关列表；点「更多设置」再跳转设置入口 |
 | 桌面/系统需要读写跨进程共享状态 | 设置、控制中心、桌面等通过系统 **SettingsData**（`@ohos.settings` / DataShare）读写本应用写入的键（如 focus 相关、当前情景模式状态）；本应用侧封装见 `SettingsDataUtils`、`SettingsDataKeyConstant` |
-| 系统受信组件访问常驻能力或 DataShare | 白名单包名绑定 **Service**（`IntelligentSceneServiceExtAbility`）或访问 **DataShare**（`DataExtAbility`）；未通过 `PermissionVerifyUtil` 校验的调用方会被拒绝 |
+| 系统受信组件访问常驻能力或 DataShare | 白名单包名绑定 **Service**（`IntelligentSceneServiceExtAbility`）或访问 **DataShare**（`DataExtAbility`）；未通过校验的调用方会被拒绝 |
+
+#### DataShare 配置与接入本应用 RDB
+
+本应用通过 `DataExtAbility` 把部分 RDB 表以 DataShare 形式对外只读暴露，供系统通话、设置等查询。配置见：
+
+- Ability：`product/phone/src/main/module.json5`（`uri: datashare://com.ohos.intelligentscene.DataAbility`，`readPermission`/`writePermission` 为 `ohos.permission.MANAGE_SECURE_SETTINGS`）
+- 表 URI：`product/phone/src/main/resources/base/profile/data_share_config.json`
+- 实现：`product/phone/src/main/ets/serviceability/DataExtAbility.ets`（当前以 **query** 为主）
+
+| 表 | DataShare URI | 库位置 | 用途 |
+|----|---------------|--------|------|
+| `MODE_DATA_TABLE` | `datashare:///com.ohos.intelligentscene/phone/IntelligentScene/MODE_DATA_TABLE` | EL1 | 情景模式实体 |
+| `MODE_CONFIG_DATA_TABLE` | `.../MODE_CONFIG_DATA_TABLE` | EL2 `IntelligentScene.db` | 各模式配置项 |
+| `CONTACT_DATA` | `.../CONTACT_DATA` | EL2 | 指定联系人号码 |
+| `MODE_HISTORY_DATA_TABLE` | `.../MODE_HISTORY_DATA_TABLE` | EL1 | 历史数据 |
+
+另提供 `datashareproxy://com.ohos.intelligentscene/...` 代理 URI（`module.json5` 的 `proxyData`），读写权限同样要求 `MANAGE_SECURE_SETTINGS`。
+
+**系统侧接入步骤（示意）**
+
+1. 调用方为系统应用，并申请 / 被授予 `ohos.permission.MANAGE_SECURE_SETTINGS`。
+2. 使用 `@ohos.data.dataShare` 创建 DataShareHelper，URI 指向上表（查询时 URI 常带 `?Proxy=true`，与本应用解析约定一致）。
+3. 按表字段构造谓词查询，例如按 `modeId`、`focus_mode_list` 查 `CONTACT_DATA`。
+4. 来电名单场景也可先读 SettingsData 中的 `intelligent_scene_data` / `intelligent_uri`（由 `ContactAdapter.init` 发布），再访问对应 DataShare。
+
+> 普通三方应用无法接入：缺少系统权限，且无开放业务 API。
 
 ## 编译构建
 
 本工程为多模块 HAP 应用工程，使用 Hvigor 构建，产物为 `com.ohos.intelligentscene` 系统应用包。
 
 ### 环境要求
-- OpenHarmony SDK（本工程 `compileSdkVersion` 为 26.0.0，`compatibleSdkVersion` / `targetSdkVersion` 为 20）
+- OpenHarmony SDK（本工程 `compileSdkVersion` 为 26.0.0，`compatibleSdkVersion` / `targetSdkVersion` 为 23）
 - DevEco Studio 或命令行 Hvigor 工具链
 - 系统签名证书（见 `signature/`）
 
@@ -239,6 +344,8 @@ hvigorw assembleHap
 
 ### 新特性能力的开发
 
+#### 场景A：复用已有 feature（示意：新增「通勤」预置模式）
+
 下面用 **「新增一种可被时间条件自动开启的预置情景模式」**（示意名：通勤模式）串起完整步骤，以及前后依赖关系。
 
 > **说明**：工程采用 `product + feature + common` 结构，入口在 `product/phone`。一般新业务落在已有 feature；若新增独立产品形态 HAP，再在 `product/` 下加目录并在 `build-profile.json5` 注册。
@@ -254,13 +361,13 @@ hvigorw assembleHap
 | 要解决的问题 | 说明 |
 |--------------|----------------|
 | 系统要认识「通勤」这个情景模式实体 | 在 `feature/modeconfig` / `feature/datamanage` 增加预置 `modeId`、默认名称图标与默认配置模板，否则列表与 RDB 没有该模式 |
-| 用户配置的时间条件要能自动开/关 | 条件仍经 `feature/configmanage` 落库后，必须调用 `ActivationManager.updateIntelligentSceneRuleSet()` 下发给规则引擎；否则只写入本机库，**不会到点触发** |
+| 用户配置的时间条件要能自动开/关 | 条件经 `feature/configmanage` 落库后，还需通过 `ActivationManager` 生效；否则只写入本机库，**不会到点触发** |
 | 开启时要应用勿扰、联动 | 确认 `StateManager.startScene(通勤 modeId)` 能串联 `notdisturb`、`configlinkage`；若通勤有差异化策略，在对应 feature 扩展 |
 
 操作顺序建议：
 
 1. 在特性层落实体与配置（`modeconfig`、`datamanage`、`configmanage`）。
-2. 激活下发与启停走 `activationmanage`、`statemanage`。
+2. 条件生效与启停走 `activationmanage`、`statemanage`。
 3. 若能力足够独立，也可新建 `feature/xxx` HAR，在 `build-profile.json5` 与 `product/phone/oh-package.json5` 声明依赖。
 4. **业务未通前不要先做完整 UI**，否则页面只能空绑数据。
 
@@ -319,7 +426,7 @@ hvigorw assembleHap
 | UI | 位置 | 用途 |
 |----|------|------|
 | 设置首页情景模式列表增加「通勤」卡片 | `pages/settinghome/` | 进入详情、总开关 |
-| 条件开启页可配置工作日 8:00 | 条件相关 sheet / `configmanage` 对接页 | 写入时间条件并触发规则下发 |
+| 条件开启页可配置工作日 8:00 | 条件相关 sheet / `configmanage` 对接页 | 写入时间条件并使自动开启生效 |
 | 控制中心列表展示通勤开关 | `pages/controlcenter/` | 快速启停 |
 | 若有独立勿扰白名单页 | `pages/nodisturb/` | 配置允许谁打扰 |
 
@@ -330,6 +437,28 @@ hvigorw assembleHap
 3. 由 Navigation / Want / 设置页跳转链路拉起。
 
 **三步关系小结**：步骤1 决定「自动 8:00 开启」是否真能发生；步骤2 决定设置/控制中心能否进入本应用；步骤3 决定用户如何配置与查看。缺任一步都会出现「有页面无生效」「有逻辑进不去」「有入口无数据」等问题。
+
+> 上例主要**复用已有 feature**（`modeconfig` / `datamanage` / `activationmanage` / `statemanage` 等）。若新能力无法归入现有 HAR 边界，需按下面「新增 feature」场景落地。
+
+#### 场景B：需要新增 feature HAR（示意：地理围栏自动开启）
+
+适用：**业务边界独立**、与现有「状态 / 勿扰 / 联动 / 激活 / 配置 / 数据」职责都不贴合，或会引入新的系统 Kit、独立状态机与对外回调时。例如「进入公司/学校地理围栏自动开启某情景模式」——条件采集、围栏监听与触发形态都不同于现有时间条件，不宜硬塞进 `activationmanage`。
+
+| 步骤 | 做什么 | 说明 |
+|------|--------|------|
+| 1. 新建 HAR | 在 `feature/` 下新增目录（如 `feature/geofence/`），编写 `Index.ets`、业务 Manager/Adapter | 在 `build-profile.json5` 注册模块；在 `product/phone/oh-package.json5`（及依赖方）声明 `@ohos/scene.geofence` |
+| 2. 定义对外 API | 导出如 `GeofenceManager.addFence()` / `onFenceTriggered()` | 由 `statemanage` 或 `activationmanage` **依赖调用**，避免 product 直接堆业务 |
+| 3. 数据与权限 | 若需新表，在 `datamanage`/`DbConfig` 扩展或本 HAR 内封装；申请定位等相关系统权限 | 跨进程状态仍优先走 SettingsData；名单类可评估是否进 DataShare |
+| 4. 接入启停 | 围栏触发后调用 `StateManager.startScene(modeId, ...)` | 勿扰/联动仍复用现有 feature，新 HAR 只负责「何时触发」 |
+| 5. UI 与入口 | 在 `product/phone` 增加围栏配置页；必要时扩展 `module.json5` Ability | UI 只依赖新 HAR 的导出接口 |
+
+**与「通勤模式」示例的差异**：通勤主要扩预置 `modeId` + 复用时间条件激活；地理围栏则是**新触发源与新模块**，必须新增 feature，再被现有启停链路消费。
+
+选择建议：
+
+- 只改某条已有链路（启停、勿扰、联动、配置、UI）→ 走上文「基于已有模块的开发」。
+- 新预置模式但触发/策略仍复用现有能力 → 走「场景：通勤模式」三步。
+- 新触发源、新 Kit、独立生命周期 → **新增 feature HAR**。
 
 ## 目录
 ```text
@@ -349,7 +478,7 @@ intellligentscene7.0
 │  ├─statemanage/                       # 情景模式开启/关闭状态机、写SettingsData
 │  ├─notdisturb/                        # 勿扰Profile/通知白名单、定时勿扰
 │  ├─configlinkage/                     # 情景模式生效后联动深色模式等系统设置、实况通知
-│  ├─activationmanage/                  # 时间/应用条件下发规则引擎、推荐规则集
+│  ├─activationmanage/                  # 时间/应用等自动开启条件管理与触发
 │  ├─configmanage/                      # 本机当前开启态、允许打扰白名单、联系人策略
 │  ├─modeconfig/                        # 预置情景模式默认能力、设置首页分组可见性
 │  └─datamanage/                        # 情景模式/配置项/联系人模型，访问IntelligentScene.db
@@ -380,19 +509,22 @@ intellligentscene7.0
 - **特性开关**：需开启 `const.intelligentscene.enable`
 - **权限**：情景模式所需的主要权限如下（见 `product/phone/src/main/module.json5`）
 
-  | 权限 | 授权方式 | 使用场景（具象） |
-  |------|---------|------------------|
-  | ohos.permission.ACCESS_SYSTEM_SETTINGS | 系统授权 | 写入/读取 SettingsData 中当前情景模式、勿扰等相关键， 用来同步当前开启哪个情景模式、是否开启勿扰 ，使设置首页与控制中心状态一致 |
-  | ohos.permission.MANAGE_SETTINGS | 系统授权 | 情景模式联动改系统设置时管理设置项（如与深色模式等联动） |
+  | 权限 | 授权方式 | 使用场景（具象）                                                                                         |
+  |------|---------|--------------------------------------------------------------------------------------------------|
+  | ohos.permission.ACCESS_SYSTEM_SETTINGS | 系统授权 | 写入/读取 SettingsData 中当前情景模式、勿扰等相关键，用来同步当前开启哪个情景模式、是否开启勿扰，使设置首页与控制中心状态一致                           |
+  | ohos.permission.MANAGE_SETTINGS | 系统授权 | 情景模式联动改系统设置时管理设置项（如与深色模式等联动）                                                                     |
   | ohos.permission.MANAGE_SECURE_SETTINGS | 系统授权 | 读写安全级 SettingsData（`USER_SECURITY`）：开启/关闭时写入勿扰启停与当前情景模式 ID；联动深色模式等系统项；实况通知相关状态；以及 DataShare 受限访问 |
-  | ohos.permission.NOTIFICATION_CONTROLLER | 系统授权 | 情景模式开启免打扰时，向通知服务设置勿扰 Profile、白名单应用列表 |
-  | ohos.permission.GET_BUNDLE_INFO | 系统授权 | 展示「允许通知的应用」列表时查询指定包名的应用信息与图标 |
-  | ohos.permission.GET_INSTALLED_BUNDLE_LIST | 系统授权 | 打开应用白名单页时枚举本机已安装应用供用户勾选 |
-  | ohos.permission.READ_CONTACTS | 用户授权 | 配置来电勿扰策略时读取通讯录联系人 |
-  | ohos.permission.RUNNING_LOCK | 系统授权 | 条件触发或定时任务执行期间持锁，避免进程被过早挂起导致启停失败 |
-  | ohos.permission.START_SYSTEM_DIALOG | 系统授权 | 弹出系统级确认框（例如开启某情景模式的确认对话框） |
-  | ohos.permission.START_ABILITIES_FROM_BACKGROUND | 系统授权 | 时间条件到点或规则引擎回调时，在后台拉起 Service / Ability 完成自动开启 |
-  | ohos.permission.START_INVISIBLE_ABILITY | 系统授权 | 从本应用后台跳转拉起不可见设置组件完成配置跳转 |
+  | ohos.permission.NOTIFICATION_CONTROLLER | 系统授权 | 情景模式开启免打扰时，向通知服务设置勿扰 Profile、白名单应用列表                                                             |
+  | ohos.permission.GET_BUNDLE_INFO | 系统授权 | 展示「允许通知的应用」列表时查询指定包名的应用信息与图标                                                                     |
+  | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | 系统授权 | 查询应用包 BundleInfo，用于应用白名单展示、来电相关包能力判断等                                                     |
+  | ohos.permission.GET_INSTALLED_BUNDLE_LIST | 系统授权 | 打开应用白名单页时枚举本机已安装应用供用户勾选                                                                          |
+  | ohos.permission.LISTEN_BUNDLE_CHANGE | 系统授权 | 监听应用安装/更新/卸载，刷新「允许通知的应用」白名单展示                                                                    |
+  | ohos.permission.GET_LOCAL_ACCOUNTS | 系统授权 | 获取本机用户 ID，拼接 SettingsData 安全/用户域 URI                                                             |
+  | ohos.permission.GET_TELEPHONY_STATE | 系统授权 | 判断设备是否具备语音通话能力，决定是否展示来电勿扰入口                                                                      |
+  | ohos.permission.READ_CONTACTS | 用户授权 | 配置来电勿扰策略时读取通讯录联系人                                                                                |
+  | ohos.permission.RUNNING_LOCK | 系统授权 | 条件触发或定时任务执行期间持锁，避免进程被过早挂起导致启停失败                                                                  |
+  | ohos.permission.START_SYSTEM_DIALOG | 系统授权 | 弹出系统级确认框（例如开启某情景模式的确认对话框）                                                                        |
+  | ohos.permission.START_ABILITIES_FROM_BACKGROUND | 系统授权 | 时间条件到点或自动开启回调时，在后台拉起 Service / Ability 完成自动开启                                                    |
 
 - **对外调用**：Service / IPC 仅允许白名单内包名调用
 - **形态适配**：手机 / 平板布局存在差异，修改 UI 时需覆盖多形态验证

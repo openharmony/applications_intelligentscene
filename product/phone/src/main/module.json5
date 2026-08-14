@@ -190,28 +190,15 @@
         "name": "ohos.permission.RUNNING_LOCK"
       },
       {
-        // 马达振动权限
-        "name": "ohos.permission.VIBRATE"
-      },
-      {
-        "name": "ohos.permission.GET_NETWORK_INFO"
-      },
-      {
-        "name": "ohos.permission.READ_CLOUD_SYNC_CONFIG"
-      },
-      {
         "name": "ohos.permission.ACCESS_SYSTEM_SETTINGS"
       },
       {
-        // 操作settingsdata secure�?
         "name": "ohos.permission.MANAGE_SECURE_SETTINGS"
       },
       {
-        // 操作settingsdata device/user�?
         "name": "ohos.permission.MANAGE_SETTINGS"
       },
       {
-        // 获取应用列表权限
         "name": "ohos.permission.GET_INSTALLED_BUNDLE_LIST",
         "reason": "$string:reason",
         "usedScene": {
@@ -221,20 +208,6 @@
         }
       },
       {
-        "name": "ohos.permission.GET_BUNDLE_RESOURCES",
-        "reason": "$string:permission_bundle_resources",
-        "usedScene": {
-          "abilities": [
-            "com.openharmony.ohos.focusmode.MainAbility"
-          ]
-        }
-      },
-      {
-        // 唤醒小艺
-        "name": "ohos.permission.WAKEUP_VOICE"
-      },
-      {
-        // 获取获取当前登录的本地用户信�?
         "name": "ohos.permission.GET_LOCAL_ACCOUNTS"
       },
       {
@@ -247,42 +220,6 @@
         "name": "ohos.permission.GET_BUNDLE_INFO"
       },
       {
-        "name": "ohos.permission.GET_DISTRIBUTED_ACCOUNTS"
-      },
-      {
-        "name": "ohos.permission.UPDATE_CONFIGURATION"
-      },
-      {
-        "name": "ohos.permission.LOCATION",
-        "reason": "$string:system_location_permission_tips",
-        "usedScene": {
-          "abilities": [
-            "com.ohos.intelligentscene.IntelligentSceneUIExtSettingAbility",
-            "com.ohos.intelligentscene.IntelligentSceneServiceExtAbility"
-          ]
-        }
-      },
-      {
-        "name": "ohos.permission.APPROXIMATELY_LOCATION",
-        "reason": "$string:system_location_permission_tips",
-        "usedScene": {
-          "abilities": [
-            "com.ohos.intelligentscene.IntelligentSceneUIExtSettingAbility",
-            "com.ohos.intelligentscene.IntelligentSceneServiceExtAbility"
-          ]
-        }
-      },
-      {
-        "name": "ohos.permission.LOCATION_IN_BACKGROUND",
-        "reason": "$string:system_location_permission_tips",
-        "usedScene": {
-          "abilities": [
-            "com.ohos.intelligentscene.IntelligentSceneUIExtSettingAbility",
-            "com.ohos.intelligentscene.IntelligentSceneServiceExtAbility"
-          ]
-        }
-      },
-      {
         "name": "ohos.permission.READ_CONTACTS",
         "reason": "$string:permission_reason_contact",
         "usedScene": {
@@ -293,16 +230,7 @@
         }
       },
       {
-        "name": "ohos.permission.MANAGE_CLOUD_SYNC_CONFIG"
-      },
-      {
         "name": "ohos.permission.NOTIFICATION_CONTROLLER"
-      },
-      {
-        "name": "ohos.permission.GET_RUNNING_INFO"
-      },
-      {
-        "name": "ohos.permission.CALLED_UIEXTENSION_ON_LOCK_SCREEN"
       },
       {
         "name": "ohos.permission.START_SYSTEM_DIALOG"
@@ -314,26 +242,7 @@
         }
       },
       {
-        "name": "ohos.permission.USE_CLOUD_COMMON_SERVICE"
-      },
-      {
-        "name": "ohos.permission.BUNDLE_ACTIVE_INFO"
-      },
-      {
         "name": "ohos.permission.GET_TELEPHONY_STATE"
-      },
-      {
-        "name": "ohos.permission.THEME_SKIN"
-      },
-      {
-        "name": "ohos.permission.READ_WHOLE_CALENDAR",
-        "reason": "$string:permission_reason_calendar",
-        "usedScene": {
-          "when": "always",
-          "abilities": [
-            "com.ohos.intelligentscene.IntelligentSceneUIExtSettingAbility"
-          ]
-        }
       }
     ],
     "proxyData":[
