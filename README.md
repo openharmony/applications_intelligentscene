@@ -1,269 +1,270 @@
-# IntelligentScene
+# 情景模式（IntelligentScene）
 
-## Introduction
+## 简介
 
-**IntelligentScene** (bundle name: `com.ohos.intelligentscene`) is a pre-installed **system application** in OpenHarmony. For each real-world scenario (Do Not Disturb, Sleep, Study, and more), it maintains a dedicated **Intelligent Scene** profile: notification and incoming-call policies, automatic enable conditions such as timers, and linkage with system settings after the scene takes effect (for example dark mode). It adapts phone and tablet form factors.
+**情景模式**（包名：`com.ohos.intelligentscene`）是 OpenHarmony 中预置的 **系统应用**。它按具体使用场景（免打扰、睡眠、学习等）分别维护一套「情景模式」：管理通知与来电策略、定时等自动开启条件，以及情景模式生效后与系统设置项（如深色模式）的联动，并适配手机、平板设备形态。
 
-This application is a system preset app. Capabilities take effect only when `const.intelligentscene.enable=true`. Users enter through **Settings → Intelligent Scene** or the Control Center secondary panel.
+本应用为系统预置应用，需通过系统参数 `const.intelligentscene.enable=true` 开启后相关能力才会生效。用户可通过「设置 → 情景模式」或控制中心二级页进入。
 
-### Core Capabilities
+### 核心能力
 
-**Intelligent Scene state management**
-- Supports preset scenes such as Do Not Disturb, Sleep, and Study, plus custom scenes.
-- Uses `StateManager` for enable/disable state machines and writes the **currently active scene** into system SettingsData so Settings, Control Center, and related processes can read it.
+**情景模式状态管理**
+- 支持预置情景模式：免打扰、睡眠、学习等，并支持自定义情景模式。
+- 通过 `StateManager` 完成情景模式的开启/关闭状态机，并把「当前已开启的情景模式」写入系统 SettingsData，供设置、控制中心等进程读取。
 
-**Do Not Disturb**
-- When a scene is active, manages notification DND policies: notification allowlists, sound/vibration allowlists, contact allow/block lists, repeated callers, and reject-call policies.
-- Uses `NotDisturbAdapter` / `NotDisturbTimerManager` to push DND (Focus) policies to the system Notification service and manage DND timers.
+**免打扰**
+- 管理某情景模式生效时的通知勿扰策略：允许通知的应用白名单、声音振动白名单、联系人允许/拦截、重复来电、拒接等来电策略。
+- 通过 `NotDisturbAdapter` / `NotDisturbTimerManager` 把勿扰（Focus）策略下发给系统通知服务，并管理勿扰定时。
 
-**Settings linkage**
-- When a scene is enabled, applies that scene’s configured linkage items to system settings (for example dark mode) and handles Live View presentation.
-- Uses `SettingLinkageManager` for each linkage state machine.
+**设置联动**
+- 情景模式开启后，按该模式已配置的联动项修改系统设置（例如深色模式），并处理实况通知展示。
+- 通过 `SettingLinkageManager` 管理每项联动设置的状态机。
 
-**Activation management**
-- Users configure *trigger condition → which Intelligent Scene to enable* in scene detail. After `ActivationManager` persists and activates the conditions, the matching scene is enabled automatically when time arrives or conditions are met.
-- **Condition triggers** typically include:
-  - **Time conditions**: e.g. enable Sleep every day 22:00–07:00;
-  - **Temporary time conditions**: e.g. enable DND for 1 hour;
+**激活管理**
+- 用户在情景模式详情里配置「触发条件 → 开启哪个情景模式」。条件经 `ActivationManager` 落库并生效后，到点或满足条件时自动开启对应情景模式。
+- **条件触发**典型包括：
+  - **时间条件**：例如每天 22:00～次日 7:00 自动开启睡眠情景模式；
+  - **临时时间条件**：例如「 1 小时」临时开启免打扰；
 
-**Config business**
-- **Local current-open state**: runtime state persisted by this app—which scene is currently on, how it was enabled, and which condition triggered it. The data model is `CurrentOpenedMode` (`modeId` is `'0'` when closed), read/written by `LocalSceneManager`. Enable/disable flows use it for process recovery (know the last open state after restart) and conflict handling (for example how to treat an already-open scene when enabling a new one).
-- **Allow-disturb config**: apps and contacts still allowed to ring or notify while DND is on for a scene (`AllowDisturbManager`).
-- **Contact policies**: call allow/block lists and related policies (`ContactAdapter`).
+**配置业务**
+- **本机当前开启状态**：本应用持久化的运行态，记录「当前开启了哪个情景模式、如何开启、由哪条条件触发」。数据模型为 `CurrentOpenedMode`（关闭时 `modeId` 为 `'0'`），由 `LocalSceneManager` 读写。启停流程据此做进程恢复（重启后仍知上次开启态）与冲突处理（例如开启新模式时如何处理已开启模式）。
+- **允许打扰配置**：某情景模式开启勿扰时，仍可正常响铃/弹通知的应用与联系人白名单；见 `AllowDisturbManager`。
+- **联系人策略配置**：来电允许/拦截名单等；见 `ContactAdapter`。
 
-**Intelligent Scene configuration**
-- Provides **template configs** for each preset scene (via `ModeConfigAdapter`, which resolves a config class by `modeId`, for example Sleep → `SleepModeConfig`; custom scenes use the default `BaseModeConfig`): default capability flags (whether DND is supported) and which Settings home-page groups are shown by default (for example Study mode shows “Enable method”, “Allow disturb”, and similar groups).
+**情景模式配置**
+- 为各预置情景模式提供**模板配置**（经 `ModeConfigAdapter` 按 `modeId` 取对应配置类，如睡眠 `SleepModeConfig`；自定义模式走默认 `BaseModeConfig`）：包括默认能力开关（是否支持勿扰），以及设置首页哪些设置分组默认展示（例如学习模式默认展示「开启方式」「允许打扰」等分组）。
 
-**Data management**
-- Owns in-app models and persistence:
-  - **Scene entities** (name, icons, deletable flag, etc., `MODE_DATA_TABLE`);
-  - **Per-scene config items** (DND policy, linkage settings, trigger conditions, etc., `MODE_CONFIG_DATA_TABLE`);
-  - **Contact policies** (`CONTACT_DATA`), and more.
-- Uses **this application’s own** relational database (OpenHarmony RDB) `IntelligentScene.db` (security level S2; see `DbConfig` / `RDB_STORE_CONFIG` under `common`). Cross-process shared state is written separately to system SettingsData.
+**数据管理**
+- 管理本应用的数据模型并落库，包括：
+  - **情景模式实体**（名称、图标、是否可删除等，`MODE_DATA_TABLE`）；
+  - **配置项**（某情景模式下的勿扰策略、联动设置、触发条件等，`MODE_CONFIG_DATA_TABLE`）；
+  - **联系人策略**（`CONTACT_DATA`）等。
+- 使用 **本应用自有** 的关系型数据库（OpenHarmony RDB）`IntelligentScene.db`（加密等级 S2，见 `common` 的 `DbConfig` / `RDB_STORE_CONFIG`）。跨进程共享的状态则另写系统 SettingsData。
 
-### Preset Intelligent Scenes
+### 预置情景模式说明
 
-Presets are identified by `modeId` (`ModeType`): Do Not Disturb `'1'`, Sleep `'2'`, Study `'3'`. All three support DND and the common Settings groups (enable method / allow disturb / system linkage). Differences are mainly in **default templates and product positioning**.
+预置模式以 `modeId` 区分（见 `ModeType`）：免打扰 `'1'`、睡眠 `'2'`、学习 `'3'`。三者均支持勿扰与设置首页「条件开启 / 允许打扰 / 关联系统功能」等通用分组；差异主要在**默认模板与产品定位**。
 
-| Item | Do Not Disturb (`modeId=1`) | Sleep (`modeId=2`) | Study (`modeId=3`) |
-|------|----------------------------|--------------------|--------------------|
-| Scenario | Fewer notification/call interruptions; stay focused | Quiet overnight rest | Focus during study |
-| Deletable | No | No | **Yes** |
-| Default time condition | None | Daily 23:00–07:00 (off by default) | Weekdays 08:00–12:00 and 14:00–18:00 (off by default) |
-| Default call policy | Allow favorites | **Block everyone** | Allow favorites |
-| Default notification policy | Block notifications (allowlist configurable) | Same | Same |
-| Default system linkage | Not linked | **Link-enable dark mode** | Not linked |
+| 对比项 | 免打扰（`modeId=1`） | 睡眠（`modeId=2`） | 学习（`modeId=3`） |
+|--------|---------------------|-------------------|-------------------|
+| 定位 | 减少通知/来电打扰，保持专注 | 夜间安静休息 | 学习时段聚焦 |
+| 能否删除 | 不可删 | 不可删 | **可删** |
+| 默认定时条件 | 无默认定时 | 每日 23:00～07:00（默认关闭） | 工作日 8:00～12:00、14:00～18:00（默认关闭） |
+| 默认来电策略 | 允许收藏联系人 | **禁止所有人** | 允许收藏联系人 |
+| 默认通知策略 | 禁止通知（可配白名单） | 同左 | 同左 |
+| 默认系统联动 | 不关联 | **关联开启深色模式** | 不关联 |
 
-**User-configurable (common to all three, scene detail page)**
+**用户可配置（三模式通用，设置详情页）**
 
-- **Enable method**: time conditions, temporary duration, and similar auto enable/disable triggers.
-- **Allow disturb**: notification app allowlist; incoming-call policy (block all / allow all / existing contacts / favorites) and specified contact lists; repeated callers, etc.
-- **System linkage**: e.g. dark mode (link enable / link disable / not linked).
+- **条件开启**：时间条件、临时时长等，用于自动启停。
+- **允许打扰**：通知应用白名单；来电策略（禁止所有人 / 允许所有人 / 已有联系人 / 收藏联系人）及指定联系人名单；重复来电等。
+- **关联系统功能**：如深色模式联动（关联开启 / 关联关闭 / 不关联）。
 
-**Limits**
+**限制说明**
 
-- Usually only one scene is active; `StateManager` handles conflicts when enabling another.
-- This app **does not intercept calls directly**; it syncs policies to the system telephony side (see below).
+- 同一时刻通常只生效一个情景模式；开启新模式时由 `StateManager` 做冲突与切换。
+- 情景模式本身**不直接拦截来电**，而是把策略同步给系统通话侧（见下节）。
 
-### Incoming-call DND path
+### 来电免打扰通路
 
-Whether a call rings or is answered is decided by system **CallUI / telephony**. This app owns policy configuration, persistence, and cross-process sync.
+来电是否响铃/接通由系统 **CallUI / 通话服务** 判决；本应用负责策略配置、落库与跨进程同步。
 
 ```text
-User configures call policy / lists
-    → AllowDisturbManager / ContactManager write RDB
-      (CALL_NOT_DISTURB_POLICY, CONTACT_DATA.focus_mode_list)
-    → On scene enable, StateManager:
-      · Writes SettingsData: focus_mode_profile, focus_mode_enable,
-        focus_mode_call_message_policy, focus_mode_repeate_callers_enable, etc.
-      · Notification: addDoNotDisturbProfile (default trust includes com.ohos.callui)
-      · ContactAdapter publishes DataShare URIs (intelligent_scene_data / intelligent_uri)
-    → CallUI:
-      · Reads SettingsData: whether DND is on, which scene is active,
-        which call policy applies, whether repeated callers may ring
-      · When policy is “specified contacts”, queries CONTACT_DATA:
-        loads numbers for the current modeId and matches the incoming number
+用户配置来电策略 / 名单
+    → AllowDisturbManager / ContactManager 写入 RDB
+      （CALL_NOT_DISTURB_POLICY、CONTACT_DATA.focus_mode_list）
+    → 情景模式开启时 StateManager：
+      · 写 SettingsData：focus_mode_profile、focus_mode_enable、
+        focus_mode_call_message_policy、focus_mode_repeate_callers_enable 等
+        （注：repeate 为源码历史拼写，非 repeat；读写须与源码键名一致）
+      · 通知侧 addDoNotDisturbProfile（默认信任含 com.ohos.callui）
+      · ContactAdapter 发布 DataShare URI（intelligent_scene_data / intelligent_uri）
+    → CallUI：
+      · 读 SettingsData：判断「当前是否开启勿扰 / 开启的是哪个情景模式 /
+        来电策略是哪种 / 是否允许重复来电响铃」
+      · 当策略为「指定联系人」时，再查 CONTACT_DATA：
+        按当前 modeId 取出号码列表，与来电号码比对后决定放行或拦截
 ```
 
-| Step | App action | Key types / keys |
-|------|------------|------------------|
-| 1. Configure policy | Persist `MODE_CONFIG_DATA` (`ConfigType.CALL_NOT_DISTURB_POLICY`) and EL1 | `AllowDisturbManager` |
-| 2. Configure lists | Write specified contact numbers to `CONTACT_DATA` (`focus_mode_list`=1/2) | `ContactManager`, `ContactAdapter` |
-| 3. Scene enable | Write current scene and DND flag; flush EL1 policy to `focus_mode_call_message_policy` | `StateManager.updateIncomingConfig` |
-| 4. System effect | CallUI reads SettingsData for policy, then DataShare lists when needed | SettingsData + `DataExtAbility` |
+| 步骤 | 本应用动作 | 关键类 / 键 |
+|------|------------|-------------|
+| 1. 配置策略 | 策略写入 `MODE_CONFIG_DATA`（`ConfigType.CALL_NOT_DISTURB_POLICY`）及 EL1 | `AllowDisturbManager` |
+| 2. 配置名单 | 指定联系人号码写入 `CONTACT_DATA`（`focus_mode_list`=1/2） | `ContactManager`、`ContactAdapter` |
+| 3. 模式开启 | 写当前模式与勿扰开关；把 EL1 策略刷到 `focus_mode_call_message_policy` | `StateManager.updateIncomingConfig` |
+| 4. 系统侧生效 | CallUI 先读 SettingsData 定策略，必要时再查本应用 DataShare 名单 | SettingsData + `DataExtAbility` |
 
-**What CallUI reads (concrete)**
+**CallUI 侧读数含义（具象）**
 
-| Source | Typical keys / columns | Purpose |
-|--------|------------------------|---------|
-| SettingsData | `focus_mode_enable` | Whether scene DND is on; if off, handle the call normally |
-| SettingsData | `focus_mode_profile` | Active scene `modeId` (`'0'` when closed) |
-| SettingsData | `focus_mode_call_message_policy` | Call policy enum (block all / favorites / etc.)—decides whether to use Contacts or this app’s lists |
-| SettingsData | `focus_mode_repeate_callers_enable` | Whether a repeated caller within a short window may still ring |
-| `CONTACT_DATA` (DataShare) | `modeId` + `focus_mode_list` + `detail_info` / `format_phone_number` | **Only when policy is specified contacts**: numbers allowed or blocked for that mode, matched against the incoming number |
+| 读取来源 | 典型键 / 字段 | 用来做什么 |
+|----------|---------------|------------|
+| SettingsData | `focus_mode_enable` | 当前情景模式勿扰是否开启；未开启则按正常来电处理 |
+| SettingsData | `focus_mode_profile` | 当前生效的情景模式 `modeId`（关闭时常为 `'0'`） |
+| SettingsData | `focus_mode_call_message_policy` | 来电策略枚举（禁止所有人 / 允许收藏等），决定后续查通讯录还是查本应用名单 |
+| SettingsData | `focus_mode_repeate_callers_enable` | 短时间内重复来电是否仍允许响铃。（注：键名中 `repeate` 为源码历史拼写，非 repeat，对接时须按此键读写） |
+| `CONTACT_DATA`（DataShare） | `modeId` + `focus_mode_list` + `detail_info` / `format_phone_number` | **仅当策略为指定联系人时需要**：取出该模式下允许或拦截的号码，与本次来电号码比对 |
 
-Policy values: `1` block all, `2` allow all, `3` existing contacts only, `4` favorites only, `5` specified contacts. Policies 1–4 mainly use SettingsData plus the system Contacts DB; policy 5 also needs `CONTACT_DATA`.
+策略取值示意：`1` 禁止所有人、`2` 允许所有人、`3` 仅已有联系人、`4` 仅收藏、`5` 指定联系人。策略为 1～4 时，CallUI 主要结合 SettingsData 与系统通讯录判决；策略为 5 时才依赖 `CONTACT_DATA` 名单。
 
-## Architecture
+## 架构说明
 
-IntelligentScene uses a layered and modular design organized by product form, business features, and common capabilities:
-![Architecture](./docs/figures/IntelligentScene_en.png)
+情景模式采用分层与模块化设计，按产品形态、业务特性与公共能力组织代码，如图：
+![架构说明](./docs/figures/IntelligentScene.png)
 
-### Application Layer Design
+### 应用层分层设计
 
-Three layers: product, feature, and common.
+整体划分为产品层（product）、特性层（feature）、公共层（common）：
 
-| Layer | Main path | Description |
-| ----- | --------- | ----------- |
-| Product | `product/phone` | Single phone/tablet HAP entry: declares Ability / UIExtension / Service; hosts Settings home, scene detail, Control Center panel, DND pages; implements stubs and static subscribers. **Modify entry UI mainly in this layer.** |
-| Feature | `feature/*` | One HAR per business capability: scene enable/disable, DND, linkage, condition activation, config I/O, preset templates, RDB tables. **Modify a business path mainly in the matching feature.** |
-| Common | `common` | Shared infrastructure used across features (not a user-facing feature by itself): EventBus, shared list-row/dialogs, this app’s RDB wrappers, logging, `PermissionVerifyUtil`. **Modify this layer for cross-feature reuse.** |
+| 层次 | 主要目录 | 说明 |
+|------|----------|------------------|
+| 产品层 | `product/phone` | 手机/平板 **同一 HAP** 入口：声明 Ability / UIExtension / Service；承载设置首页、情景模式详情、控制中心二级页、免打扰相关页面等 UI；实现 IPC Stub、静态订阅者。**修改入口 UI 时主要改这一层。** |
+| 特性层 | `feature/*` | 与「一种业务能力」一一对应的 HAR：情景模式启停、勿扰、联动、条件激活、配置读写、预置模板、RDB 业务表访问等。**修改某条业务链路时主要改对应 feature。** |
+| 公共层 | `common` | 多模块共用的基建，不直接表述某条用户功能：EventBus、通用列表项/弹框、本应用 RDB 封装、日志、`PermissionVerifyUtil` IPC 校验等。**跨特性复用时修改这一层。** |
 
-**Product-layer modules** (`product/phone`)
+**产品层模块说明**（`product/phone`）
 
-| Capability | Module / path | Description |
-| ---------- | ------------- | ----------- |
-| App entry | `entryability/` | Full-screen `EntryAbility`; `IntelligentSceneUIExtSettingAbility` for **Settings** embed; `SceneControlUIExtAbility` for **Control Center** secondary panel. |
-| Resident service | `serviceability/` | Resident `IntelligentSceneServiceExtAbility`; `DataExtAbility` DataShare provider. |
-| Settings home | `pages/settinghome/` | Settings → Intelligent Scene list / detail / edit. |
-| Control Center | `pages/controlcenter/` | Control Center secondary panel (quick toggles, “More settings”). |
-| Do Not Disturb | `pages/nodisturb/` | Notification allowlist, contact policy, incoming-call policy pages. |
+| 核心能力 | 模块 / 目录 | 说明 |
+|-------------|------|-------------|
+| 应用入口 | `entryability/` | `EntryAbility` 全屏入口；`IntelligentSceneUIExtSettingAbility` 供 **设置** 嵌入；`SceneControlUIExtAbility` 供 **控制中心** 拉起二级页等。 |
+| 常驻服务 | `serviceability/` | `IntelligentSceneServiceExtAbility` 常驻服务；`DataExtAbility` 提供 DataShare URI。 |
+| 设置首页 | `pages/settinghome/` | 「设置 → 情景模式」中的列表、详情与编辑页。 |
+| 控制中心 | `pages/controlcenter/` | 控制中心情景模式二级页（快速开关列表、「更多设置」跳转等）。 |
+| 免打扰 | `pages/nodisturb/` | 允许通知应用、联系人策略、来电策略等免打扰相关页面。 |
 
-**Feature-layer modules** (`feature/*`)
+**特性层模块说明**（`feature/*`）
 
-| Capability | Module / path | Description |
-| ---------- | ------------- | ----------- |
-| Intelligent Scene state management | StateManager (`statemanage`) | Enable/disable a scene by `modeId`; update local current-open state; write SettingsData (for example focus-related keys); chain DND and settings linkage |
-| Do Not Disturb | NotDisturbAdapter, NotDisturbTimerManager (`notdisturb`) | Sync DND profiles and timed DND with Notification |
-| Settings linkage | SettingLinkageManager (`configlinkage`) | Apply dark mode and other system settings when a scene takes effect; Live View |
-| Activation management | ActivationManager (`activationmanage`) | Manage user time/app auto-enable conditions and trigger scene enable/disable when they match |
-| Config business | LocalSceneManager, AllowDisturbManager, ContactAdapter (`configmanage`) | Current-open state, allow-disturb allowlists, contact policies |
-| Intelligent Scene configuration | ModeConfigAdapter (`modeconfig`) | Preset-scene defaults and home-page group visibility |
-| Data management | ModeDataManager, ConfigDataManager (`datamanage`) | Scene/config/contact models and `IntelligentScene.db` access |
+| 核心能力 | 模块 / 目录 | 说明 |
+|--------|------|------|
+| 情景模式状态管理 | StateManager（`statemanage`） | 开启/关闭指定 `modeId` 的情景模式；更新本地当前开启态；写 SettingsData（如 focus 相关键）；串联勿扰与设置联动 |
+| 免打扰 | NotDisturbAdapter、NotDisturbTimerManager（`notdisturb`） | 向通知服务同步勿扰 Profile、定时勿扰 |
+| 设置联动 | SettingLinkageManager（`configlinkage`） | 情景模式生效后应用深色模式等系统设置，并处理实况通知 |
+| 激活管理 | ActivationManager（`activationmanage`） | 管理用户配置的时间/应用等自动开启条件，到点或满足条件时触发情景模式启停 |
+| 配置业务 | LocalSceneManager、AllowDisturbManager、ContactAdapter（`configmanage`） | 本机当前开启态、允许打扰白名单、联系人策略的读写与生效 |
+| 情景模式配置 | ModeConfigAdapter（`modeconfig`） | 预置情景模式默认能力与首页分组可见性 |
+| 数据管理 | ModeDataManager、ConfigDataManager（`datamanage`） | 情景模式实体、配置项、联系人等模型及 `IntelligentScene.db` 访问 |
 
-**Common-layer modules** (`common`)
+**公共层模块说明**（`common`）
 
-| Capability | Module / path | Description |
-| ---------- | ------------- | ----------- |
-| Utils / constants | `constant/`, `utils/` | Business constants: `ModeConstant` (scene `modeId`, enable/disable flags), `DbConfig` (`IntelligentScene.db` name and table fields), `EventBusNameConstant`, and more; shared helpers: `SettingsDataUtils`, `JsonUtil`, device-form checks |
-| RDB | `rdbstore/` | App DB access: `RdbStoreHelper` opens EL2 `IntelligentScene.db` (and backup) for create-table, CRUD, backup/restore, and corruption handling |
-| EventBus | `common/EventBus` | In-process event bus (`on` / `emit` / `detach`) for setting-item toggles, semi-modal close, and similar state transfer |
-| IPC Stub | `stub/` | IPC stub base `BaseServiceStub` for product Service stubs (auth + dispatch) |
-| UI infrastructure | `basecomponent/`, `framework/` | Page-level reusable controls (`ConfirmDialogComponent`, Toast via `PromptManager`, link text, symbol icons); Settings-detail page infrastructure (`PageRouter` / `PageLoader`, `SettingPage` / `SettingItemStandard` / `SettingGroup` / `SettingSheet` / `SettingDialog`, and state models) |
-| Logging / permission | `utils/LogUtil`, `utils/PermissionVerifyUtil` | Unified logging; IPC caller allowlist checks |
+| 核心能力 | 模块 / 目录 | 说明 |
+|------|------|------|
+| 工具/常量 | `constant/`、`utils/` | 业务常量：`ModeConstant`（情景模式 `modeId`、启停态）、`DbConfig`（`IntelligentScene.db` 库名与表字段）、`EventBusNameConstant` 等；通用工具：`SettingsDataUtils`、`JsonUtil`、设备形态判断等 |
+| RDB | `rdbstore/` | 本应用库访问层：`RdbStoreHelper` 打开 EL2 `IntelligentScene.db`（及备份库）执行建表、增删改查、备份恢复与损坏处理 |
+| EventBus | `common/EventBus` | 进程内事件总线（`on`/`emit`/`detach`），在设置项开关、半模态关闭等场景传递状态 |
+| IPC Stub | `stub/` | IPC Stub 基类 `BaseServiceStub`，供 product 侧具体 Service Stub 继承并做鉴权分发 |
+| UI基建 | `basecomponent/`、`framework/` | 页面级可复用控件（`ConfirmDialogComponent`、`PromptManager` Toast、链接文案与符号图标等）；设置详情页基建（`PageRouter`/`PageLoader`、`SettingPage`/`SettingItemStandard`/`SettingGroup`/`SettingSheet`/`SettingDialog` 及状态模型） |
+| 日志/权限 | `utils/LogUtil`、`utils/PermissionVerifyUtil` | 统一日志输出；IPC 调用方白名单校验 |
 
-### Relationship with Other Applications
+### 与其它应用的关系
 
-Exported components (`EntryAbility`, `IntelligentSceneUIExtSettingAbility`, `SceneControlUIExtAbility`, `IntelligentSceneServiceExtAbility`, and related entries with `exported=true`) may be started via Want / UIExtension / Service by system peers. **Prerequisites**: the app is installed and `const.intelligentscene.enable=true`. Service/IPC callers must pass the `PermissionVerifyUtil` allowlist (for example `com.ohos.sceneboard`).
+允许系统侧应用通过 Want / UIExtension / Service 拉起本应用的已导出组件（`EntryAbility`、`IntelligentSceneUIExtSettingAbility`、`SceneControlUIExtAbility`、`IntelligentSceneServiceExtAbility` 等 `exported=true`）。**前提**：本应用已安装，且 `const.intelligentscene.enable=true`。Service / IPC 调用方须通过 `PermissionVerifyUtil` 白名单（例如 `com.ohos.sceneboard`）。
 
-**Ordinary third-party apps: no open Want / business IPC.** System UIExtension / Service / DataShare still follow the auth table below. BasicServicesKit also exposes read-only query APIs for DND state (see “Kit query API” rows).
+**面向普通三方应用：不提供开放 Want / 业务 IPC。** 系统侧拉起 UIExtension / Service / DataShare 仍按下方表格鉴权。另提供 BasicServicesKit 只读查询接口，供应用查询免打扰状态（见下表「Kit 查询 API」）。
 
-#### External interfaces
+#### 对外接口一览
 
-| Interface | Component / id | Audience | Typical scenario | Auth |
-| --------- | -------------- | -------- | ---------------- | ---- |
-| UIExtension (Settings embed) | `IntelligentSceneUIExtSettingAbility` | System (Settings) | Full Settings → Intelligent Scene UI | Caller needs `ACCESS_SYSTEM_SETTINGS`; usually launched by Settings |
-| UIExtension (Control Center) | `SceneControlUIExtAbility` | System (SceneBoard) | Control Center quick toggles | Same |
-| Full-screen UIAbility | `EntryAbility` | System / desktop | Standalone full-screen entry | `exported=true`; typically via desktop/Settings |
-| System confirm dialog | `ModeEnableConfirmDialogUIExtAbility` | System apps | Confirm enabling a scene | `ACCESS_SYSTEM_SETTINGS` |
-| Kit query API | `intelligentScene.isDoNotDisturbEnabled()` | Apps (including third-party, with permission) | Query whether **system DND is on** (true when a scene has DND enabled) | `ohos.permission.GET_DONOTDISTURB_STATE` |
-| Kit query API | `intelligentScene.isNotifyAllowedInDoNotDisturb()` | Apps (including third-party, with permission) | When DND is on, query whether **the current app is on the allow-disturb list** (returns false if DND is off) | `ohos.permission.GET_DONOTDISTURB_STATE` |
+| 接口形态 | 组件 / 标识 | 适用对象 | 典型场景 | 鉴权要求 |
+|----------|-------------|----------|----------|----------|
+| UIExtension（设置嵌入） | `IntelligentSceneUIExtSettingAbility` | 系统应用（设置） | 「设置 → 情景模式」完整配置页 | 调用方需 `ACCESS_SYSTEM_SETTINGS`；通常由设置宿主拉起 |
+| UIExtension（控制中心） | `SceneControlUIExtAbility` | 系统应用（SceneBoard） | 控制中心二级页快速开关 | 同上 |
+| UIAbility 全屏入口 | `EntryAbility` | 系统 / 桌面入口 | 独立全屏打开情景模式 | `exported=true`，一般经桌面/设置跳转 |
+| 系统确认弹框 | `ModeEnableConfirmDialogUIExtAbility` | 系统应用 | 开启情景模式确认框 | `ACCESS_SYSTEM_SETTINGS` |
+| Kit 查询 API | `intelligentScene.isDoNotDisturbEnabled()` | 应用（含三方，需声明权限） | 查询**系统免打扰是否已开启**（任一情景模式开启勿扰时为 true） | `ohos.permission.GET_DONOTDISTURB_STATE` |
+| Kit 查询 API | `intelligentScene.isNotifyAllowedInDoNotDisturb()` | 应用（含三方，需声明权限） | 免打扰开启时，查询**当前应用是否在允许打扰名单内**（未开启免打扰时返回 false） | `ohos.permission.GET_DONOTDISTURB_STATE` |
 
-Import `intelligentScene` from `@kit.BasicServicesKit`. These APIs are **read-only** and cannot change Intelligent Scene or DND settings. Details, error codes, and samples:  
-[js-apis-intelligentScene](https://docs.openharmony.cn/pages/v6.1/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-intelligentScene.md)
+`intelligentScene` 模块从 `@kit.BasicServicesKit` 导入，仅提供上述只读查询，**不能**通过该 API 修改情景模式或免打扰配置。接口细节、错误码与示例见官方文档：  
+[js-apis-intelligentScene（情景模式）](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-intelligentScene.md)
 
-By scenario:
+按场景说明：
 
-| Scenario | Description |
-| -------- | ----------- |
-| User opens full Intelligent Scene settings | **Settings**, when Intelligent Scene is installed and the feature switch is on, launches **UIExtension** `IntelligentSceneUIExtSettingAbility` (or Want with `uri: intelligent_scene_entry`, etc.) for home/detail pages |
-| User opens Control Center scene panel | **SceneBoard** (Control Center host), under the same install/switch conditions, launches **UIExtension** `SceneControlUIExtAbility` for quick toggles; “More settings” jumps to the Settings entry |
-| Desktop/system needs shared cross-process state | Settings, Control Center, Desktop read/write system **SettingsData** (`@ohos.settings` / DataShare) keys written by this app (for example focus-related keys, current scene state); wrappers: `SettingsDataUtils`, `SettingsDataKeyConstant` |
-| Trusted system access to resident service / DataShare | Allowlisted bundles bind **Service** (`IntelligentSceneServiceExtAbility`) or **DataShare** (`DataExtAbility`); callers that fail checks are rejected |
+| 场景 | 说明 |
+|------|---------------------------|
+| 用户进入「设置 → 情景模式」完整配置 | **设置应用**在本机安装情景模式且特性开关打开时，以 **UIExtension** 拉起 `IntelligentSceneUIExtSettingAbility`（或 Want，`uri: intelligent_scene_entry` 等）展示设置首页/详情 |
+| 用户在控制中心打开情景模式面板 | **SceneBoard（控制中心宿主）**在满足同样安装/开关条件时，以 **UIExtension** 拉起 `SceneControlUIExtAbility`，展示快速开关列表；点「更多设置」再跳转设置入口 |
+| 桌面/系统需要读写跨进程共享状态 | 设置、控制中心、桌面等通过系统 **SettingsData**（`@ohos.settings` / DataShare）读写本应用写入的键（如 focus 相关、当前情景模式状态）；本应用侧封装见 `SettingsDataUtils`、`SettingsDataKeyConstant` |
+| 系统受信组件访问常驻能力或 DataShare | 白名单包名绑定 **Service**（`IntelligentSceneServiceExtAbility`）或访问 **DataShare**（`DataExtAbility`）；未通过校验的调用方会被拒绝 |
 
-#### DataShare config and accessing this app’s RDB
+#### DataShare 配置与接入本应用 RDB
 
-`DataExtAbility` exposes selected RDB tables via DataShare (read-oriented) for CallUI, Settings, and similar system clients. Config:
+本应用通过 `DataExtAbility` 把部分 RDB 表以 DataShare 形式对外只读暴露，供系统通话、设置等查询。配置见：
 
-- Ability: `product/phone/src/main/module.json5` (`uri: datashare://com.ohos.intelligentscene.DataAbility`; `readPermission`/`writePermission` = `ohos.permission.MANAGE_SECURE_SETTINGS`)
-- Table URIs: `product/phone/src/main/resources/base/profile/data_share_config.json`
-- Impl: `product/phone/src/main/ets/serviceability/DataExtAbility.ets` (**query** is implemented)
+- Ability：`product/phone/src/main/module.json5`（`uri: datashare://com.ohos.intelligentscene.DataAbility`，`readPermission`/`writePermission` 为 `ohos.permission.MANAGE_SECURE_SETTINGS`）
+- 表 URI：`product/phone/src/main/resources/base/profile/data_share_config.json`
+- 实现：`product/phone/src/main/ets/serviceability/DataExtAbility.ets`（当前以 **query** 为主）
 
-| Table | DataShare URI | Store | Use |
-| ----- | ------------- | ----- | --- |
-| `MODE_DATA_TABLE` | `datashare:///com.ohos.intelligentscene/phone/IntelligentScene/MODE_DATA_TABLE` | EL1 | Scene entities |
-| `MODE_CONFIG_DATA_TABLE` | `.../MODE_CONFIG_DATA_TABLE` | EL2 `IntelligentScene.db` | Per-scene config |
-| `CONTACT_DATA` | `.../CONTACT_DATA` | EL2 | Specified contact numbers |
-| `MODE_HISTORY_DATA_TABLE` | `.../MODE_HISTORY_DATA_TABLE` | EL1 | History |
+| 表 | DataShare URI | 库位置 | 用途 |
+|----|---------------|--------|------|
+| `MODE_DATA_TABLE` | `datashare:///com.ohos.intelligentscene/phone/IntelligentScene/MODE_DATA_TABLE` | EL1 | 情景模式实体 |
+| `MODE_CONFIG_DATA_TABLE` | `.../MODE_CONFIG_DATA_TABLE` | EL2 `IntelligentScene.db` | 各模式配置项 |
+| `CONTACT_DATA` | `.../CONTACT_DATA` | EL2 | 指定联系人号码 |
+| `MODE_HISTORY_DATA_TABLE` | `.../MODE_HISTORY_DATA_TABLE` | EL1 | 历史数据 |
 
-`datashareproxy://com.ohos.intelligentscene/...` proxy URIs are also declared (`proxyData` in `module.json5`), also requiring `MANAGE_SECURE_SETTINGS`.
+另提供 `datashareproxy://com.ohos.intelligentscene/...` 代理 URI（`module.json5` 的 `proxyData`），读写权限同样要求 `MANAGE_SECURE_SETTINGS`。
 
-**System-side integration (sketch)**
+**系统侧接入步骤（示意）**
 
-1. Caller is a system app with `ohos.permission.MANAGE_SECURE_SETTINGS`.
-2. Create a DataShareHelper (`@ohos.data.dataShare`) with a table URI above (queries often use `?Proxy=true`, matching this app’s URI parsing).
-3. Query with predicates (e.g. `modeId`, `focus_mode_list` on `CONTACT_DATA`).
-4. For call lists, callers may first read SettingsData `intelligent_scene_data` / `intelligent_uri` (published by `ContactAdapter.init`), then open that DataShare.
+1. 调用方为系统应用，并申请 / 被授予 `ohos.permission.MANAGE_SECURE_SETTINGS`。
+2. 使用 `@ohos.data.dataShare` 创建 DataShareHelper，URI 指向上表（查询时 URI 常带 `?Proxy=true`，与本应用解析约定一致）。
+3. 按表字段构造谓词查询，例如按 `modeId`、`focus_mode_list` 查 `CONTACT_DATA`。
+4. 来电名单场景也可先读 SettingsData 中的 `intelligent_scene_data` / `intelligent_uri`（由 `ContactAdapter.init` 发布），再访问对应 DataShare。
 
-> Ordinary third-party apps cannot integrate: no system permission and no public business API.
+> 普通三方应用无法接入：缺少系统权限，且无开放业务 API。
 
-## Build
+## 编译构建
 
-This project is a multi-module HAP application built with Hvigor. The output is the `com.ohos.intelligentscene` system app package.
+本工程为多模块 HAP 应用工程，使用 Hvigor 构建，产物为 `com.ohos.intelligentscene` 系统应用包。
 
-### Environment Requirements
-- OpenHarmony SDK (`compileSdkVersion` 26.0.0; `compatibleSdkVersion` / `targetSdkVersion` 23 in this project)
-- DevEco Studio or command-line Hvigor toolchain
-- System signing materials (see `signature/`)
+### 环境要求
+- OpenHarmony SDK（本工程 `compileSdkVersion` 为 "26.0.0"，`compatibleSdkVersion` / `targetSdkVersion` 为 23）
+- DevEco Studio 或命令行 Hvigor 工具链
+- 系统签名证书（见 `signature/`）
 
-### Build Commands
+### 编译命令
 
-Run from the project root:
+在工程根目录执行：
 
 ```bash
-# Open the project in DevEco Studio and Build, or use the hvigor CLI
+# 使用 DevEco Studio 打开工程后执行 Build，或使用 hvigor 命令行
 hvigorw assembleHap
 ```
 
-## IntelligentScene Development
+## 情景模式开发
 
-IntelligentScene is developed in **ArkTS**, with UI based on the ArkUI Stage model. The application uses `product` for Ability entry and pages, the feature layer for scene state, DND, linkage, and related business, and `common` for shared infrastructure. See: [ArkUI Development Overview](https://gitcode.com/openharmony/docs/blob/master/en/application-dev/ui/arkts-ui-development-overview.md)
+情景模式采用 **ArkTS** 语言开发，UI 基于 ArkUI Stage 模型。应用通过 `product` 承载 Ability 入口与页面，通过特性层完成情景模式状态、免打扰、联动等业务，并通过 `common` 提供公共基建。开发可参考：[ArkUI 开发概述](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-ui-development-overview.md)
 
-### Developing on Existing Modules
+### 基于已有模块的开发
 
-Typical scenarios: customize scene enable/disable logic, extend DND allowlists, change Control Center / Settings UI, or refine linkage presentation.
+适用场景：对已有能力做功能定制，例如调整情景模式启停逻辑、扩展勿扰白名单策略、修改控制中心/设置页交互、优化联动展示等。
 
-Locate changes by boundary: `product/phone` (entry and pages), `feature/statemanage` (scene state), `feature/notdisturb` (DND), `feature/configlinkage` (settings linkage), `feature/activationmanage` (activation), `feature/configmanage` (config business), `feature/modeconfig` (scene config), `feature/datamanage` (data), or `common` (shared).
+明确改动点：按业务边界定位到 product/phone（入口与页面）、feature/statemanage（情景模式状态管理）、feature/notdisturb（免打扰）、feature/configlinkage（设置联动）、feature/activationmanage（激活管理）、feature/configmanage（配置业务）、feature/modeconfig（情景模式配置）、feature/datamanage（数据管理）或 common（公共能力）。
 
-Common modification scenarios:
+以下列举一些常见的修改场景：
 
-**Scenario 1: Modify the scene enable/disable path**
+**场景1：修改情景模式启停链路**
 
-- Control Center entry: `product/phone/src/main/ets/pages/controlcenter/ControlCenterPage.ets`
-- State machine: `feature/statemanage/src/main/ets/manager/StateManager.ets`
-- DND policies: `feature/notdisturb/`
+- 控制中心入口位于 `product/phone/src/main/ets/pages/controlcenter/ControlCenterPage.ets`
+- 状态机位于 `feature/statemanage/src/main/ets/manager/StateManager.ets`
+- 勿扰策略位于 `feature/notdisturb/`
 
- For example, add a custom pre-check when enabling a scene in `StateManager.startScene()`:
+ 例如，需在情景模式开启时新增自定义前置检查，可在 `StateManager.startScene()` 中添加相关逻辑：
 ```typescript
- // StateManager.ets — startScene is the scene-enable entry
+ // StateManager.ets — startScene 是情景模式开启流程入口
  public startScene(modeId: string, operType: number, sourceType?: number, updateTime?: number): string {
-   // [Add custom pre-check]
+   // 【新增自定义前置检查】
    if (!this.customPreCheck(modeId)) {
      return '';
    }
 
-   // Existing flow: state validation → write SettingsData → link DND / system settings
+   // 原有流程：状态校验 → 写入 SettingsData → 联动勿扰 / 系统设置
    // ...
  }
 ```
-**Scenario 2: Modify the settings linkage path**
+**场景2：修改设置联动链路**
 
-- Linkage management: `feature/configlinkage/src/main/ets/manager/SettingLinkageManager.ets`
-- Live View logic lives in the same module
+- 联动管理位于 `feature/configlinkage/src/main/ets/manager/SettingLinkageManager.ets`
+- 实况通知相关能力位于同模块的 LiveView 管理逻辑中
 
- For example, add another system-settings linkage after a scene is enabled in `SettingLinkageManager.effectModeLinkedSettings()`:
+ 例如，需在情景模式开启后补充一项系统设置联动，可在 `SettingLinkageManager.effectModeLinkedSettings()` 中扩展：
 ```typescript
- // SettingLinkageManager.ets — applies linkage for the active scene
+ // SettingLinkageManager.ets — effectModeLinkedSettings 在情景模式生效时应用联动设置
  public async effectModeLinkedSettings(modeId: string): Promise<void> {
    LogUtil.showInfo(TAG, `effectModeLinkedSettings mode:${modeId}`);
    let darkModeState: SettingsLinkageState = await SystemSettingManager.getSystemSettingByType(modeId,
@@ -274,43 +275,43 @@ Common modification scenarios:
      ConfigType.SYSTEM_SETTINGS_EYE_PROTECT_MODE);
    this.eyeProtectStateMachine.convertState(eyeProtectState);
 
-   // [Add custom linkage]
+   // 【新增自定义联动】例如扩展一项系统设置联动状态机转换
    // let customState: SettingsLinkageState = await SystemSettingManager.getSystemSettingByType(
    //   modeId, ConfigType.YOUR_CUSTOM_SETTING);
    // this.customStateMachine.convertState(customState);
  }
 ```
-**Scenario 3: Modify configuration / data**
+**场景3：修改配置 / 数据**
 
-- Preset scene config: `feature/modeconfig/`
-- Business config: `feature/configmanage/`
-- Data access: `feature/datamanage/`
+- 预置情景模式配置位于 `feature/modeconfig/`
+- 业务配置位于 `feature/configmanage/`
+- 数据访问位于 `feature/datamanage/`
 
- For example, change default group visibility via `ModeConfigAdapter.getGroupVisible()`:
+ 例如，若需调整预置情景模式默认可见性，可在 `ModeConfigAdapter.getGroupVisible()` 中修改：
 ```typescript
- // ModeConfigAdapter.ets — getGroupVisible controls whether a Settings home group is shown
+ // ModeConfigAdapter.ets — getGroupVisible 控制设置首页某分组是否展示
  public getGroupVisible(modeId: string, groupId: HomeGroupId): boolean {
    const modeConfig: BaseModeConfig = this.getConfigByModeId(modeId);
    if (groupId === HomeGroupId.INTELLIGENT_EXPERIENCE) {
      return false;
    }
-   // [Change point] adjust group visibility as needed
+   // 【修改点】按业务需要调整分组可见性，例如强制显示某分组
    // if (groupId === HomeGroupId.SYSTEM_FUNCTION) {
    //   return true;
    // }
    return modeConfig.supportGroupIdSet.has(groupId);
  }
 ```
-**Scenario 4: Modify UI components**
+**场景4：修改UI组件**
 
-- Settings home / scene detail: `product/phone/src/main/ets/pages/settinghome/`
-- Control Center secondary panel: `product/phone/src/main/ets/pages/controlcenter/`
-- DND-related pages: `product/phone/src/main/ets/pages/nodisturb/`
-- Shared dialogs / list rows: `common/src/main/ets/`
+- 设置首页、情景模式详情位于 `product/phone/src/main/ets/pages/settinghome/`
+- 控制中心二级页位于 `product/phone/src/main/ets/pages/controlcenter/`
+- 免打扰相关页面位于 `product/phone/src/main/ets/pages/nodisturb/`
+- 通用弹框、列表项等位于 `common/src/main/ets/`
 
- For example, the Control Center page composes the title bar, scene list, and “More settings”:
+ 例如，控制中心页面组合标题栏、情景模式列表与「更多设置」：
 ```typescript
- // ControlCenterPage.ets — Control Center secondary panel composition
+ // ControlCenterPage.ets — 控制中心二级页组合
  @Component
  struct ControlCenterPage {
    build() {
@@ -326,60 +327,60 @@ Common modification scenarios:
    }
  }
 ```
-Common entry points:
+常用修改入口：
 
-| Target | Path |
-| ------ | ---- |
-| Settings home / scene list & detail | `product/phone/src/main/ets/pages/settinghome/` |
-| Control Center secondary panel | `product/phone/src/main/ets/pages/controlcenter/` |
-| DND / notification allowlist / call policy UI | `product/phone/src/main/ets/pages/nodisturb/` |
-| Intelligent Scene state management | `feature/statemanage/` |
-| Do Not Disturb | `feature/notdisturb/` |
-| Settings linkage | `feature/configlinkage/` |
-| Activation management | `feature/activationmanage/` |
-| Config business | `feature/configmanage/` |
-| Intelligent Scene configuration | `feature/modeconfig/` |
-| Data management | `feature/datamanage/` |
-| Caller allowlist | `common/src/main/ets/utils/PermissionVerifyUtil.ets` |
+| 目标 | 路径 |
+|------|------|
+| 设置首页 / 情景模式列表与详情 | `product/phone/src/main/ets/pages/settinghome/` |
+| 控制中心二级页 | `product/phone/src/main/ets/pages/controlcenter/` |
+| 免打扰 / 通知白名单 / 来电策略 UI | `product/phone/src/main/ets/pages/nodisturb/` |
+| 情景模式状态管理 | `feature/statemanage/` |
+| 免打扰 | `feature/notdisturb/` |
+| 设置联动 | `feature/configlinkage/` |
+| 激活管理 | `feature/activationmanage/` |
+| 配置业务 | `feature/configmanage/` |
+| 情景模式配置 | `feature/modeconfig/` |
+| 数据管理 | `feature/datamanage/` |
+| 调用方白名单 | `common/src/main/ets/utils/PermissionVerifyUtil.ets` |
 
-### Developing New Feature Capabilities
+### 新特性能力的开发
 
-#### Scenario A: Reuse existing features (example: add a “Commute” preset)
+#### 场景A：复用已有 feature（示意：新增「通勤」预置模式）
 
-Use a concrete end-to-end example: **add a new preset scene that can auto-enable on a time condition** (example name: Commute), including step order and dependencies.
+下面用 **「新增一种可被时间条件自动开启的预置情景模式」**（示意名：通勤模式）串起完整步骤，以及前后依赖关系。
 
-> **Note**: Structure is `product + feature + common`, entry in `product/phone`. New business usually extends an existing feature; add a new product directory only for a new HAP form.
+> **说明**：工程采用 `product + feature + common` 结构，入口在 `product/phone`。一般新业务落在已有 feature；若新增独立产品形态 HAP，再在 `product/` 下加目录并在 `build-profile.json5` 注册。
 
-#### Example goal
+#### 目标业务（示例）
 
-Users should: see “Commute” in Settings → configure “enable at 08:00 on weekdays” → at 08:00 the system enables that scene (DND/linkage follow that scene’s config).
+希望用户能：在设置里看到「通勤模式」→ 配置「工作日 8:00 自动开启」→ 到点系统自动开启该情景模式（勿扰/联动等策略随该模式配置生效）。
 
-Required chains: **business data + enable path**, **system entry for Settings/Control Center**, **user-facing UI**. Order: **business first → entry second → UI last**.
+因此需要同时具备：**业务数据与启停链路**、**暴露给设置/控制中心的入口**、**用户可操作的 UI**。三步对应这三条能力链路，顺序一般是 **先业务 → 再入口 → 后 UI**。
 
-**Step 1: Extend business capabilities (how this scene works in the feature layer)**
+**步骤1：扩展业务能力（在特性层写清「这个情景模式如何工作」）**
 
-| Problem to solve | Description |
-| ---------------- | ----------- |
-| System must know the Commute entity | Add preset `modeId`, default name/icon, and default template in `feature/modeconfig` / `feature/datamanage`; otherwise list and RDB have no scene |
-| Time conditions must actually fire | After `feature/configmanage` persists conditions, they must also be activated via `ActivationManager`; **DB-only save never fires at the scheduled time** |
-| Enable must apply DND/linkage | Ensure `StateManager.startScene(commute modeId)` chains `notdisturb` and `configlinkage`; extend the related feature if Commute needs differentiated policies |
+| 要解决的问题 | 说明 |
+|--------------|----------------|
+| 系统要认识「通勤」这个情景模式实体 | 在 `feature/modeconfig` / `feature/datamanage` 增加预置 `modeId`、默认名称图标与默认配置模板，否则列表与 RDB 没有该模式 |
+| 用户配置的时间条件要能自动开/关 | 条件经 `feature/configmanage` 落库后，还需通过 `ActivationManager` 生效；否则只写入本机库，**不会到点触发** |
+| 开启时要应用勿扰、联动 | 确认 `StateManager.startScene(通勤 modeId)` 能串联 `notdisturb`、`configlinkage`；若通勤有差异化策略，在对应 feature 扩展 |
 
-Suggested order:
+操作顺序建议：
 
-1. Persist entity and config in the feature layer (`modeconfig`, `datamanage`, `configmanage`).
-2. Activate conditions and enable/disable via `activationmanage` and `statemanage`.
-3. Optionally create a new `feature/xxx` HAR and declare dependencies in `build-profile.json5` and `product/phone/oh-package.json5`.
-4. **Do not finish full UI before business works**—pages would only bind empty data.
+1. 在特性层落实体与配置（`modeconfig`、`datamanage`、`configmanage`）。
+2. 条件生效与启停走 `activationmanage`、`statemanage`。
+3. 若能力足够独立，也可新建 `feature/xxx` HAR，在 `build-profile.json5` 与 `product/phone/oh-package.json5` 声明依赖。
+4. **业务未通前不要先做完整 UI**，否则页面只能空绑数据。
 
-**Step 2: Configure / verify Ability entry (so system apps can find this capability)**
+**步骤2：配置 / 确认 Ability 入口（让系统应用能「找得到」本能力）**
 
-Even if business logic lives in a HAR, **Settings/Control Center only launch Abilities declared under product**. Check `product/phone/src/main/module.json5`:
+业务逻辑若在 HAR 内，**设置/控制中心进程仍只会拉起 product 里声明的 Ability / UIExtension**。因此要核对 `product/phone/src/main/module.json5`：
 
-- Existing exported components cover the path: full-screen `EntryAbility`, Settings embed `IntelligentSceneUIExtSettingAbility`, Control Center `SceneControlUIExtAbility`, background Service `IntelligentSceneServiceExtAbility`.
-- New UIExtension/Service scenarios must declare **name, type, permissions, exported**, or external Want **cannot start them**.
-- Permissions are sufficient (for example `ACCESS_SYSTEM_SETTINGS` for SettingsData).
+- 已有导出组件是否覆盖场景：全屏 `EntryAbility`、设置嵌入用 `IntelligentSceneUIExtSettingAbility`、控制中心用 `SceneControlUIExtAbility`、后台条件触发用的 `IntelligentSceneServiceExtAbility` 等。
+- 新场景若需新的 UIExtension / Service，在此 **声明 name、type、permissions、exported**，否则外部 Want **无法拉起**。
+- 权限是否足够：例如读写 SettingsData 依赖 `ACCESS_SYSTEM_SETTINGS` 等。
 
-Existing entry sketch:
+现有入口示意：
 
 ```json
 {
@@ -419,122 +420,122 @@ Existing entry sketch:
 }
 ```
 
-**Step 3: Customize UI (user sees and configures step-1 business)**
+**步骤3：定制 UI（用户看见并配置步骤1 的业务）**
 
-After business data and Ability reachability are ready, update product pages to expose Commute, for example:
+在业务数据与 Ability 可达之后，再改 product 页面，把通勤模式暴露给用户，例如：
 
-| UI | Path | Purpose |
-| -- | ---- | ------- |
-| Settings home list adds a “Commute” card | `pages/settinghome/` | Detail entry and master switch |
-| Condition page for 08:00 on weekdays | condition sheets / pages integrated with `configmanage` | Persist time condition and activate auto-enable |
-| Control Center list shows Commute toggle | `pages/controlcenter/` | Quick enable/disable |
-| Optional standalone DND allowlist pages | `pages/nodisturb/` | Configure who may disturb |
+| UI | 位置 | 用途 |
+|----|------|------|
+| 设置首页情景模式列表增加「通勤」卡片 | `pages/settinghome/` | 进入详情、总开关 |
+| 条件开启页可配置工作日 8:00 | 条件相关 sheet / `configmanage` 对接页 | 写入时间条件并使自动开启生效 |
+| 控制中心列表展示通勤开关 | `pages/controlcenter/` | 快速启停 |
+| 若有独立勿扰白名单页 | `pages/nodisturb/` | 配置允许谁打扰 |
 
-To add an independent page:
+新增独立页面时：
 
-1. Add the page under `product/phone/src/main/ets/pages/`;
-2. Register it in `resources/base/profile/main_pages.json` if system routing is required;
-3. Launch via Navigation / Want / Settings navigation.
+1. 在 `product/phone/src/main/ets/pages/` 下新增页面文件；
+2. 若需要系统路由注册，在 `resources/base/profile/main_pages.json` 中声明；
+3. 由 Navigation / Want / 设置页跳转链路拉起。
 
-**Step relationship**: Step 1 makes “auto enable at 08:00” real; step 2 makes Settings/Control Center able to enter; step 3 lets users configure and see it. Missing any step yields “UI but no effect”, “logic but unreachable”, or “entry but no data”.
+**三步关系小结**：步骤1 决定「自动 8:00 开启」是否真能发生；步骤2 决定设置/控制中心能否进入本应用；步骤3 决定用户如何配置与查看。缺任一步都会出现「有页面无生效」「有逻辑进不去」「有入口无数据」等问题。
 
-> The Commute example mostly **reuses existing features** (`modeconfig` / `datamanage` / `activationmanage` / `statemanage`, etc.). If the new capability does not fit existing HAR boundaries, use Scenario B below.
+> 上例主要**复用已有 feature**（`modeconfig` / `datamanage` / `activationmanage` / `statemanage` 等）。若新能力无法归入现有 HAR 边界，需按下面「新增 feature」场景落地。
 
-#### Scenario B: Add a new feature HAR (example: geofence auto-enable)
+#### 场景B：需要新增 feature HAR（示意：地理围栏自动开启）
 
-Use when the **business boundary is independent**—it does not fit state / DND / linkage / activation / config / data HARs, or it needs a new system Kit, its own state machine, and callbacks. Example: “auto-enable a scene when entering a company/school geofence.” Fence listening and trigger shape differ from time conditions, so they should not be forced into `activationmanage`.
+适用：**业务边界独立**、与现有「状态 / 勿扰 / 联动 / 激活 / 配置 / 数据」职责都不贴合，或会引入新的系统 Kit、独立状态机与对外回调时。例如「进入公司/学校地理围栏自动开启某情景模式」——条件采集、围栏监听与触发形态都不同于现有时间条件，不宜硬塞进 `activationmanage`。
 
-| Step | Action | Notes |
-| ---- | ------ | ----- |
-| 1. Create HAR | Add `feature/geofence/` (or similar), with `Index.ets` and Manager/Adapter | Register in `build-profile.json5`; declare `@ohos/scene.geofence` in `product/phone/oh-package.json5` |
-| 2. Export API | e.g. `GeofenceManager.addFence()` / `onFenceTriggered()` | Called from `statemanage` or `activationmanage`; avoid dumping business into product |
-| 3. Data & permissions | New tables via `datamanage`/`DbConfig` or inside the HAR; request location permissions | Prefer SettingsData for cross-process state; evaluate DataShare for list-like data |
-| 4. Hook enable path | On fence trigger, call `StateManager.startScene(modeId, ...)` | Reuse DND/linkage features; the new HAR only decides **when** to fire |
-| 5. UI & entry | Add fence config pages under `product/phone`; extend `module.json5` if needed | UI depends only on the new HAR’s exports |
+| 步骤 | 做什么 | 说明 |
+|------|--------|------|
+| 1. 新建 HAR | 在 `feature/` 下新增目录（如 `feature/geofence/`），编写 `Index.ets`、业务 Manager/Adapter | 在 `build-profile.json5` 注册模块；在 `product/phone/oh-package.json5`（及依赖方）声明 `@ohos/scene.geofence` |
+| 2. 定义对外 API | 导出如 `GeofenceManager.addFence()` / `onFenceTriggered()` | 由 `statemanage` 或 `activationmanage` **依赖调用**，避免 product 直接堆业务 |
+| 3. 数据与权限 | 若需新表，在 `datamanage`/`DbConfig` 扩展或本 HAR 内封装；申请定位等相关系统权限 | 跨进程状态仍优先走 SettingsData；名单类可评估是否进 DataShare |
+| 4. 接入启停 | 围栏触发后调用 `StateManager.startScene(modeId, ...)` | 勿扰/联动仍复用现有 feature，新 HAR 只负责「何时触发」 |
+| 5. UI 与入口 | 在 `product/phone` 增加围栏配置页；必要时扩展 `module.json5` Ability | UI 只依赖新 HAR 的导出接口 |
 
-**Difference from Commute**: Commute adds a preset `modeId` and reuses time-based activation; geofence is a **new trigger source and module** that must be a new feature, then consumed by the existing enable path.
+**与「通勤模式」示例的差异**：通勤主要扩预置 `modeId` + 复用时间条件激活；地理围栏则是**新触发源与新模块**，必须新增 feature，再被现有启停链路消费。
 
-How to choose:
+选择建议：
 
-- Change an existing path (enable, DND, linkage, config, UI) → “Developing on Existing Modules”.
-- New preset but same triggers/policies → Scenario A (Commute).
-- New trigger source, Kit, or lifecycle → **Scenario B (new feature HAR)**.
+- 只改某条已有链路（启停、勿扰、联动、配置、UI）→ 走上文「基于已有模块的开发」。
+- 新预置模式但触发/策略仍复用现有能力 → 走「场景：通勤模式」三步。
+- 新触发源、新 Kit、独立生命周期 → **新增 feature HAR**。
 
-## Directory
+## 目录
 ```text
-intellligentscene7.0
-├─AppScope                              # App-level config and i18n resources
-│  ├─app.json5                          # bundleName, version, etc.
-│  └─resources/                         # Global strings / icons
-├─common                                # Common layer (cross-feature infra)
+applications_intelligentscene
+├─AppScope                              # 应用级配置与多语言资源
+│  ├─app.json5                          # bundleName、版本号等
+│  └─resources/                         # 全局字符串 / 图标等资源
+├─common                                # 公共层（跨特性基建）
 │  └─src/main/ets/
-│     ├─basecomponent/                  # Shared UI: confirm dialog, Toast, link text, symbol icons
-│     ├─constant/                       # Business constants: ModeConstant(modeId/enable), SettingsData keys, DbConfig fields, EventBus names
-│     ├─framework/                      # EventBus state bus; PageRouter nav; SettingPage/Item/Group/Sheet/Dialog
-│     ├─rdbstore/                       # RdbStoreHelper(EL2 IntelligentScene.db)/El1RdbStoreHelper: open/CRUD/backup
-│     ├─utils/                          # LogUtil, PermissionVerifyUtil allowlist, SettingsDataUtils
-│     └─stub/                           # BaseServiceStub (IPC base for product stubs)
-├─feature                               # Feature layer
-│  ├─statemanage/                       # Scene enable/disable state machine, SettingsData writes
-│  ├─notdisturb/                        # DND profile / notification allowlist, timed DND
-│  ├─configlinkage/                     # Link dark-mode etc. when scene is active; Live View
-│  ├─activationmanage/                  # Time/app auto-enable condition management and trigger
-│  ├─configmanage/                      # Current-open state, allow-disturb allowlist, contact policies
-│  ├─modeconfig/                        # Preset scene defaults, Settings home group visibility
-│  └─datamanage/                        # Scene/config/contact models; IntelligentScene.db access
-├─product                               # Product layer
-│  └─phone/                             # Phone / tablet HAP
+│     ├─basecomponent/                  # 通用 UI 组件：确认弹框、Toast、链接文案、符号图标
+│     ├─constant/                       # 业务常量：ModeConstant(modeId/启停)、SettingsData键、DbConfig表字段、EventBus事件名等
+│     ├─framework/                      # EventBus状态分发；PageRouter导航；SettingPage/Item/Group/Sheet/Dialog设置页控件
+│     ├─rdbstore/                       # RdbStoreHelper(EL2 IntelligentScene.db)/El1RdbStoreHelper：打开建表、增删改查、备份恢复
+│     ├─utils/                          # LogUtil、PermissionVerifyUtil白名单、SettingsDataUtils等
+│     └─stub/                           # BaseServiceStub（IPC Stub基类，供product侧继承）
+├─feature                               # 特性层
+│  ├─statemanage/                       # 情景模式开启/关闭状态机、写SettingsData
+│  ├─notdisturb/                        # 勿扰Profile/通知白名单、定时勿扰
+│  ├─configlinkage/                     # 情景模式生效后联动深色模式等系统设置、实况通知
+│  ├─activationmanage/                  # 时间/应用等自动开启条件管理与触发
+│  ├─configmanage/                      # 本机当前开启态、允许打扰白名单、联系人策略
+│  ├─modeconfig/                        # 预置情景模式默认能力、设置首页分组可见性
+│  └─datamanage/                        # 情景模式/配置项/联系人模型，访问IntelligentScene.db
+├─product                               # 产品层
+│  └─phone/                             # 手机 / 平板形态 HAP
 │     └─src/main/ets/
 │        ├─entryability/                # UIAbility / UIExtension
 │        ├─serviceability/              # Service / DataShare
-│        ├─pages/                       # Settings home, Control Center, DND pages
-│        ├─stub/                        # IPC Stub implementations
-│        └─subscriber/                  # Static subscribers
-├─docs/figures/                         # Architecture figures
-├─hvigor                                # Build tool configuration
-├─signature                             # Signing certificates and profile
-├─build-profile.json5                   # Project-level config
+│        ├─pages/                       # 设置首页、控制中心、免打扰等
+│        ├─stub/                        # IPC Stub 实现
+│        └─subscriber/                  # 静态订阅者
+├─docs/figures/                         # 架构图
+├─hvigor                                # 构建工具配置
+├─signature                             # 签名证书与 profile
+├─build-profile.json5                   # 工程级配置
 ├─build.sh
 ├─oh-package.json5
-├─OAT.xml                               # Open-source compliance audit
+├─OAT.xml                               # 开源合规审计
 ├─LICENSE
-├─README.md                             # English documentation
-└─README_zh.md                          # Chinese documentation
+├─README.md                             # 中文说明文档
+└─README_en.md                          # 英文说明文档
 ```
 
-## Constraints
-- **Language**: ArkTS
-- **Runtime form**: system preinstalled app (`com.ohos.intelligentscene`), depends on SettingsData, Notification, and system settings
-- **Device types**: phone, tablet (see `product/phone/src/main/module.json5`)
-- **Feature switch**: `const.intelligentscene.enable` must be enabled
-- **Permissions** (see `product/phone/src/main/module.json5`):
+## 约束
+- **语言版本**：ArkTS
+- **运行形态**：系统预置应用（`com.ohos.intelligentscene`），依赖 SettingsData、Notification、系统设置等系统能力
+- **设备类型**：`手机`、`平板`（见 `product/phone/src/main/module.json5`）
+- **特性开关**：需开启 `const.intelligentscene.enable`
+- **权限**：情景模式所需的主要权限如下（见 `product/phone/src/main/module.json5`）
 
-  | Permission | Grant mode | Concrete usage |
-  | ---------- | ---------- | -------------- |
-  | ohos.permission.ACCESS_SYSTEM_SETTINGS | system | Read/write SettingsData keys for the current scene and DND, used to sync which scene is on and whether DND is enabled so Settings and Control Center stay consistent |
-  | ohos.permission.MANAGE_SETTINGS | system | Manage system settings when a scene applies linkage (e.g. dark mode) |
-  | ohos.permission.MANAGE_SECURE_SETTINGS | system | Read/write secure SettingsData (`USER_SECURITY`): DND enable/disable and current scene ID on scene start/stop; dark-mode linkage; Live View state; and restricted DataShare access |
-  | ohos.permission.NOTIFICATION_CONTROLLER | system | When DND is on for a scene, set DND profiles and notification allowlists on Notification |
-  | ohos.permission.GET_BUNDLE_INFO | system | Resolve name/icon for apps listed on the “allowed notifications” page |
-  | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system | Query other apps’ BundleInfo for allowlist UI and call-related capability checks |
-  | ohos.permission.GET_INSTALLED_BUNDLE_LIST | system | Enumerate installed apps for allowlist selection |
-  | ohos.permission.LISTEN_BUNDLE_CHANGE | system | Listen for app install/update/uninstall to refresh the notification allowlist |
-  | ohos.permission.GET_LOCAL_ACCOUNTS | system | Get the local user ID used to build SettingsData secure/user domain URIs |
-  | ohos.permission.GET_TELEPHONY_STATE | system | Check voice-call capability to decide whether to show the incoming-call DND entry |
-  | ohos.permission.READ_CONTACTS | user | Read contacts when configuring call DND policies |
-  | ohos.permission.RUNNING_LOCK | system | Hold running lock during timed/condition tasks so enable/disable is not suspended early |
-  | ohos.permission.START_SYSTEM_DIALOG | system | Show system confirm dialogs (e.g. confirm enabling a scene) |
-  | ohos.permission.START_ABILITIES_FROM_BACKGROUND | system | On time condition fire or auto-enable callback, start Service/Ability from background to auto-enable |
+  | 权限 | 授权方式 | 使用场景（具象）                                                                                         |
+  |------|---------|--------------------------------------------------------------------------------------------------|
+  | ohos.permission.ACCESS_SYSTEM_SETTINGS | 系统授权 | 写入/读取 SettingsData 中当前情景模式、勿扰等相关键，用来同步当前开启哪个情景模式、是否开启勿扰，使设置首页与控制中心状态一致                           |
+  | ohos.permission.MANAGE_SETTINGS | 系统授权 | 情景模式联动改系统设置时管理设置项（如与深色模式等联动）                                                                     |
+  | ohos.permission.MANAGE_SECURE_SETTINGS | 系统授权 | 读写安全级 SettingsData（`USER_SECURITY`）：开启/关闭时写入勿扰启停与当前情景模式 ID；联动深色模式等系统项；实况通知相关状态；以及 DataShare 受限访问 |
+  | ohos.permission.NOTIFICATION_CONTROLLER | 系统授权 | 情景模式开启免打扰时，向通知服务设置勿扰 Profile、白名单应用列表                                                             |
+  | ohos.permission.GET_BUNDLE_INFO | 系统授权 | 展示「允许通知的应用」列表时查询指定包名的应用信息与图标                                                                     |
+  | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | 系统授权 | 查询应用包 BundleInfo，用于应用白名单展示、来电相关包能力判断等                                                     |
+  | ohos.permission.GET_INSTALLED_BUNDLE_LIST | 系统授权 | 打开应用白名单页时枚举本机已安装应用供用户勾选                                                                          |
+  | ohos.permission.LISTEN_BUNDLE_CHANGE | 系统授权 | 监听应用安装/更新/卸载，刷新「允许通知的应用」白名单展示                                                                    |
+  | ohos.permission.GET_LOCAL_ACCOUNTS | 系统授权 | 获取本机用户 ID，拼接 SettingsData 安全/用户域 URI                                                             |
+  | ohos.permission.GET_TELEPHONY_STATE | 系统授权 | 判断设备是否具备语音通话能力，决定是否展示来电勿扰入口                                                                      |
+  | ohos.permission.READ_CONTACTS | 用户授权 | 配置来电勿扰策略时读取通讯录联系人                                                                                |
+  | ohos.permission.RUNNING_LOCK | 系统授权 | 条件触发或定时任务执行期间持锁，避免进程被过早挂起导致启停失败                                                                  |
+  | ohos.permission.START_SYSTEM_DIALOG | 系统授权 | 弹出系统级确认框（例如开启某情景模式的确认对话框）                                                                        |
+  | ohos.permission.START_ABILITIES_FROM_BACKGROUND | 系统授权 | 时间条件到点或自动开启回调时，在后台拉起 Service / Ability 完成自动开启                                                    |
 
-- **External calls**: Service / IPC only for allowlisted bundles
-- **Form adaptation**: phone / tablet layouts differ; validate both when changing UI
+- **对外调用**：Service / IPC 仅允许白名单内包名调用
+- **形态适配**：手机 / 平板布局存在差异，修改 UI 时需覆盖多形态验证
 
-## Contributing
+## 参与贡献
 
-Contributions of code and documentation are welcome. See [Contributing](https://gitcode.com/openharmony/docs/blob/master/en/contribute/contribution.md).
+欢迎广大开发者贡献代码、文档等，具体的贡献流程和方式请参见[参与贡献](https://gitcode.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE.md)。
 
-## Related Repositories
+## 相关仓
 
-- [applications_settings](https://gitcode.com/openharmony/applications_settings) (Settings app; hosts the Intelligent Scene settings entry)
-- [window_scene_board](https://gitcode.com/openharmony-sig/window_scene_board) (SceneBoard; Control Center host)
+- [applications_settings](https://gitcode.com/openharmony/applications_settings)（设置应用，情景模式设置入口宿主）
+- [window_scene_board](https://gitcode.com/openharmony-sig/window_scene_board)（SceneBoard，控制中心宿主）
 - [arkui_ace_engine](https://gitcode.com/openharmony/arkui_ace_engine)
