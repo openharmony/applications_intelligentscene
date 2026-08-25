@@ -221,7 +221,7 @@ When reading this repository’s docs, map these system concepts to the official
 | Notification / DND Profile | Push DND profiles and allowlists to Notification when a scene enables DND | [notificationManager (system API)](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-notification-kit/js-apis-notificationManager-sys.md) |
 | UIExtension | Embed Intelligent Scene UI in Settings / Control Center | [UIExtension components](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/ui/arkts-ui-extension-components-sys.md), [UIExtensionAbility](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md) |
 | UIAbility | Full-screen entry `EntryAbility` | [UIAbility](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) |
-| Want | Intent parameters used by system peers to start this app’s Ability / Extension | [Want](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-ability-kit/js-apis-app-ability-want.md) |
+| Want | Parameters used by system peers to start this app’s Ability / Extension | [Want](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-ability-kit/js-apis-app-ability-want.md) |
 | ServiceExtensionAbility | Resident service `IntelligentSceneServiceExtAbility` | [ServiceExtensionAbility](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) |
 | Stage model | Ability / Extension runtime model used by this app | [Stage model overview](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/application-models/stage-model-development-overview.md) |
 
@@ -511,6 +511,7 @@ applications_intelligentscene
 ├─docs/figures/                         # Architecture figures
 ├─hvigor                                # Build tool configuration
 ├─signature                             # Signing certificates and profile
+├─bundle.json                           # Component descriptor
 ├─build-profile.json5                   # Project-level config
 ├─build.sh
 ├─oh-package.json5

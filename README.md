@@ -511,6 +511,7 @@ applications_intelligentscene
 ├─docs/figures/                         # 架构图
 ├─hvigor                                # 构建工具配置
 ├─signature                             # 签名证书与 profile
+├─bundle.json                           # 部件描述文件
 ├─build-profile.json5                   # 工程级配置
 ├─build.sh
 ├─oh-package.json5
