@@ -43,7 +43,7 @@
 
 ### 预置情景模式说明
 
-预置模式以 `modeId` 区分（见 `ModeType`）：免打扰 `'1'`、睡眠 `'2'`、学习 `'3'`。三者均支持勿扰与设置首页「条件开启 / 允许打扰 / 关联系统功能」等通用分组；差异主要在**默认模板与产品定位**。
+预置模式以 `modeId` 区分（见 `ModeModel.ModeType`）：免打扰 `'1'`、睡眠 `'2'`、学习 `'3'`。三者均支持勿扰与设置首页「条件开启 / 允许打扰 / 关联系统功能」等通用分组；差异主要在**默认模板与产品定位**。
 
 | 对比项 | 免打扰（`modeId=1`） | 睡眠（`modeId=2`） | 学习（`modeId=3`） |
 |--------|---------------------|-------------------|-------------------|
@@ -163,28 +163,28 @@
 
 | 接口形态 | 组件 / 标识 | 适用对象 | 典型场景 | 鉴权要求 |
 |----------|-------------|----------|----------|----------|
-| UIExtension（设置嵌入） | `IntelligentSceneUIExtSettingAbility` | 系统应用（设置） | 「设置 → 情景模式」完整配置页 | 调用方需 `ACCESS_SYSTEM_SETTINGS`；通常由设置宿主拉起 |
-| UIExtension（控制中心） | `SceneControlUIExtAbility` | 系统应用（SceneBoard） | 控制中心二级页快速开关 | 同上 |
-| UIAbility 全屏入口 | `EntryAbility` | 系统 / 桌面入口 | 独立全屏打开情景模式 | `exported=true`，一般经桌面/设置跳转 |
-| 系统确认弹框 | `ModeEnableConfirmDialogUIExtAbility` | 系统应用 | 开启情景模式确认框 | `ACCESS_SYSTEM_SETTINGS` |
-| Kit 查询 API | `intelligentScene.isDoNotDisturbEnabled()` | 应用（含三方，需声明权限） | 查询**系统免打扰是否已开启**（任一情景模式开启勿扰时为 true） | `ohos.permission.GET_DONOTDISTURB_STATE` |
-| Kit 查询 API | `intelligentScene.isNotifyAllowedInDoNotDisturb()` | 应用（含三方，需声明权限） | 免打扰开启时，查询**当前应用是否在允许打扰名单内**（未开启免打扰时返回 false） | `ohos.permission.GET_DONOTDISTURB_STATE` |
+| [UIExtension](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/ui/arkts-ui-extension-components-sys.md)（设置嵌入） | `IntelligentSceneUIExtSettingAbility` | 系统应用（设置） | 「设置 → 情景模式」完整配置页 | 调用方需 `ACCESS_SYSTEM_SETTINGS`；通常由设置宿主拉起 |
+| [UIExtension](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/ui/arkts-ui-extension-components-sys.md)（控制中心） | `SceneControlUIExtAbility` | 系统应用（SceneBoard） | 控制中心二级页快速开关 | 同上 |
+| [UIAbility](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) 全屏入口 | `EntryAbility` | 系统 / 桌面入口 | 独立全屏打开情景模式 | `exported=true`，一般经桌面/设置跳转 |
+| 系统确认弹框（UIExtension） | `ModeEnableConfirmDialogUIExtAbility` | 系统应用 | 开启情景模式确认框 | `ACCESS_SYSTEM_SETTINGS` |
+| Kit 查询 API | [`intelligentScene.isDoNotDisturbEnabled()`](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-intelligentScene.md) | 应用（含三方，需声明权限） | 查询**系统免打扰是否已开启**（任一情景模式开启勿扰时为 true） | `ohos.permission.GET_DONOTDISTURB_STATE` |
+| Kit 查询 API | [`intelligentScene.isNotifyAllowedInDoNotDisturb()`](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-intelligentScene.md) | 应用（含三方，需声明权限） | 免打扰开启时，查询**当前应用是否在允许打扰名单内**（未开启免打扰时返回 false） | `ohos.permission.GET_DONOTDISTURB_STATE` |
 
-`intelligentScene` 模块从 `@kit.BasicServicesKit` 导入，仅提供上述只读查询，**不能**通过该 API 修改情景模式或免打扰配置。接口细节、错误码与示例见官方文档：  
+`intelligentScene` 模块从 `@kit.BasicServicesKit` 导入，仅提供上述只读查询，**不能**通过该 API 修改情景模式或免打扰配置。接口细节、错误码与示例见：  
 [js-apis-intelligentScene（情景模式）](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-intelligentScene.md)
 
 按场景说明：
 
 | 场景 | 说明 |
 |------|---------------------------|
-| 用户进入「设置 → 情景模式」完整配置 | **设置应用**在本机安装情景模式且特性开关打开时，以 **UIExtension** 拉起 `IntelligentSceneUIExtSettingAbility`（或 Want，`uri: intelligent_scene_entry` 等）展示设置首页/详情 |
-| 用户在控制中心打开情景模式面板 | **SceneBoard（控制中心宿主）**在满足同样安装/开关条件时，以 **UIExtension** 拉起 `SceneControlUIExtAbility`，展示快速开关列表；点「更多设置」再跳转设置入口 |
-| 桌面/系统需要读写跨进程共享状态 | 设置、控制中心、桌面等通过系统 **SettingsData**（`@ohos.settings` / DataShare）读写本应用写入的键（如 focus 相关、当前情景模式状态）；本应用侧封装见 `SettingsDataUtils`、`SettingsDataKeyConstant` |
-| 系统受信组件访问常驻能力或 DataShare | 白名单包名绑定 **Service**（`IntelligentSceneServiceExtAbility`）或访问 **DataShare**（`DataExtAbility`）；未通过校验的调用方会被拒绝 |
+| 用户进入「设置 → 情景模式」完整配置 | **设置应用**在本机安装情景模式且特性开关打开时，以 **UIExtension** 拉起 `IntelligentSceneUIExtSettingAbility`（或 [Want](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-want.md)，`uri: intelligent_scene_entry` 等）展示设置首页/详情 |
+| 用户在控制中心打开情景模式面板 | **SceneBoard**在满足同样安装/开关条件时，以 **UIExtension** 拉起 `SceneControlUIExtAbility`，展示快速开关列表；点「更多设置」再跳转设置入口 |
+| 桌面/系统需要读写跨进程共享状态 | 设置、控制中心、桌面等通过系统 **SettingsData**（[`@ohos.settings`](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-settings.md) / [DataShare](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-dataShare.md)）读写本应用写入的键（如 focus 相关、当前情景模式状态）；本应用侧封装见 `SettingsDataUtils`、`SettingsDataKeyConstant` |
+| 系统受信组件访问常驻能力或 DataShare | 白名单包名绑定 **[Service](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)**（`IntelligentSceneServiceExtAbility`）或访问 **DataShare**（`DataExtAbility`）；未通过校验的调用方会被拒绝 |
 
 #### DataShare 配置与接入本应用 RDB
 
-本应用通过 `DataExtAbility` 把部分 RDB 表以 DataShare 形式对外只读暴露，供系统通话、设置等查询。配置见：
+本应用通过 `DataExtAbility`（基于 [DataShareExtensionAbility](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)）把部分 [RDB](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-relationalStore-sys.md) 表以 DataShare 形式对外只读暴露，供系统通话、设置等查询。接入指南见：[通过 DataShareExtensionAbility 实现数据共享](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/database/share-data-by-datashareextensionability-sys.md)。配置见：
 
 - Ability：`product/phone/src/main/module.json5`（`uri: datashare://com.ohos.intelligentscene.DataAbility`，`readPermission`/`writePermission` 为 `ohos.permission.MANAGE_SECURE_SETTINGS`）
 - 表 URI：`product/phone/src/main/resources/base/profile/data_share_config.json`
@@ -202,11 +202,28 @@
 **系统侧接入步骤（示意）**
 
 1. 调用方为系统应用，并申请 / 被授予 `ohos.permission.MANAGE_SECURE_SETTINGS`。
-2. 使用 `@ohos.data.dataShare` 创建 DataShareHelper，URI 指向上表（查询时 URI 常带 `?Proxy=true`，与本应用解析约定一致）。
+2. 使用 [`@ohos.data.dataShare`](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-dataShare.md) 创建 DataShareHelper，URI 指向上表（查询时 URI 常带 `?Proxy=true`，与本应用解析约定一致）。
 3. 按表字段构造谓词查询，例如按 `modeId`、`focus_mode_list` 查 `CONTACT_DATA`。
 4. 来电名单场景也可先读 SettingsData 中的 `intelligent_scene_data` / `intelligent_uri`（由 `ContactAdapter.init` 发布），再访问对应 DataShare。
 
 > 普通三方应用无法接入：缺少系统权限，且无开放业务 API。
+
+### 相关概念与术语
+
+阅读本仓说明时，下列系统模块概念可对照官方文档：
+
+| 概念 / 术语 | 在本应用中的用途 | 参考文档 |
+|-------------|------------------|----------|
+| SettingsData / `@ohos.settings` | 跨进程同步当前情景模式、勿扰启停及来电策略等键 | [@ohos.settings（设置数据项）](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-settings.md) |
+| DataShare | 对外暴露情景模式 RDB 表（来电名单等）供系统查询 | [dataShare API](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-dataShare.md)、[DataShare 共享指南](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/database/share-data-by-datashareextensionability-sys.md) |
+| DataShareExtensionAbility | `DataExtAbility` 提供方实现基类 | [DataShareExtensionAbility](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md) |
+| RDB / relationalStore | 本机 `IntelligentScene.db` 持久化情景模式与配置 | [@ohos.data.relationalStore](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-relationalStore-sys.md) |
+| Notification / 勿扰 Profile | 情景模式开启勿扰时向通知服务下发 Profile 与白名单 | [notificationManager（系统 API）](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-notification-kit/js-apis-notificationManager-sys.md) |
+| UIExtension | 设置 / 控制中心嵌入情景模式页面 | [UIExtension 组件](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/ui/arkts-ui-extension-components-sys.md)、[UIExtensionAbility](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md) |
+| UIAbility | 全屏入口 `EntryAbility` | [UIAbility](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) |
+| Want | 系统侧拉起本应用 Ability / Extension 的意图参数 | [Want](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-want.md) |
+| ServiceExtensionAbility | 常驻服务 `IntelligentSceneServiceExtAbility` | [ServiceExtensionAbility](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) |
+| Stage 模型 | 本应用基于 Stage 的 Ability / Extension 运行形态 | [Stage 模型开发概述](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/application-models/stage-model-development-overview.md) |
 
 ## 编译构建
 
@@ -228,7 +245,7 @@ hvigorw assembleHap
 
 ## 情景模式开发
 
-情景模式采用 **ArkTS** 语言开发，UI 基于 ArkUI Stage 模型。应用通过 `product` 承载 Ability 入口与页面，通过特性层完成情景模式状态、免打扰、联动等业务，并通过 `common` 提供公共基建。开发可参考：[ArkUI 开发概述](https://gitcode.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-ui-development-overview.md)
+情景模式采用 **ArkTS** 语言开发，UI 基于 [ArkUI](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/ui/arkts-ui-development-overview.md) [Stage 模型](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/zh-cn/application-dev/application-models/stage-model-development-overview.md)。应用通过 `product` 承载 Ability 入口与页面，通过特性层完成情景模式状态、免打扰、联动等业务，并通过 `common` 提供公共基建。
 
 ### 基于已有模块的开发
 
@@ -494,6 +511,7 @@ applications_intelligentscene
 ├─docs/figures/                         # 架构图
 ├─hvigor                                # 构建工具配置
 ├─signature                             # 签名证书与 profile
+├─bundle.json                           # 部件描述文件
 ├─build-profile.json5                   # 工程级配置
 ├─build.sh
 ├─oh-package.json5

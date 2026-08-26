@@ -43,7 +43,7 @@ This application is a system preset app. Capabilities take effect only when `con
 
 ### Preset Intelligent Scenes
 
-Presets are identified by `modeId` (`ModeType`): Do Not Disturb `'1'`, Sleep `'2'`, Study `'3'`. All three support DND and the common Settings groups (enable method / allow disturb / system linkage). Differences are mainly in **default templates and product positioning**.
+Presets are identified by `modeId` (`ModeModel.ModeType`): Do Not Disturb `'1'`, Sleep `'2'`, Study `'3'`. All three support DND and the common Settings groups (enable method / allow disturb / system linkage). Differences are mainly in **default templates and product positioning**.
 
 | Item | Do Not Disturb (`modeId=1`) | Sleep (`modeId=2`) | Study (`modeId=3`) |
 |------|----------------------------|--------------------|--------------------|
@@ -163,12 +163,12 @@ Exported components (`EntryAbility`, `IntelligentSceneUIExtSettingAbility`, `Sce
 
 | Interface | Component / id | Audience | Typical scenario | Auth |
 | --------- | -------------- | -------- | ---------------- | ---- |
-| UIExtension (Settings embed) | `IntelligentSceneUIExtSettingAbility` | System (Settings) | Full Settings → Intelligent Scene UI | Caller needs `ACCESS_SYSTEM_SETTINGS`; usually launched by Settings |
-| UIExtension (Control Center) | `SceneControlUIExtAbility` | System (SceneBoard) | Control Center quick toggles | Same |
-| Full-screen UIAbility | `EntryAbility` | System / desktop | Standalone full-screen entry | `exported=true`; typically via desktop/Settings |
-| System confirm dialog | `ModeEnableConfirmDialogUIExtAbility` | System apps | Confirm enabling a scene | `ACCESS_SYSTEM_SETTINGS` |
-| Kit query API | `intelligentScene.isDoNotDisturbEnabled()` | Apps (including third-party, with permission) | Query whether **system DND is on** (true when a scene has DND enabled) | `ohos.permission.GET_DONOTDISTURB_STATE` |
-| Kit query API | `intelligentScene.isNotifyAllowedInDoNotDisturb()` | Apps (including third-party, with permission) | When DND is on, query whether **the current app is on the allow-disturb list** (returns false if DND is off) | `ohos.permission.GET_DONOTDISTURB_STATE` |
+| [UIExtension](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/ui/arkts-ui-extension-components-sys.md) (Settings embed) | `IntelligentSceneUIExtSettingAbility` | System (Settings) | Full Settings → Intelligent Scene UI | Caller needs `ACCESS_SYSTEM_SETTINGS`; usually launched by Settings |
+| [UIExtension](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/ui/arkts-ui-extension-components-sys.md) (Control Center) | `SceneControlUIExtAbility` | System (SceneBoard) | Control Center quick toggles | Same |
+| Full-screen [UIAbility](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) | `EntryAbility` | System / desktop | Standalone full-screen entry | `exported=true`; typically via desktop/Settings |
+| System confirm dialog (UIExtension) | `ModeEnableConfirmDialogUIExtAbility` | System apps | Confirm enabling a scene | `ACCESS_SYSTEM_SETTINGS` |
+| Kit query API | [`intelligentScene.isDoNotDisturbEnabled()`](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-basic-services-kit/js-apis-intelligentScene.md) | Apps (including third-party, with permission) | Query whether **system DND is on** (true when a scene has DND enabled) | `ohos.permission.GET_DONOTDISTURB_STATE` |
+| Kit query API | [`intelligentScene.isNotifyAllowedInDoNotDisturb()`](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-basic-services-kit/js-apis-intelligentScene.md) | Apps (including third-party, with permission) | When DND is on, query whether **the current app is on the allow-disturb list** (returns false if DND is off) | `ohos.permission.GET_DONOTDISTURB_STATE` |
 
 Import `intelligentScene` from `@kit.BasicServicesKit`. These APIs are **read-only** and cannot change Intelligent Scene or DND settings. Details, error codes, and samples:  
 [js-apis-intelligentScene](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-basic-services-kit/js-apis-intelligentScene.md)
@@ -177,14 +177,14 @@ By scenario:
 
 | Scenario | Description |
 | -------- | ----------- |
-| User opens full Intelligent Scene settings | **Settings**, when Intelligent Scene is installed and the feature switch is on, launches **UIExtension** `IntelligentSceneUIExtSettingAbility` (or Want with `uri: intelligent_scene_entry`, etc.) for home/detail pages |
-| User opens Control Center scene panel | **SceneBoard** (Control Center host), under the same install/switch conditions, launches **UIExtension** `SceneControlUIExtAbility` for quick toggles; “More settings” jumps to the Settings entry |
-| Desktop/system needs shared cross-process state | Settings, Control Center, Desktop read/write system **SettingsData** (`@ohos.settings` / DataShare) keys written by this app (for example focus-related keys, current scene state); wrappers: `SettingsDataUtils`, `SettingsDataKeyConstant` |
-| Trusted system access to resident service / DataShare | Allowlisted bundles bind **Service** (`IntelligentSceneServiceExtAbility`) or **DataShare** (`DataExtAbility`); callers that fail checks are rejected |
+| User opens full Intelligent Scene settings | **Settings**, when Intelligent Scene is installed and the feature switch is on, launches **UIExtension** `IntelligentSceneUIExtSettingAbility` (or [Want](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-ability-kit/js-apis-app-ability-want.md) with `uri: intelligent_scene_entry`, etc.) for home/detail pages |
+| User opens Control Center scene panel | **SceneBoard**, under the same install/switch conditions, launches **UIExtension** `SceneControlUIExtAbility` for quick toggles; “More settings” jumps to the Settings entry |
+| Desktop/system needs shared cross-process state | Settings, Control Center, Desktop read/write system **SettingsData** ([`@ohos.settings`](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-basic-services-kit/js-apis-settings.md) / [DataShare](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-arkdata/js-apis-data-dataShare.md)) keys written by this app (for example focus-related keys, current scene state); wrappers: `SettingsDataUtils`, `SettingsDataKeyConstant` |
+| Trusted system access to resident service / DataShare | Allowlisted bundles bind **[Service](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md)** (`IntelligentSceneServiceExtAbility`) or **DataShare** (`DataExtAbility`); callers that fail checks are rejected |
 
 #### DataShare config and accessing this app’s RDB
 
-`DataExtAbility` exposes selected RDB tables via DataShare (read-oriented) for CallUI, Settings, and similar system clients. Config:
+`DataExtAbility` (based on [DataShareExtensionAbility](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)) exposes selected [RDB](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-arkdata/js-apis-data-relationalStore-sys.md) tables via DataShare (read-oriented) for CallUI, Settings, and similar system clients. Integration guide: [Share data via DataShareExtensionAbility](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/database/share-data-by-datashareextensionability-sys.md). Config:
 
 - Ability: `product/phone/src/main/module.json5` (`uri: datashare://com.ohos.intelligentscene.DataAbility`; `readPermission`/`writePermission` = `ohos.permission.MANAGE_SECURE_SETTINGS`)
 - Table URIs: `product/phone/src/main/resources/base/profile/data_share_config.json`
@@ -202,11 +202,28 @@ By scenario:
 **System-side integration (sketch)**
 
 1. Caller is a system app with `ohos.permission.MANAGE_SECURE_SETTINGS`.
-2. Create a DataShareHelper (`@ohos.data.dataShare`) with a table URI above (queries often use `?Proxy=true`, matching this app’s URI parsing).
+2. Create a DataShareHelper ([`@ohos.data.dataShare`](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-arkdata/js-apis-data-dataShare.md)) with a table URI above (queries often use `?Proxy=true`, matching this app’s URI parsing).
 3. Query with predicates (e.g. `modeId`, `focus_mode_list` on `CONTACT_DATA`).
 4. For call lists, callers may first read SettingsData `intelligent_scene_data` / `intelligent_uri` (published by `ContactAdapter.init`), then open that DataShare.
 
 > Ordinary third-party apps cannot integrate: no system permission and no public business API.
+
+### Related concepts and terminology
+
+When reading this repository’s docs, map these system concepts to the official references:
+
+| Concept / term | Role in this app | Reference |
+| -------------- | ---------------- | --------- |
+| SettingsData / `@ohos.settings` | Cross-process sync of active scene, DND on/off, call policy keys | [@ohos.settings](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-basic-services-kit/js-apis-settings.md) |
+| DataShare | Expose Intelligent Scene RDB tables (e.g. call lists) to system clients | [dataShare API](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-arkdata/js-apis-data-dataShare.md), [DataShare sharing guide](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/database/share-data-by-datashareextensionability-sys.md) |
+| DataShareExtensionAbility | Base class for provider `DataExtAbility` | [DataShareExtensionAbility](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md) |
+| RDB / relationalStore | Local `IntelligentScene.db` persistence for scenes and configs | [@ohos.data.relationalStore](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-arkdata/js-apis-data-relationalStore-sys.md) |
+| Notification / DND Profile | Push DND profiles and allowlists to Notification when a scene enables DND | [notificationManager (system API)](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-notification-kit/js-apis-notificationManager-sys.md) |
+| UIExtension | Embed Intelligent Scene UI in Settings / Control Center | [UIExtension components](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/ui/arkts-ui-extension-components-sys.md), [UIExtensionAbility](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md) |
+| UIAbility | Full-screen entry `EntryAbility` | [UIAbility](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) |
+| Want | Parameters used by system peers to start this app’s Ability / Extension | [Want](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-ability-kit/js-apis-app-ability-want.md) |
+| ServiceExtensionAbility | Resident service `IntelligentSceneServiceExtAbility` | [ServiceExtensionAbility](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) |
+| Stage model | Ability / Extension runtime model used by this app | [Stage model overview](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/application-models/stage-model-development-overview.md) |
 
 ## Build
 
@@ -228,7 +245,7 @@ hvigorw assembleHap
 
 ## IntelligentScene Development
 
-IntelligentScene is developed in **ArkTS**, with UI based on the ArkUI Stage model. The application uses `product` for Ability entry and pages, the feature layer for scene state, DND, linkage, and related business, and `common` for shared infrastructure. See: [ArkUI Development Overview](https://gitcode.com/openharmony/docs/blob/master/en/application-dev/ui/arkts-ui-development-overview.md)
+IntelligentScene is developed in **ArkTS**, with UI based on [ArkUI](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/ui/arkts-ui-development-overview.md) and the [Stage model](https://atomgit.com/openharmony/docs/blob/OpenHarmony-6.1-Release/en/application-dev/application-models/stage-model-development-overview.md). The application uses `product` for Ability entry and pages, the feature layer for scene state, DND, linkage, and related business, and `common` for shared infrastructure.
 
 ### Developing on Existing Modules
 
@@ -494,6 +511,7 @@ applications_intelligentscene
 ├─docs/figures/                         # Architecture figures
 ├─hvigor                                # Build tool configuration
 ├─signature                             # Signing certificates and profile
+├─bundle.json                           # Component descriptor
 ├─build-profile.json5                   # Project-level config
 ├─build.sh
 ├─oh-package.json5
