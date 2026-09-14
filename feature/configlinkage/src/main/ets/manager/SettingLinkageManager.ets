@@ -68,9 +68,17 @@ export class SettingLinkageManager {
    *
    * @returns 克隆场景是否已处理缓存值 true 已处理 false 未处理
    */
+  private parseSettingsWholeTokenInt(value: string, defaultValue: number): number {
+    if (/^\d+$/.test(value)) {
+      return Number.parseInt(value, 10);
+    }
+    return defaultValue;
+  }
+
   private processCloneScene(): boolean {
-    const cloneTime: number = parseInt(SettingsDataUtils
-      .getSettingsData(SettingsDataKeyConstant.INTELLIGENT_SCENE_CLONE_TIME, '0'));
+    const cloneTimeText: string = SettingsDataUtils
+      .getSettingsData(SettingsDataKeyConstant.INTELLIGENT_SCENE_CLONE_TIME, '0');
+    const cloneTime: number = this.parseSettingsWholeTokenInt(cloneTimeText, 0);
     const currentTime: number = new Date().getTime();
     SettingsDataUtils.setSettingsData(SettingsDataKeyConstant.IS_UI_APPEARANCE_FROM_CLONE, 'false');
     LogUtil.showInfo(TAG, `currentTime: ${currentTime}, cloneTime: ${cloneTime},diff: ${currentTime - cloneTime}`);

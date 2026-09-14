@@ -40,6 +40,13 @@ export class LinkageStateMachine {
    * @param action
    * @param callback
    */
+  private parseSettingsWholeTokenInt(value: string, defaultValue: number): number {
+    if (/^\d+$/.test(value)) {
+      return Number.parseInt(value, 10);
+    }
+    return defaultValue;
+  }
+
   public addCallback(action: ACTION, callback: Function) {
     if (callback) {
       this.actionMap.set(action, callback);
@@ -56,7 +63,7 @@ export class LinkageStateMachine {
     let storageStateStr: string = SettingsDataUtils.getSystemValue(`linkedage_state_${this.type}`,
       String(state)) as string;
     LogUtil.showInfo(this.tag, `initCurrentState state: ${state}, storage: ${storageStateStr}`);
-    return Number(storageStateStr);
+    return this.parseSettingsWholeTokenInt(storageStateStr, state);
   }
 
   /**
@@ -79,7 +86,7 @@ export class LinkageStateMachine {
   public convertState(nextState: State): void {
     let storageStateStr: string = SettingsDataUtils.getSystemValue(`linkedage_state_${this.type}`,
       String(this.state)) as string;
-    this.state = Number(storageStateStr);
+    this.state = this.parseSettingsWholeTokenInt(storageStateStr, this.state);
     LogUtil.showInfo(this.tag, `${this.type} convertState current state:${this.state} nextState is ${nextState}`);
     let action: ACTION = ACTION.NO_ACTION;
     if (this.state === State.NOT_LINK && nextState === State.LINK_ENABLE) {
